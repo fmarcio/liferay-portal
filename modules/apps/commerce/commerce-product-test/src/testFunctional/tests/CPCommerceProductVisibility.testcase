@@ -41,7 +41,6 @@ definition {
 			accountGroupsEntryName = "Guest",
 			accountsEntryName = "Guest",
 			user = "Test Test");
-			
 
 		CommerceNavigator.gotoPortlet(
 			category = "Product Management",
