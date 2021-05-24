@@ -161,7 +161,6 @@ definition {
 		AssertElementPresent(locator1 = "Message#SUCCESS");
 
 		Navigator.openURL();
-		
 
 		CommerceNavigator.gotoPortlet(
 			category = "Product Management",
@@ -176,10 +175,10 @@ definition {
 		SelectFrame.selectFrameNoLoading(locator1 = "CommerceEntry#IFRAME_SIDE_PANEL");
 
 		AssertTextEquals(
-			value1 = "Red",
 			key_entryName = "Red",
-			locator1 = "CommerceNavigation#ENTRY_NAME");
-	
+			locator1 = "CommerceNavigation#ENTRY_NAME",
+			value1 = "Red");
+
 		Click(
 			key_value = "Red",
 			locator1 = "CommerceEntry#BODY_VERTICAL_ELLIPSIS");
