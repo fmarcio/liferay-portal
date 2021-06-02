@@ -120,7 +120,6 @@ definition {
 
 		Form.publishForm();
 
-
 		FormsAdminNavigator.gotoPublishedForm();
 
 		FormFields.addRepeatableField(
@@ -135,8 +134,8 @@ definition {
 
 		FormFields.enableMultipleSelectionCheckbox(
 			fieldName = "Multiple",
-			rowNumber = "2",
-			optionValue = "Option B");			
+			optionValue = "Option B",
+			rowNumber = "2");
 
 		FormPortlet.submitSuccessfully();
 
