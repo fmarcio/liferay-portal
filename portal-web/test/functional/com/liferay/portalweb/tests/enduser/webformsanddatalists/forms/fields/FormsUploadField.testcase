@@ -113,7 +113,7 @@ definition {
 	test CanBeRequired {
 		property forms.functional = "true";
 		property portal.acceptance = "false";
-		
+
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			portlet = "Forms");
@@ -131,7 +131,6 @@ definition {
 		Form.save();
 
 		Form.publishForm();
-		
 
 		FormsAdminNavigator.gotoPublishedForm();
 
@@ -146,7 +145,7 @@ definition {
 		ItemSelector.uploadFile(
 			navTab = "Documents and Media",
 			uploadFileName = "Document_1.docx");
-		
+
 		FormPortlet.waitForValidationErrorNotPresent(validationErrorMessage = "This field is required.");
 
 		FormPortlet.submitSuccessfully();
