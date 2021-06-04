@@ -63,7 +63,7 @@ definition {
 		FormViewBuilder.editFieldLabel(
 			fieldLabel = "Text",
 			label = "Español");
-		
+
 		Form.addTranslation(localizedLanguage = "Japanese (Japan)");
 
 		FormViewBuilder.editFieldLabel(
@@ -79,7 +79,6 @@ definition {
 		Form.save();
 
 		Form.publishForm();
-
 
 		FormsAdminNavigator.gotoPublishedForm();
 
