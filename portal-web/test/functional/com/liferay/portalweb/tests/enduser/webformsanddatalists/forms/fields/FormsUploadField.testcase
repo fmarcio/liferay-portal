@@ -104,7 +104,6 @@ definition {
 		FormFields.viewDeletedFieldLabel(fieldName = "Upload");
 
 		Form.save();
-		
 
 		FormsAdminNavigator.gotoBack();
 
