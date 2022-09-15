@@ -12,25 +12,48 @@
  * details.
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 
+import {connectWorkspace} from './apis/data-source';
+import ButtonGroup from './components/ButtonGroup';
+import ConnectWorkspace from './components/ConnectWorkspace';
 import MultiStepNav from './components/MultiStepNav';
 
-const App = ({connected}) => (
-	<>
-		{!connected && (
-			<MultiStepNav
-				steps={[
-					{
-						description: Liferay.Language.get(
-							'use-the-token-genereted-in-your-analytics-cloud-to-connect-this-workspace'
-						),
-						title: Liferay.Language.get('connect-analytics-cloud'),
-					},
-				]}
-			/>
-		)}
-	</>
-);
+const App = ({connected}) => {
+	const [token, setToken] = useState();
+
+	return (
+		<>
+			{!connected && (
+				<>
+					<MultiStepNav
+						steps={[
+							{
+								content: (
+									<ConnectWorkspace
+										setToken={setToken}
+										token={token}
+									/>
+								),
+								description:
+									'Use the token generated in your Analytics Cloud to connect this workspace.',
+								footer: (
+									<ButtonGroup
+										disableSecondaryButton
+										isSubmitButtonDisabled={!token}
+										onSubmitClick={() =>
+											connectWorkspace(token)
+										}
+									/>
+								),
+								title: 'Connect Analytics Cloud',
+							},
+						]}
+					/>
+				</>
+			)}
+		</>
+	);
+};
 
 export default App;
