@@ -15,8 +15,8 @@
 import React from 'react';
 
 const Sheet = ({children, description, title}) => (
-	<div className="sheet sheet-lg">
-		<div className="sheet-header">
+	<div className="sheet sheet-md">
+		<div>
 			<h2 className="sheet-title">{title}</h2>
 
 			<div className="sheet-text">{description}</div>
@@ -26,9 +26,9 @@ const Sheet = ({children, description, title}) => (
 	</div>
 );
 
-const Content = ({children}) => <div className="sheet-section">{children}</div>;
+const Content = ({children}) => <div>{children}</div>;
 
-const Footer = ({children}) => <div className="sheet-footer">{children}</div>;
+const Footer = ({children}) => <div>{children}</div>;
 
 Sheet.Content = Content;
 Sheet.Footer = Footer;

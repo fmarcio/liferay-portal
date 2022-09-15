@@ -12,26 +12,38 @@
  * details.
  */
 
+import ClayAlert from '@clayui/alert';
 import ClayForm, {ClayInput} from '@clayui/form';
 import React from 'react';
 
-const ConnectWorkspace = ({setToken, token}) => {
+const ConnectWorkspace = ({connected, setToken, token}) => {
 	return (
 		<>
 			<ClayForm.Group>
-				<label htmlFor="basicInputText">
+				{connected && (
+					<ClayAlert
+						displayType="success"
+						title="Connected"
+					></ClayAlert>
+				)}
+
+				<label
+					className={connected ? 'disabled' : ''}
+					htmlFor="basicInputText"
+				>
 					{Liferay.Language.get('analytics-cloud-token')}
 				</label>
 
 				<ClayInput
+					disabled={connected}
 					id="basicInputText"
 					onChange={(event) => setToken(event.target.value)}
-					placeholder="Paste token hereeeee."
+					placeholder={Liferay.Language.get('paste-token-here')}
 					type="text"
 					value={token}
 				/>
 
-				<div className="form-text">
+				<div className={`subtitle-text ${connected ? 'disabled' : ''}`}>
 					{Liferay.Language.get('analytics-cloud-token-help')}
 				</div>
 			</ClayForm.Group>

@@ -15,12 +15,18 @@
 import {fetch} from 'frontend-js-web';
 
 const connectWorkspace = (token) => {
-	return fetch('/o/analytics-settings/v1.0/data-source', {
-		body: JSON.stringify({
-			token,
-		}),
-		headers: {'Content-Type': 'application/json'},
-		method: 'POST',
+	// return fetch('/o/analytics-settings/v1.0/data-source', {
+	// 	body: JSON.stringify({
+	// 		token,
+	// 	}),
+	// 	headers: {'Content-Type': 'application/json'},
+	// 	method: 'POST',
+	// })
+
+	return new Promise((resolve,reject) => {
+		// eslint-disable-next-line no-console
+		console.log(token);
+		reject();
 	});
 };
 

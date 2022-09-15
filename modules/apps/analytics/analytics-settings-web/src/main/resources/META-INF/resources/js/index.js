@@ -12,45 +12,98 @@
  * details.
  */
 
+import ClayButton from '@clayui/button';
+import ClayIcon from '@clayui/icon';
+import {openToast} from 'frontend-js-web';
 import React, {useState} from 'react';
 
 import {connectWorkspace} from './apis/data-source';
 import ButtonGroup from './components/ButtonGroup';
 import ConnectWorkspace from './components/ConnectWorkspace';
 import MultiStepNav from './components/MultiStepNav';
+import Sheet from './components/Sheet';
 
-const App = ({connected}) => {
-	const [token, setToken] = useState();
+const App = () => {
+	const [token, setToken] = useState('');
+
+	const connected = false;
 
 	return (
 		<>
 			{!connected && (
-				<>
-					<MultiStepNav
-						steps={[
-							{
-								content: (
-									<ConnectWorkspace
-										setToken={setToken}
-										token={token}
-									/>
-								),
-								description:
-									'Use the token generated in your Analytics Cloud to connect this workspace.',
-								footer: (
-									<ButtonGroup
-										disableSecondaryButton
-										isSubmitButtonDisabled={!token}
-										onSubmitClick={() =>
-											connectWorkspace(token)
-										}
-									/>
-								),
-								title: 'Connect Analytics Cloud',
-							},
-						]}
-					/>
-				</>
+				<MultiStepNav
+					steps={[
+						{
+							content: (
+								<ConnectWorkspace
+									setToken={setToken}
+									token={token}
+								/>
+							),
+							description:
+								Liferay.Language.get('use-the-token-genereted-in-your-analytics-cloud-to-connect-this-workspace'),
+							footer: (
+								<ButtonGroup
+									disableSecondaryButton
+									isSubmitButtonDisabled={!token}
+									onSubmitClick={() => {
+										connectWorkspace(token)
+											.then(() =>
+												openToast({
+													message: Liferay.Language.get(
+														'your-request-completed-successfully'
+													),
+													type: 'success',
+												})
+											)
+											.catch(() =>
+												openToast({
+													message: Liferay.Language.get(
+														'an-unexpected-error-occurred'
+													),
+													type: 'danger',
+												})
+											);
+									}}
+								/>
+							),
+							title: Liferay.Language.get('connect-analytics-cloud')
+						},
+					]}
+				/>
+			)}
+			{connected && (
+				<Sheet
+					description={Liferay.Language.get('use-the-token-genereted-in-your-analytics-cloud-to-connect-this-workspace')}
+					title={Liferay.Language.get('workspace-connection')}
+				>
+					<Sheet.Content>
+						<ConnectWorkspace
+							connected
+							setToken={setToken}
+							token={token}
+						/>
+					</Sheet.Content>
+
+					<Sheet.Footer>
+						<ClayButton
+							className="mr-3"
+							displayType="secondary"
+							onClick={() => alert('Vai pra o workspace4')}
+						>
+							{Liferay.Language.get('go-to-workspace')}
+
+							<ClayIcon className="ml-2" symbol="shortcut" />
+						</ClayButton>
+
+						<ClayButton
+							displayType="secondary"
+							onClick={() => alert('Desconecta hauhauahauhauhuusausuasuhaush')}
+						>
+							{Liferay.Language.get('disconnect')}
+						</ClayButton>
+					</Sheet.Footer>
+				</Sheet>
 			)}
 		</>
 	);

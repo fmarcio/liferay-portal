@@ -29,7 +29,7 @@ const ButtonGroup = ({
 		<>
 			<ClayButton.Group>
 				<ClayButton
-					block={isSubmitButtonDisabled}
+					disabled={isSubmitButtonDisabled}
 					displayType="primary"
 					onClick={onSubmitClick}
 				>
