@@ -13,8 +13,11 @@
  */
 
 import React from 'react';
-interface ISiteTab {
-	description?: string;
+interface ITabsTemplate {
+	channelTab?: any;
+	children: any;
+	data: any;
+	siteTab?: any;
 }
-declare const SitesTab: React.FC<ISiteTab>;
-export default SitesTab;
+declare const TabsTemplate: React.FC<ITabsTemplate>;
+export default TabsTemplate;
