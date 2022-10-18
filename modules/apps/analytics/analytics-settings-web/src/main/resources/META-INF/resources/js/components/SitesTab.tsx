@@ -77,12 +77,16 @@ const SitesTab: React.FC<ISiteTab> = () => {
 					<ClayTable.Row>
 						<ClayTable.Cell className="w-auto"></ClayTable.Cell>
 
-						<ClayTable.Cell headingCell>Site Name</ClayTable.Cell>
+						<ClayTable.Cell headingCell>
+							{Liferay.Language.get('site-name')}
+						</ClayTable.Cell>
 
-						<ClayTable.Cell headingCell>Frendly URL</ClayTable.Cell>
+						<ClayTable.Cell headingCell>
+							{Liferay.Language.get('friendly-url')}
+						</ClayTable.Cell>
 
 						<ClayTable.Cell expanded headingCell>
-							Assigned Property
+							{Liferay.Language.get('assigned-property')}
 						</ClayTable.Cell>
 					</ClayTable.Row>
 				</ClayTable.Head>

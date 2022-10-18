@@ -78,7 +78,7 @@ const ChannelTab: React.FC<IChannelTab> = () => {
 						<ClayTable.Cell className="w-auto"></ClayTable.Cell>
 
 						<ClayTable.Cell headingCell>
-							Channel Name
+							{Liferay.Language.get('channel-name')}
 						</ClayTable.Cell>
 
 						<ClayTable.Cell headingCell>

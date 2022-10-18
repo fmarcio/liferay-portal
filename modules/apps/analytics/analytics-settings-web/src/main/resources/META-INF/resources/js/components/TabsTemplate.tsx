@@ -35,11 +35,10 @@ const TabsTemplate: React.FC<ITabsTemplate> = ({
 	siteTab,
 }) => {
 	const [searchMobile, setSearchMobile] = useState(false);
+	const [checked, setChecked] = useState(false);
 	const [delta, setDelta] = useState(5);
 
 	const filterItems = [
-		// TODO: Replace strings on label for Langs
-
 		{
 			label: Liferay.Language.get('channel-name'),
 			onClick: () => alert('Filter clicked'),
@@ -53,6 +52,13 @@ const TabsTemplate: React.FC<ITabsTemplate> = ({
 			onClick: () => alert('Filter clicked'),
 		},
 	];
+
+	const handleSelectAll = () => {
+
+		// TODO: update this function with COMMERCE endpoint when LRAC-12088 is on master
+
+		setChecked(!checked);
+	};
 
 	return (
 		<>
@@ -71,7 +77,10 @@ const TabsTemplate: React.FC<ITabsTemplate> = ({
 					<ClayManagementToolbar.Item>
 						{/* TODO: include request to backend on onChange event when BE endpoint is done */}
 
-						<ClayCheckbox checked={false} onChange={() => {}} />
+						<ClayCheckbox
+							checked={checked}
+							onChange={handleSelectAll}
+						/>
 					</ClayManagementToolbar.Item>
 
 					<ClayDropDownWithItems
@@ -109,6 +118,9 @@ const TabsTemplate: React.FC<ITabsTemplate> = ({
 						</ClayButton>
 					</ClayManagementToolbar.Item>
 				</ClayManagementToolbar.ItemList>
+
+				{/* // TODO: update this component with function to handle the search component (filter results). 
+				// The function will be created on another story (LRAC-12019) */}
 
 				<ClayManagementToolbar.Search showMobile={searchMobile}>
 					<ClayInput.Group>
@@ -152,7 +164,10 @@ const TabsTemplate: React.FC<ITabsTemplate> = ({
 			</ClayManagementToolbar>
 
 			{children}
-            
+
+			{/* // TODO: update this component with function to handle the pagination component. 
+			// The function will be created on another story (LRAC-12019) */}
+
 			<ClayPaginationBarWithBasicItems
 				activeDelta={delta}
 				defaultActive={1}

@@ -14,8 +14,11 @@
 
 import ClayButton from '@clayui/button';
 import {ClayToggle} from '@clayui/form';
+import {useModal} from '@clayui/modal';
 import ClayTable from '@clayui/table';
 import React from 'react';
+
+import AssignModal from './AssignModal';
 
 type TDataSource = {
 	dataSourceId: string;
@@ -32,6 +35,8 @@ interface IPropertiesTable {
 }
 
 const PropertiesTable: React.FC<IPropertiesTable> = ({properties}) => {
+	const {observer, onOpenChange, open} = useModal();
+
 	return (
 		<ClayTable className="mt-4">
 			<ClayTable.Head>
@@ -99,10 +104,8 @@ const PropertiesTable: React.FC<IPropertiesTable> = ({properties}) => {
 								merged */}
 
 								<ClayButton
-
-									// onClick={()=> openModalAssignToProperty()}
-
 									displayType="secondary"
+									onClick={() => onOpenChange(true)}
 									type="button"
 								>
 									{Liferay.Language.get('assign')}
@@ -111,6 +114,13 @@ const PropertiesTable: React.FC<IPropertiesTable> = ({properties}) => {
 						</ClayTable.Row>
 					);
 				})}
+
+				{open && (
+					<AssignModal
+						observer={observer}
+						onCloseModal={() => onOpenChange(false)}
+					/>
+				)}
 			</ClayTable.Body>
 		</ClayTable>
 	);
