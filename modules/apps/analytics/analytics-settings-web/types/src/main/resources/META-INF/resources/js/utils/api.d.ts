@@ -12,7 +12,18 @@
  * details.
  */
 
+export declare function fetchAccountGroups(): Promise<any>;
 export declare function fetchConnection(token: string): Promise<Response>;
+export declare function fetchContactsOrganization(): Promise<any>;
+export declare function fetchContactsUsersGroup(): Promise<any>;
 export declare function deleteConnection(): Promise<Response>;
+export declare function fetchPeopleData(): Promise<any>;
 export declare function fetchProperties(): Promise<any>;
 export declare function createProperty(name: string): Promise<Response>;
+export declare function updatePeopleData(
+	syncAllAccounts: boolean,
+	syncAllContacts: boolean,
+	syncedAccountGroupIds: string[],
+	syncedOrganizationIds: string[],
+	syncedUserGroupIds: string[]
+): Promise<Response>;
