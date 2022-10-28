@@ -14,6 +14,14 @@
 
 import {fetch} from 'frontend-js-web';
 
+export function fetchAccountGroups() {
+	return fetch('/o/analytics-settings-rest/v1.0/contacts/account-groups', {
+		method: 'GET',
+	})
+		.then((response) => response.json())
+		.then((data) => data);
+}
+
 export function fetchConnection(token: string) {
 	return fetch('/o/analytics-settings-rest/v1.0/data-sources', {
 		body: JSON.stringify({
@@ -24,10 +32,34 @@ export function fetchConnection(token: string) {
 	});
 }
 
+export function fetchContactsOrganization() {
+	return fetch('o/analytics-settings-rest/v1.0/contacts/organizations', {
+		method: 'GET',
+	})
+		.then((response) => response.json())
+		.then((data) => data);
+}
+
+export function fetchContactsUsersGroup() {
+	return fetch('/o/analytics-settings-rest/v1.0/contacts/user-groups', {
+		method: 'GET',
+	})
+		.then((response) => response.json())
+		.then((data) => data);
+}
+
 export function deleteConnection() {
 	return fetch('/o/analytics-settings-rest/v1.0/data-sources', {
 		method: 'DELETE',
 	});
+}
+
+export function fetchPeopleData() {
+	return fetch('/o/analytics-settings-rest/v1.0/contacts/configuration', {
+		method: 'GET',
+	})
+		.then((response) => response.json())
+		.then((data) => data);
 }
 
 export function fetchProperties() {
@@ -45,5 +77,25 @@ export function createProperty(name: string) {
 		}),
 		headers: {'Content-Type': 'application/json'},
 		method: 'POST',
+	});
+}
+
+export function updatePeopleData(
+	syncAllAccounts: boolean,
+	syncAllContacts: boolean,
+	syncedAccountGroupIds: string[],
+	syncedOrganizationIds: string[],
+	syncedUserGroupIds: string[]
+) {
+	return fetch('/o/analytics-settings-rest/v1.0/contacts/configuration', {
+		body: JSON.stringify({
+			syncAllAccounts,
+			syncAllContacts,
+			syncedAccountGroupIds,
+			syncedOrganizationIds,
+			syncedUserGroupIds,
+		}),
+		headers: {'Content-Type': 'application/json'},
+		method: 'PUT',
 	});
 }
