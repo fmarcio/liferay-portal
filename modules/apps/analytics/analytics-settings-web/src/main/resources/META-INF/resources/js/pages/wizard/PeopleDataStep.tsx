@@ -82,10 +82,7 @@ const Step: React.FC<IStepProps> = () => {
 			title={Liferay.Language.get('attributes')}
 		>
 			{attributesList.map((item) => (
-				<ClayList
-					className="mb-0"
-					key={item.title}
-				>
+				<ClayList className="mb-0" key={item.title}>
 					<ClayList.Item className="align-items-center" flex>
 						<ClayList.ItemField className="mr-2">
 							<ClayIcon symbol={item.icon} />
