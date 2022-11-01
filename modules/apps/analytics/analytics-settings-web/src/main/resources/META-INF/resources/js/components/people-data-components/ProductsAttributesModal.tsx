@@ -1,0 +1,58 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+import ClayButton from '@clayui/button';
+import ClayModal from '@clayui/modal';
+import React from 'react';
+
+interface IProductsAttributesModalProps {
+	observer: any;
+	onCloseModal: () => void;
+}
+
+const ProductsAttributesModal: React.FC<IProductsAttributesModalProps> = ({
+	observer,
+	onCloseModal,
+}) => {
+	return (
+		<ClayModal center observer={observer} size="lg">
+			<ClayModal.Header>
+				{Liferay.Language.get('sync-product-attributes')}
+			</ClayModal.Header>
+
+			<ClayModal.Body>
+				<h1>Products</h1>
+			</ClayModal.Body>
+
+			<ClayModal.Footer
+				last={
+					<ClayButton.Group spaced>
+						<ClayButton
+							displayType="secondary"
+							onClick={() => onCloseModal()}
+						>
+							{Liferay.Language.get('cancel')}
+						</ClayButton>
+
+						<ClayButton displayType="primary" onClick={() => {}}>
+							{Liferay.Language.get('sync')}
+						</ClayButton>
+					</ClayButton.Group>
+				}
+			/>
+		</ClayModal>
+	);
+};
+
+export default ProductsAttributesModal;
