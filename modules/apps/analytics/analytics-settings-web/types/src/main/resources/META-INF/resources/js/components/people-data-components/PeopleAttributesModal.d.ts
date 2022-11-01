@@ -13,7 +13,13 @@
  */
 
 import React from 'react';
-import {TGenericComponent} from './WizardPage';
-interface IStepProps extends TGenericComponent {}
-declare const Step: React.FC<IStepProps>;
-export default Step;
+interface IPeopleAttributesModalProps {
+	observer: any;
+	onCloseModal: () => void;
+}
+export declare enum ETabs {
+	Contact = 0,
+	Users = 1,
+}
+declare const PeopleAttributesModal: React.FC<IPeopleAttributesModalProps>;
+export default PeopleAttributesModal;

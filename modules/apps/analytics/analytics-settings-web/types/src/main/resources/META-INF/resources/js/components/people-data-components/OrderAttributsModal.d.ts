@@ -13,7 +13,9 @@
  */
 
 import React from 'react';
-import {TGenericComponent} from './WizardPage';
-interface IStepProps extends TGenericComponent {}
-declare const Step: React.FC<IStepProps>;
-export default Step;
+interface IOrderAttributesModalProps {
+	observer: any;
+	onCloseModal: () => void;
+}
+declare const OrderAttributesModal: React.FC<IOrderAttributesModalProps>;
+export default OrderAttributesModal;
