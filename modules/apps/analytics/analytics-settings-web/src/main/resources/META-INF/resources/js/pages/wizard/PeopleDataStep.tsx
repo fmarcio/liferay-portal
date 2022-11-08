@@ -23,11 +23,11 @@ import AccountsAttributesModal from '../../components/people-data-components/Acc
 import OrderAttributsModal from '../../components/people-data-components/OrderAttributsModal';
 import PeopleAttributesModal from '../../components/people-data-components/PeopleAttributesModal';
 import ProductsAttributesModal from '../../components/people-data-components/ProductsAttributesModal';
-import {TGenericComponent} from './WizardPage';
+import {IGenericStepProps} from './WizardPage';
 
-interface IStepProps extends TGenericComponent {}
+interface IStepProps extends IGenericStepProps {}
 
-const Step: React.FC<IStepProps> = () => {
+const Step: React.FC<IStepProps> = ({onCancel}) => {
 	const {
 		observer: observerPeopleAttributes,
 		onOpenChange: onOpenChangePeopleAttributes,
@@ -146,10 +146,7 @@ const Step: React.FC<IStepProps> = () => {
 						{Liferay.Language.get('save-and-finish')}
 					</ClayButton>
 
-					<ClayButton
-						displayType="secondary"
-						onClick={() => window.location.reload()}
-					>
+					<ClayButton displayType="secondary" onClick={onCancel}>
 						{Liferay.Language.get('cancel')}
 					</ClayButton>
 				</ClayButton.Group>
