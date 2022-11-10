@@ -13,7 +13,6 @@
  */
 
 import React from 'react';
-import {IGenericStepProps} from './WizardPage';
-interface IStepProps extends IGenericStepProps {}
-declare const Step: React.FC<IStepProps>;
-export default Step;
+import {ICommonModalProps} from './Modal';
+declare const OrderAttributesModal: React.FC<ICommonModalProps>;
+export default OrderAttributesModal;

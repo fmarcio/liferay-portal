@@ -13,7 +13,18 @@
  */
 
 import React from 'react';
-import {IGenericStepProps} from './WizardPage';
-interface IStepProps extends IGenericStepProps {}
-declare const Step: React.FC<IStepProps>;
-export default Step;
+import {TColumn, TItem} from '../table/Table';
+export interface ICommonModalProps {
+	observer: any;
+	onCloseModal: () => void;
+}
+interface IModalProps {
+	columns: TColumn[];
+	fetchFn: () => Promise<any>;
+	observer: any;
+	onAddItems: (items: TItem[]) => void;
+	onCloseModal: () => void;
+	title: string;
+}
+declare const Modal: React.FC<IModalProps>;
+export default Modal;
