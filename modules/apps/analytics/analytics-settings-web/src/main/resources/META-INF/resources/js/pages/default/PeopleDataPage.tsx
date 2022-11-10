@@ -15,11 +15,12 @@
 import React from 'react';
 
 import BasePage from '../../components/BasePage';
+import PeopleData from '../../components/people-data/PeopleData';
 import {IGenericPageProps} from './DefaultPage';
 
 const PeopleDataPage: React.FC<IGenericPageProps> = ({title}) => (
 	<BasePage title={title}>
-		<div>{title}</div>
+		<PeopleData />
 	</BasePage>
 );
 
