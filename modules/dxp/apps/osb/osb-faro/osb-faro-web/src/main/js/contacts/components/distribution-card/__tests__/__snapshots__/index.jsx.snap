@@ -28,11 +28,11 @@ exports[`DistributionCard renders /w AddPropertyForm 1`] = `
           type="button"
         >
           <svg
-            class="icon-root lexicon-icon lexicon-icon-plus"
-            viewBox=""
+            class="lexicon-icon lexicon-icon-plus icon-root icon-size-sm"
+            role="presentation"
           >
             <use
-              xlink:href="/o/osb-faro-web/dist/sprite.svg#plus"
+              xlink:href="#plus"
             />
           </svg>
         </button>
@@ -101,11 +101,11 @@ exports[`DistributionCard renders /w AddPropertyForm 1`] = `
                           class="input-group-inset-item input-group-inset-item-after"
                         >
                           <svg
-                            class="icon-root lexicon-icon lexicon-icon-caret-bottom"
-                            viewBox=""
+                            class="lexicon-icon lexicon-icon-caret-bottom icon-root"
+                            role="presentation"
                           >
                             <use
-                              xlink:href="/o/osb-faro-web/dist/sprite.svg#caret-bottom"
+                              xlink:href="#caret-bottom"
                             />
                           </svg>
                         </div>
@@ -196,11 +196,11 @@ exports[`DistributionCard renders 1`] = `
                     type="button"
                   >
                     <svg
-                      class="icon-root lexicon-icon lexicon-icon-times icon-monospaced icon-size-sm"
-                      viewBox=""
+                      class="lexicon-icon lexicon-icon-times icon-root icon-size-sm"
+                      role="presentation"
                     >
                       <use
-                        xlink:href="/o/osb-faro-web/dist/sprite.svg#times"
+                        xlink:href="#times"
                       />
                     </svg>
                   </button>
@@ -214,11 +214,11 @@ exports[`DistributionCard renders 1`] = `
           type="button"
         >
           <svg
-            class="icon-root lexicon-icon lexicon-icon-plus"
-            viewBox=""
+            class="lexicon-icon lexicon-icon-plus icon-root icon-size-sm"
+            role="presentation"
           >
             <use
-              xlink:href="/o/osb-faro-web/dist/sprite.svg#plus"
+              xlink:href="#plus"
             />
           </svg>
         </button>
@@ -241,11 +241,11 @@ exports[`DistributionCard renders 1`] = `
           class="inline-item inline-item-after"
         >
           <svg
-            class="icon-root lexicon-icon lexicon-icon-angle-right"
-            viewBox=""
+            class="lexicon-icon lexicon-icon-angle-right icon-root"
+            role="presentation"
           >
             <use
-              xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-right"
+              xlink:href="#angle-right"
             />
           </svg>
         </span>
@@ -288,11 +288,11 @@ exports[`DistributionCard renders empty state via props with noResultsRenderer 1
                     type="button"
                   >
                     <svg
-                      class="icon-root lexicon-icon lexicon-icon-times icon-monospaced icon-size-sm"
-                      viewBox=""
+                      class="lexicon-icon lexicon-icon-times icon-root icon-size-sm"
+                      role="presentation"
                     >
                       <use
-                        xlink:href="/o/osb-faro-web/dist/sprite.svg#times"
+                        xlink:href="#times"
                       />
                     </svg>
                   </button>
@@ -306,11 +306,11 @@ exports[`DistributionCard renders empty state via props with noResultsRenderer 1
           type="button"
         >
           <svg
-            class="icon-root lexicon-icon lexicon-icon-plus"
-            viewBox=""
+            class="lexicon-icon lexicon-icon-plus icon-root icon-size-sm"
+            role="presentation"
           >
             <use
-              xlink:href="/o/osb-faro-web/dist/sprite.svg#plus"
+              xlink:href="#plus"
             />
           </svg>
         </button>
@@ -337,11 +337,11 @@ exports[`DistributionCard renders empty state via props with noResultsRenderer 1
           class="inline-item inline-item-after"
         >
           <svg
-            class="icon-root lexicon-icon lexicon-icon-angle-right"
-            viewBox=""
+            class="lexicon-icon lexicon-icon-angle-right icon-root"
+            role="presentation"
           >
             <use
-              xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-right"
+              xlink:href="#angle-right"
             />
           </svg>
         </span>

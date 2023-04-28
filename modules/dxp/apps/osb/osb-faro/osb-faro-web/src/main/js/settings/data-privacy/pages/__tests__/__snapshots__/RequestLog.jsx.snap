@@ -88,11 +88,11 @@ exports[`RequestLog should render 1`] = `
                       class="caret-root"
                     >
                       <svg
-                        class="icon-root lexicon-icon lexicon-icon-caret-bottom"
-                        viewBox=""
+                        class="lexicon-icon lexicon-icon-caret-bottom icon-root"
+                        role="presentation"
                       >
                         <use
-                          xlink:href="/o/osb-faro-web/dist/sprite.svg#caret-bottom"
+                          xlink:href="#caret-bottom"
                         />
                       </svg>
                     </span>
@@ -107,11 +107,11 @@ exports[`RequestLog should render 1`] = `
                     href="/?field=createDate&page=1&sortOrder=ASC"
                   >
                     <svg
-                      class="icon-root lexicon-icon lexicon-icon-order-arrow-descending"
-                      viewBox=""
+                      class="lexicon-icon lexicon-icon-order-arrow-descending icon-root"
+                      role="presentation"
                     >
                       <use
-                        xlink:href="/o/osb-faro-web/dist/sprite.svg#order-arrow-descending"
+                        xlink:href="#order-arrow-descending"
                       />
                     </svg>
                   </a>
@@ -140,11 +140,11 @@ exports[`RequestLog should render 1`] = `
                         type="button"
                       >
                         <svg
-                          class="icon-root lexicon-icon lexicon-icon-search"
-                          viewBox=""
+                          class="lexicon-icon lexicon-icon-search icon-root"
+                          role="presentation"
                         >
                           <use
-                            xlink:href="/o/osb-faro-web/dist/sprite.svg#search"
+                            xlink:href="#search"
                           />
                         </svg>
                       </button>

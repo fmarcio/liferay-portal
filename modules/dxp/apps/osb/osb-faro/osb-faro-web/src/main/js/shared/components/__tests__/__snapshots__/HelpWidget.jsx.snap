@@ -14,11 +14,11 @@ exports[`HelpWidget should render 1`] = `
         type="button"
       >
         <svg
-          class="icon-root lexicon-icon lexicon-icon-ac-question-mark"
-          viewBox=""
+          class="lexicon-icon lexicon-icon-ac-question-mark icon-root"
+          role="presentation"
         >
           <use
-            xlink:href="/o/osb-faro-web/dist/sprite.svg#ac-question-mark"
+            xlink:href="#ac-question-mark"
           />
         </svg>
       </button>

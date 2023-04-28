@@ -95,11 +95,11 @@ exports[`Event Analysis Edit should render 1`] = `
                     type="button"
                   >
                     <svg
-                      class="icon-root lexicon-icon lexicon-icon-pencil"
-                      viewBox=""
+                      class="lexicon-icon lexicon-icon-pencil icon-root"
+                      role="presentation"
                     >
                       <use
-                        xlink:href="/o/osb-faro-web/dist/sprite.svg#pencil"
+                        xlink:href="#pencil"
                       />
                     </svg>
                   </button>
@@ -183,11 +183,11 @@ exports[`Event Analysis Edit should render 1`] = `
                         type="button"
                       >
                         <svg
-                          class="icon-root lexicon-icon lexicon-icon-times-circle"
-                          viewBox=""
+                          class="lexicon-icon lexicon-icon-times-circle icon-root"
+                          role="presentation"
                         >
                           <use
-                            xlink:href="/o/osb-faro-web/dist/sprite.svg#times-circle"
+                            xlink:href="#times-circle"
                           />
                         </svg>
                       </button>
@@ -224,11 +224,11 @@ exports[`Event Analysis Edit should render 1`] = `
                           draggable="true"
                         >
                           <svg
-                            class="icon-root lexicon-icon lexicon-icon-drag"
-                            viewBox=""
+                            class="lexicon-icon lexicon-icon-drag icon-root"
+                            role="presentation"
                           >
                             <use
-                              xlink:href="/o/osb-faro-web/dist/sprite.svg#drag"
+                              xlink:href="#drag"
                             />
                           </svg>
                         </div>
@@ -240,11 +240,11 @@ exports[`Event Analysis Edit should render 1`] = `
                             class="sticker"
                           >
                             <svg
-                              class="icon-root lexicon-icon lexicon-icon-text"
-                              viewBox=""
+                              class="lexicon-icon lexicon-icon-text icon-root"
+                              role="presentation"
                             >
                               <use
-                                xlink:href="/o/osb-faro-web/dist/sprite.svg#text"
+                                xlink:href="#text"
                               />
                             </svg>
                           </div>
@@ -266,11 +266,11 @@ exports[`Event Analysis Edit should render 1`] = `
                           type="button"
                         >
                           <svg
-                            class="icon-root lexicon-icon lexicon-icon-times-circle"
-                            viewBox=""
+                            class="lexicon-icon lexicon-icon-times-circle icon-root"
+                            role="presentation"
                           >
                             <use
-                              xlink:href="/o/osb-faro-web/dist/sprite.svg#times-circle"
+                              xlink:href="#times-circle"
                             />
                           </svg>
                         </button>
@@ -291,11 +291,11 @@ exports[`Event Analysis Edit should render 1`] = `
                           draggable="true"
                         >
                           <svg
-                            class="icon-root lexicon-icon lexicon-icon-drag"
-                            viewBox=""
+                            class="lexicon-icon lexicon-icon-drag icon-root"
+                            role="presentation"
                           >
                             <use
-                              xlink:href="/o/osb-faro-web/dist/sprite.svg#drag"
+                              xlink:href="#drag"
                             />
                           </svg>
                         </div>
@@ -307,11 +307,11 @@ exports[`Event Analysis Edit should render 1`] = `
                             class="sticker"
                           >
                             <svg
-                              class="icon-root lexicon-icon lexicon-icon-text"
-                              viewBox=""
+                              class="lexicon-icon lexicon-icon-text icon-root"
+                              role="presentation"
                             >
                               <use
-                                xlink:href="/o/osb-faro-web/dist/sprite.svg#text"
+                                xlink:href="#text"
                               />
                             </svg>
                           </div>
@@ -333,11 +333,11 @@ exports[`Event Analysis Edit should render 1`] = `
                           type="button"
                         >
                           <svg
-                            class="icon-root lexicon-icon lexicon-icon-times-circle"
-                            viewBox=""
+                            class="lexicon-icon lexicon-icon-times-circle icon-root"
+                            role="presentation"
                           >
                             <use
-                              xlink:href="/o/osb-faro-web/dist/sprite.svg#times-circle"
+                              xlink:href="#times-circle"
                             />
                           </svg>
                         </button>
@@ -353,11 +353,11 @@ exports[`Event Analysis Edit should render 1`] = `
                     type="button"
                   >
                     <svg
-                      class="icon-root lexicon-icon lexicon-icon-plus"
-                      viewBox=""
+                      class="lexicon-icon lexicon-icon-plus icon-root"
+                      role="presentation"
                     >
                       <use
-                        xlink:href="/o/osb-faro-web/dist/sprite.svg#plus"
+                        xlink:href="#plus"
                       />
                     </svg>
                   </button>
@@ -395,11 +395,11 @@ exports[`Event Analysis Edit should render 1`] = `
                             class="sticker"
                           >
                             <svg
-                              class="icon-root lexicon-icon lexicon-icon-text"
-                              viewBox=""
+                              class="lexicon-icon lexicon-icon-text icon-root"
+                              role="presentation"
                             >
                               <use
-                                xlink:href="/o/osb-faro-web/dist/sprite.svg#text"
+                                xlink:href="#text"
                               />
                             </svg>
                           </div>
@@ -421,11 +421,11 @@ exports[`Event Analysis Edit should render 1`] = `
                           type="button"
                         >
                           <svg
-                            class="icon-root lexicon-icon lexicon-icon-times-circle"
-                            viewBox=""
+                            class="lexicon-icon lexicon-icon-times-circle icon-root"
+                            role="presentation"
                           >
                             <use
-                              xlink:href="/o/osb-faro-web/dist/sprite.svg#times-circle"
+                              xlink:href="#times-circle"
                             />
                           </svg>
                         </button>
@@ -441,11 +441,11 @@ exports[`Event Analysis Edit should render 1`] = `
                     type="button"
                   >
                     <svg
-                      class="icon-root lexicon-icon lexicon-icon-plus"
-                      viewBox=""
+                      class="lexicon-icon lexicon-icon-plus icon-root"
+                      role="presentation"
                     >
                       <use
-                        xlink:href="/o/osb-faro-web/dist/sprite.svg#plus"
+                        xlink:href="#plus"
                       />
                     </svg>
                   </button>

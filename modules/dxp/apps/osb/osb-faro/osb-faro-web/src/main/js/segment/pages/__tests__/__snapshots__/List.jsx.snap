@@ -94,11 +94,11 @@ exports[`List should render 1`] = `
               class="alert-indicator"
             >
               <svg
-                class="icon-root lexicon-icon lexicon-icon-warning-full"
-                viewBox=""
+                class="lexicon-icon lexicon-icon-warning-full icon-root"
+                role="presentation"
               >
                 <use
-                  xlink:href="/o/osb-faro-web/dist/sprite.svg#warning-full"
+                  xlink:href="#warning-full"
                 />
               </svg>
             </span>
@@ -117,11 +117,11 @@ exports[`List should render 1`] = `
               class="close"
             >
               <svg
-                class="icon-root lexicon-icon lexicon-icon-times"
-                viewBox=""
+                class="lexicon-icon lexicon-icon-times icon-root"
+                role="presentation"
               >
                 <use
-                  xlink:href="/o/osb-faro-web/dist/sprite.svg#times"
+                  xlink:href="#times"
                 />
               </svg>
             </button>
@@ -168,11 +168,11 @@ exports[`List should render 1`] = `
                             class="caret-root"
                           >
                             <svg
-                              class="icon-root lexicon-icon lexicon-icon-caret-bottom"
-                              viewBox=""
+                              class="lexicon-icon lexicon-icon-caret-bottom icon-root"
+                              role="presentation"
                             >
                               <use
-                                xlink:href="/o/osb-faro-web/dist/sprite.svg#caret-bottom"
+                                xlink:href="#caret-bottom"
                               />
                             </svg>
                           </span>
@@ -187,11 +187,11 @@ exports[`List should render 1`] = `
                           href="/?field=name&page=1&sortOrder=DESC"
                         >
                           <svg
-                            class="icon-root lexicon-icon lexicon-icon-order-arrow-ascending"
-                            viewBox=""
+                            class="lexicon-icon lexicon-icon-order-arrow-ascending icon-root"
+                            role="presentation"
                           >
                             <use
-                              xlink:href="/o/osb-faro-web/dist/sprite.svg#order-arrow-ascending"
+                              xlink:href="#order-arrow-ascending"
                             />
                           </svg>
                         </a>
@@ -220,11 +220,11 @@ exports[`List should render 1`] = `
                               type="button"
                             >
                               <svg
-                                class="icon-root lexicon-icon lexicon-icon-search"
-                                viewBox=""
+                                class="lexicon-icon lexicon-icon-search icon-root"
+                                role="presentation"
                               >
                                 <use
-                                  xlink:href="/o/osb-faro-web/dist/sprite.svg#search"
+                                  xlink:href="#search"
                                 />
                               </svg>
                             </button>
@@ -259,11 +259,11 @@ exports[`List should render 1`] = `
                             class="inline-item inline-item-after"
                           >
                             <svg
-                              class="icon-root lexicon-icon lexicon-icon-order-arrow-up"
-                              viewBox=""
+                              class="lexicon-icon lexicon-icon-order-arrow-up icon-root"
+                              role="presentation"
                             >
                               <use
-                                xlink:href="/o/osb-faro-web/dist/sprite.svg#order-arrow-up"
+                                xlink:href="#order-arrow-up"
                               />
                             </svg>
                           </span>
@@ -303,11 +303,11 @@ exports[`List should render 1`] = `
                               class="sticker sticker-root sticker-static segment-sticker-root sticker-rounded sticker-light"
                             >
                               <svg
-                                class="icon-root lexicon-icon lexicon-icon-individual-dynamic-segment"
-                                viewBox=""
+                                class="lexicon-icon lexicon-icon-individual-dynamic-segment icon-root"
+                                role="presentation"
                               >
                                 <use
-                                  xlink:href="/o/osb-faro-web/dist/sprite.svg#individual-dynamic-segment"
+                                  xlink:href="#individual-dynamic-segment"
                                 />
                               </svg>
                             </div>
@@ -354,11 +354,11 @@ exports[`List should render 1`] = `
                               title="Edit"
                             >
                               <svg
-                                class="icon-root lexicon-icon lexicon-icon-pencil"
-                                viewBox=""
+                                class="lexicon-icon lexicon-icon-pencil icon-root"
+                                role="presentation"
                               >
                                 <use
-                                  xlink:href="/o/osb-faro-web/dist/sprite.svg#pencil"
+                                  xlink:href="#pencil"
                                 />
                               </svg>
                             </a>
@@ -371,11 +371,11 @@ exports[`List should render 1`] = `
                               type="button"
                             >
                               <svg
-                                class="icon-root lexicon-icon lexicon-icon-trash"
-                                viewBox=""
+                                class="lexicon-icon lexicon-icon-trash icon-root"
+                                role="presentation"
                               >
                                 <use
-                                  xlink:href="/o/osb-faro-web/dist/sprite.svg#trash"
+                                  xlink:href="#trash"
                                 />
                               </svg>
                             </button>
@@ -390,11 +390,11 @@ exports[`List should render 1`] = `
                             >
                               <span>
                                 <svg
-                                  class="icon-root lexicon-icon lexicon-icon-ellipsis-v"
-                                  viewBox=""
+                                  class="lexicon-icon lexicon-icon-ellipsis-v icon-root"
+                                  role="presentation"
                                 >
                                   <use
-                                    xlink:href="/o/osb-faro-web/dist/sprite.svg#ellipsis-v"
+                                    xlink:href="#ellipsis-v"
                                   />
                                 </svg>
                               </span>
@@ -430,11 +430,11 @@ exports[`List should render 1`] = `
                         class="caret-root"
                       >
                         <svg
-                          class="icon-root lexicon-icon lexicon-icon-caret-bottom"
-                          viewBox=""
+                          class="lexicon-icon lexicon-icon-caret-bottom icon-root"
+                          role="presentation"
                         >
                           <use
-                            xlink:href="/o/osb-faro-web/dist/sprite.svg#caret-bottom"
+                            xlink:href="#caret-bottom"
                           />
                         </svg>
                       </span>
@@ -455,11 +455,11 @@ exports[`List should render 1`] = `
                         class="button-root btn btn-unstyled page-link link-disabled"
                       >
                         <svg
-                          class="icon-root lexicon-icon lexicon-icon-angle-left"
-                          viewBox=""
+                          class="lexicon-icon lexicon-icon-angle-left icon-root"
+                          role="presentation"
                         >
                           <use
-                            xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-left"
+                            xlink:href="#angle-left"
                           />
                         </svg>
                       </a>
@@ -481,11 +481,11 @@ exports[`List should render 1`] = `
                         class="button-root btn btn-unstyled page-link link-disabled"
                       >
                         <svg
-                          class="icon-root lexicon-icon lexicon-icon-angle-right"
-                          viewBox=""
+                          class="lexicon-icon lexicon-icon-angle-right icon-root"
+                          role="presentation"
                         >
                           <use
-                            xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-right"
+                            xlink:href="#angle-right"
                           />
                         </svg>
                       </a>

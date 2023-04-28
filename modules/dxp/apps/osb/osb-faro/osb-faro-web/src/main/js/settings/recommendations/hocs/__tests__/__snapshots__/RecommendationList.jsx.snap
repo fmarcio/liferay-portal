@@ -47,11 +47,11 @@ exports[`RecommendationList should render 1`] = `
                 href="/?field=name&page=1&sortOrder=ASC"
               >
                 <svg
-                  class="icon-root lexicon-icon lexicon-icon-order-arrow-descending"
-                  viewBox=""
+                  class="lexicon-icon lexicon-icon-order-arrow-descending icon-root"
+                  role="presentation"
                 >
                   <use
-                    xlink:href="/o/osb-faro-web/dist/sprite.svg#order-arrow-descending"
+                    xlink:href="#order-arrow-descending"
                   />
                 </svg>
               </a>
@@ -80,11 +80,11 @@ exports[`RecommendationList should render 1`] = `
                     type="button"
                   >
                     <svg
-                      class="icon-root lexicon-icon lexicon-icon-search"
-                      viewBox=""
+                      class="lexicon-icon lexicon-icon-search icon-root"
+                      role="presentation"
                     >
                       <use
-                        xlink:href="/o/osb-faro-web/dist/sprite.svg#search"
+                        xlink:href="#search"
                       />
                     </svg>
                   </button>
@@ -136,11 +136,11 @@ exports[`RecommendationList should render 1`] = `
                   class="inline-item inline-item-after"
                 >
                   <svg
-                    class="icon-root lexicon-icon lexicon-icon-order-arrow-down"
-                    viewBox=""
+                    class="lexicon-icon lexicon-icon-order-arrow-down icon-root"
+                    role="presentation"
                   >
                     <use
-                      xlink:href="/o/osb-faro-web/dist/sprite.svg#order-arrow-down"
+                      xlink:href="#order-arrow-down"
                     />
                   </svg>
                 </span>
@@ -896,11 +896,11 @@ exports[`RecommendationList should render 1`] = `
               class="caret-root"
             >
               <svg
-                class="icon-root lexicon-icon lexicon-icon-caret-bottom"
-                viewBox=""
+                class="lexicon-icon lexicon-icon-caret-bottom icon-root"
+                role="presentation"
               >
                 <use
-                  xlink:href="/o/osb-faro-web/dist/sprite.svg#caret-bottom"
+                  xlink:href="#caret-bottom"
                 />
               </svg>
             </span>
@@ -921,11 +921,11 @@ exports[`RecommendationList should render 1`] = `
               class="button-root btn btn-unstyled page-link link-disabled"
             >
               <svg
-                class="icon-root lexicon-icon lexicon-icon-angle-left"
-                viewBox=""
+                class="lexicon-icon lexicon-icon-angle-left icon-root"
+                role="presentation"
               >
                 <use
-                  xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-left"
+                  xlink:href="#angle-left"
                 />
               </svg>
             </a>
@@ -947,11 +947,11 @@ exports[`RecommendationList should render 1`] = `
               class="button-root btn btn-unstyled page-link link-disabled"
             >
               <svg
-                class="icon-root lexicon-icon lexicon-icon-angle-right"
-                viewBox=""
+                class="lexicon-icon lexicon-icon-angle-right icon-root"
+                role="presentation"
               >
                 <use
-                  xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-right"
+                  xlink:href="#angle-right"
                 />
               </svg>
             </a>

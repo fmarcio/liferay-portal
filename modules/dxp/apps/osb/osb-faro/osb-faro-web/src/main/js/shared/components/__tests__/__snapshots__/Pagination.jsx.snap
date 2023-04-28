@@ -12,11 +12,11 @@ exports[`Pagination should render 1`] = `
         class="button-root btn btn-unstyled page-link link-disabled"
       >
         <svg
-          class="icon-root lexicon-icon lexicon-icon-angle-left"
-          viewBox=""
+          class="lexicon-icon lexicon-icon-angle-left icon-root"
+          role="presentation"
         >
           <use
-            xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-left"
+            xlink:href="#angle-left"
           />
         </svg>
       </a>
@@ -38,11 +38,11 @@ exports[`Pagination should render 1`] = `
         class="button-root btn btn-unstyled page-link link-disabled"
       >
         <svg
-          class="icon-root lexicon-icon lexicon-icon-angle-right"
-          viewBox=""
+          class="lexicon-icon lexicon-icon-angle-right icon-root"
+          role="presentation"
         >
           <use
-            xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-right"
+            xlink:href="#angle-right"
           />
         </svg>
       </a>
@@ -64,11 +64,11 @@ exports[`Pagination should render a lot of pages with a middle page active 1`] =
         href="/?page=49"
       >
         <svg
-          class="icon-root lexicon-icon lexicon-icon-angle-left"
-          viewBox=""
+          class="lexicon-icon lexicon-icon-angle-left icon-root"
+          role="presentation"
         >
           <use
-            xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-left"
+            xlink:href="#angle-left"
           />
         </svg>
       </a>
@@ -191,11 +191,11 @@ exports[`Pagination should render a lot of pages with a middle page active 1`] =
         href="/?page=51"
       >
         <svg
-          class="icon-root lexicon-icon lexicon-icon-angle-right"
-          viewBox=""
+          class="lexicon-icon lexicon-icon-angle-right icon-root"
+          role="presentation"
         >
           <use
-            xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-right"
+            xlink:href="#angle-right"
           />
         </svg>
       </a>
@@ -217,11 +217,11 @@ exports[`Pagination should render a lot of pages with the end page active 1`] = 
         href="/?page=99"
       >
         <svg
-          class="icon-root lexicon-icon lexicon-icon-angle-left"
-          viewBox=""
+          class="lexicon-icon lexicon-icon-angle-left icon-root"
+          role="presentation"
         >
           <use
-            xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-left"
+            xlink:href="#angle-left"
           />
         </svg>
       </a>
@@ -293,11 +293,11 @@ exports[`Pagination should render a lot of pages with the end page active 1`] = 
         class="button-root btn btn-unstyled page-link link-disabled"
       >
         <svg
-          class="icon-root lexicon-icon lexicon-icon-angle-right"
-          viewBox=""
+          class="lexicon-icon lexicon-icon-angle-right icon-root"
+          role="presentation"
         >
           <use
-            xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-right"
+            xlink:href="#angle-right"
           />
         </svg>
       </a>
@@ -318,11 +318,11 @@ exports[`Pagination should render with a lot of pages 1`] = `
         class="button-root btn btn-unstyled page-link link-disabled"
       >
         <svg
-          class="icon-root lexicon-icon lexicon-icon-angle-left"
-          viewBox=""
+          class="lexicon-icon lexicon-icon-angle-left icon-root"
+          role="presentation"
         >
           <use
-            xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-left"
+            xlink:href="#angle-left"
           />
         </svg>
       </a>
@@ -395,11 +395,11 @@ exports[`Pagination should render with a lot of pages 1`] = `
         href="/?page=2"
       >
         <svg
-          class="icon-root lexicon-icon lexicon-icon-angle-right"
-          viewBox=""
+          class="lexicon-icon lexicon-icon-angle-right icon-root"
+          role="presentation"
         >
           <use
-            xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-right"
+            xlink:href="#angle-right"
           />
         </svg>
       </a>
@@ -422,11 +422,11 @@ exports[`Pagination should render with buttons if passed an onChange handler 1`]
         type="button"
       >
         <svg
-          class="icon-root lexicon-icon lexicon-icon-angle-left"
-          viewBox=""
+          class="lexicon-icon lexicon-icon-angle-left icon-root"
+          role="presentation"
         >
           <use
-            xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-left"
+            xlink:href="#angle-left"
           />
         </svg>
       </button>
@@ -450,11 +450,11 @@ exports[`Pagination should render with buttons if passed an onChange handler 1`]
         type="button"
       >
         <svg
-          class="icon-root lexicon-icon lexicon-icon-angle-right"
-          viewBox=""
+          class="lexicon-icon lexicon-icon-angle-right icon-root"
+          role="presentation"
         >
           <use
-            xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-right"
+            xlink:href="#angle-right"
           />
         </svg>
       </button>

@@ -58,11 +58,11 @@ exports[`InterestDetails renders 1`] = `
                       type="button"
                     >
                       <svg
-                        class="icon-root lexicon-icon lexicon-icon-search"
-                        viewBox=""
+                        class="lexicon-icon lexicon-icon-search icon-root"
+                        role="presentation"
                       >
                         <use
-                          xlink:href="/o/osb-faro-web/dist/sprite.svg#search"
+                          xlink:href="#search"
                         />
                       </svg>
                     </button>
@@ -115,11 +115,11 @@ exports[`InterestDetails renders 1`] = `
                     class="inline-item inline-item-after"
                   >
                     <svg
-                      class="icon-root lexicon-icon lexicon-icon-order-arrow-down"
-                      viewBox=""
+                      class="lexicon-icon lexicon-icon-order-arrow-down icon-root"
+                      role="presentation"
                     >
                       <use
-                        xlink:href="/o/osb-faro-web/dist/sprite.svg#order-arrow-down"
+                        xlink:href="#order-arrow-down"
                       />
                     </svg>
                   </span>
@@ -292,11 +292,11 @@ exports[`InterestDetails renders 1`] = `
                 class="caret-root"
               >
                 <svg
-                  class="icon-root lexicon-icon lexicon-icon-caret-bottom"
-                  viewBox=""
+                  class="lexicon-icon lexicon-icon-caret-bottom icon-root"
+                  role="presentation"
                 >
                   <use
-                    xlink:href="/o/osb-faro-web/dist/sprite.svg#caret-bottom"
+                    xlink:href="#caret-bottom"
                   />
                 </svg>
               </span>
@@ -317,11 +317,11 @@ exports[`InterestDetails renders 1`] = `
                 class="button-root btn btn-unstyled page-link link-disabled"
               >
                 <svg
-                  class="icon-root lexicon-icon lexicon-icon-angle-left"
-                  viewBox=""
+                  class="lexicon-icon lexicon-icon-angle-left icon-root"
+                  role="presentation"
                 >
                   <use
-                    xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-left"
+                    xlink:href="#angle-left"
                   />
                 </svg>
               </a>
@@ -343,11 +343,11 @@ exports[`InterestDetails renders 1`] = `
                 class="button-root btn btn-unstyled page-link link-disabled"
               >
                 <svg
-                  class="icon-root lexicon-icon lexicon-icon-angle-right"
-                  viewBox=""
+                  class="lexicon-icon lexicon-icon-angle-right icon-root"
+                  role="presentation"
                 >
                   <use
-                    xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-right"
+                    xlink:href="#angle-right"
                   />
                 </svg>
               </a>

@@ -116,11 +116,11 @@ exports[`Search should render 1`] = `
                 type="button"
               >
                 <svg
-                  class="icon-root lexicon-icon lexicon-icon-trash"
-                  viewBox=""
+                  class="lexicon-icon lexicon-icon-trash icon-root"
+                  role="presentation"
                 >
                   <use
-                    xlink:href="/o/osb-faro-web/dist/sprite.svg#trash"
+                    xlink:href="#trash"
                   />
                 </svg>
               </button>
@@ -129,11 +129,11 @@ exports[`Search should render 1`] = `
                 type="button"
               >
                 <svg
-                  class="icon-root lexicon-icon lexicon-icon-plus"
-                  viewBox=""
+                  class="lexicon-icon lexicon-icon-plus icon-root"
+                  role="presentation"
                 >
                   <use
-                    xlink:href="/o/osb-faro-web/dist/sprite.svg#plus"
+                    xlink:href="#plus"
                   />
                 </svg>
               </button>

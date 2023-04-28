@@ -44,11 +44,11 @@ exports[`ChannelUserList should render 1`] = `
               href="/?field=name&page=1&sortOrder=DESC"
             >
               <svg
-                class="icon-root lexicon-icon lexicon-icon-order-arrow-ascending"
-                viewBox=""
+                class="lexicon-icon lexicon-icon-order-arrow-ascending icon-root"
+                role="presentation"
               >
                 <use
-                  xlink:href="/o/osb-faro-web/dist/sprite.svg#order-arrow-ascending"
+                  xlink:href="#order-arrow-ascending"
                 />
               </svg>
             </a>
@@ -77,11 +77,11 @@ exports[`ChannelUserList should render 1`] = `
                   type="button"
                 >
                   <svg
-                    class="icon-root lexicon-icon lexicon-icon-search"
-                    viewBox=""
+                    class="lexicon-icon lexicon-icon-search icon-root"
+                    role="presentation"
                   >
                     <use
-                      xlink:href="/o/osb-faro-web/dist/sprite.svg#search"
+                      xlink:href="#search"
                     />
                   </svg>
                 </button>
@@ -181,11 +181,11 @@ exports[`ChannelUserList should render 1`] = `
                   type="button"
                 >
                   <svg
-                    class="icon-root lexicon-icon lexicon-icon-times"
-                    viewBox=""
+                    class="lexicon-icon lexicon-icon-times icon-root"
+                    role="presentation"
                   >
                     <use
-                      xlink:href="/o/osb-faro-web/dist/sprite.svg#times"
+                      xlink:href="#times"
                     />
                   </svg>
                 </button>
@@ -200,11 +200,11 @@ exports[`ChannelUserList should render 1`] = `
                 >
                   <span>
                     <svg
-                      class="icon-root lexicon-icon lexicon-icon-ellipsis-v"
-                      viewBox=""
+                      class="lexicon-icon lexicon-icon-ellipsis-v icon-root"
+                      role="presentation"
                     >
                       <use
-                        xlink:href="/o/osb-faro-web/dist/sprite.svg#ellipsis-v"
+                        xlink:href="#ellipsis-v"
                       />
                     </svg>
                   </span>
@@ -240,11 +240,11 @@ exports[`ChannelUserList should render 1`] = `
             class="caret-root"
           >
             <svg
-              class="icon-root lexicon-icon lexicon-icon-caret-bottom"
-              viewBox=""
+              class="lexicon-icon lexicon-icon-caret-bottom icon-root"
+              role="presentation"
             >
               <use
-                xlink:href="/o/osb-faro-web/dist/sprite.svg#caret-bottom"
+                xlink:href="#caret-bottom"
               />
             </svg>
           </span>
@@ -265,11 +265,11 @@ exports[`ChannelUserList should render 1`] = `
             class="button-root btn btn-unstyled page-link link-disabled"
           >
             <svg
-              class="icon-root lexicon-icon lexicon-icon-angle-left"
-              viewBox=""
+              class="lexicon-icon lexicon-icon-angle-left icon-root"
+              role="presentation"
             >
               <use
-                xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-left"
+                xlink:href="#angle-left"
               />
             </svg>
           </a>
@@ -291,11 +291,11 @@ exports[`ChannelUserList should render 1`] = `
             class="button-root btn btn-unstyled page-link link-disabled"
           >
             <svg
-              class="icon-root lexicon-icon lexicon-icon-angle-right"
-              viewBox=""
+              class="lexicon-icon lexicon-icon-angle-right icon-root"
+              role="presentation"
             >
               <use
-                xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-right"
+                xlink:href="#angle-right"
               />
             </svg>
           </a>

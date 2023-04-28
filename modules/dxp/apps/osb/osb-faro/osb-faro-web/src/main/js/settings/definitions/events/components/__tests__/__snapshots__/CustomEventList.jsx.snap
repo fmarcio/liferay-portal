@@ -47,11 +47,11 @@ exports[`CustomEventList should render 1`] = `
               href="/?field=name&page=1&sortOrder=DESC"
             >
               <svg
-                class="icon-root lexicon-icon lexicon-icon-order-arrow-ascending"
-                viewBox=""
+                class="lexicon-icon lexicon-icon-order-arrow-ascending icon-root"
+                role="presentation"
               >
                 <use
-                  xlink:href="/o/osb-faro-web/dist/sprite.svg#order-arrow-ascending"
+                  xlink:href="#order-arrow-ascending"
                 />
               </svg>
             </a>
@@ -80,11 +80,11 @@ exports[`CustomEventList should render 1`] = `
                   type="button"
                 >
                   <svg
-                    class="icon-root lexicon-icon lexicon-icon-search"
-                    viewBox=""
+                    class="lexicon-icon lexicon-icon-search icon-root"
+                    role="presentation"
                   >
                     <use
-                      xlink:href="/o/osb-faro-web/dist/sprite.svg#search"
+                      xlink:href="#search"
                     />
                   </svg>
                 </button>
@@ -120,11 +120,11 @@ exports[`CustomEventList should render 1`] = `
                 class="inline-item inline-item-after"
               >
                 <svg
-                  class="icon-root lexicon-icon lexicon-icon-order-arrow-up"
-                  viewBox=""
+                  class="lexicon-icon lexicon-icon-order-arrow-up icon-root"
+                  role="presentation"
                 >
                   <use
-                    xlink:href="/o/osb-faro-web/dist/sprite.svg#order-arrow-up"
+                    xlink:href="#order-arrow-up"
                   />
                 </svg>
               </span>
@@ -231,11 +231,11 @@ exports[`CustomEventList should render 1`] = `
                   type="button"
                 >
                   <svg
-                    class="icon-root lexicon-icon lexicon-icon-ac-block"
-                    viewBox=""
+                    class="lexicon-icon lexicon-icon-ac-block icon-root"
+                    role="presentation"
                   >
                     <use
-                      xlink:href="/o/osb-faro-web/dist/sprite.svg#ac-block"
+                      xlink:href="#ac-block"
                     />
                   </svg>
                 </button>
@@ -248,11 +248,11 @@ exports[`CustomEventList should render 1`] = `
                   type="button"
                 >
                   <svg
-                    class="icon-root lexicon-icon lexicon-icon-ac-hidden"
-                    viewBox=""
+                    class="lexicon-icon lexicon-icon-ac-hidden icon-root"
+                    role="presentation"
                   >
                     <use
-                      xlink:href="/o/osb-faro-web/dist/sprite.svg#ac-hidden"
+                      xlink:href="#ac-hidden"
                     />
                   </svg>
                 </button>
@@ -287,11 +287,11 @@ exports[`CustomEventList should render 1`] = `
             class="caret-root"
           >
             <svg
-              class="icon-root lexicon-icon lexicon-icon-caret-bottom"
-              viewBox=""
+              class="lexicon-icon lexicon-icon-caret-bottom icon-root"
+              role="presentation"
             >
               <use
-                xlink:href="/o/osb-faro-web/dist/sprite.svg#caret-bottom"
+                xlink:href="#caret-bottom"
               />
             </svg>
           </span>
@@ -312,11 +312,11 @@ exports[`CustomEventList should render 1`] = `
             class="button-root btn btn-unstyled page-link link-disabled"
           >
             <svg
-              class="icon-root lexicon-icon lexicon-icon-angle-left"
-              viewBox=""
+              class="lexicon-icon lexicon-icon-angle-left icon-root"
+              role="presentation"
             >
               <use
-                xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-left"
+                xlink:href="#angle-left"
               />
             </svg>
           </a>
@@ -338,11 +338,11 @@ exports[`CustomEventList should render 1`] = `
             class="button-root btn btn-unstyled page-link link-disabled"
           >
             <svg
-              class="icon-root lexicon-icon lexicon-icon-angle-right"
-              viewBox=""
+              class="lexicon-icon lexicon-icon-angle-right icon-root"
+              role="presentation"
             >
               <use
-                xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-right"
+                xlink:href="#angle-right"
               />
             </svg>
           </a>
@@ -369,11 +369,11 @@ exports[`CustomEventList should render alert notification 1`] = `
           class="alert-indicator"
         >
           <svg
-            class="icon-root lexicon-icon lexicon-icon-warning-full"
-            viewBox=""
+            class="lexicon-icon lexicon-icon-warning-full icon-root"
+            role="presentation"
           >
             <use
-              xlink:href="/o/osb-faro-web/dist/sprite.svg#warning-full"
+              xlink:href="#warning-full"
             />
           </svg>
         </span>
@@ -395,11 +395,11 @@ exports[`CustomEventList should render alert notification 1`] = `
           class="close"
         >
           <svg
-            class="icon-root lexicon-icon lexicon-icon-times"
-            viewBox=""
+            class="lexicon-icon lexicon-icon-times icon-root"
+            role="presentation"
           >
             <use
-              xlink:href="/o/osb-faro-web/dist/sprite.svg#times"
+              xlink:href="#times"
             />
           </svg>
         </button>
@@ -448,11 +448,11 @@ exports[`CustomEventList should render alert notification 1`] = `
               href="/?field=name&page=1&sortOrder=DESC"
             >
               <svg
-                class="icon-root lexicon-icon lexicon-icon-order-arrow-ascending"
-                viewBox=""
+                class="lexicon-icon lexicon-icon-order-arrow-ascending icon-root"
+                role="presentation"
               >
                 <use
-                  xlink:href="/o/osb-faro-web/dist/sprite.svg#order-arrow-ascending"
+                  xlink:href="#order-arrow-ascending"
                 />
               </svg>
             </a>
@@ -481,11 +481,11 @@ exports[`CustomEventList should render alert notification 1`] = `
                   type="button"
                 >
                   <svg
-                    class="icon-root lexicon-icon lexicon-icon-search"
-                    viewBox=""
+                    class="lexicon-icon lexicon-icon-search icon-root"
+                    role="presentation"
                   >
                     <use
-                      xlink:href="/o/osb-faro-web/dist/sprite.svg#search"
+                      xlink:href="#search"
                     />
                   </svg>
                 </button>
@@ -521,11 +521,11 @@ exports[`CustomEventList should render alert notification 1`] = `
                 class="inline-item inline-item-after"
               >
                 <svg
-                  class="icon-root lexicon-icon lexicon-icon-order-arrow-up"
-                  viewBox=""
+                  class="lexicon-icon lexicon-icon-order-arrow-up icon-root"
+                  role="presentation"
                 >
                   <use
-                    xlink:href="/o/osb-faro-web/dist/sprite.svg#order-arrow-up"
+                    xlink:href="#order-arrow-up"
                   />
                 </svg>
               </span>
@@ -632,11 +632,11 @@ exports[`CustomEventList should render alert notification 1`] = `
                   type="button"
                 >
                   <svg
-                    class="icon-root lexicon-icon lexicon-icon-ac-block"
-                    viewBox=""
+                    class="lexicon-icon lexicon-icon-ac-block icon-root"
+                    role="presentation"
                   >
                     <use
-                      xlink:href="/o/osb-faro-web/dist/sprite.svg#ac-block"
+                      xlink:href="#ac-block"
                     />
                   </svg>
                 </button>
@@ -649,11 +649,11 @@ exports[`CustomEventList should render alert notification 1`] = `
                   type="button"
                 >
                   <svg
-                    class="icon-root lexicon-icon lexicon-icon-ac-hidden"
-                    viewBox=""
+                    class="lexicon-icon lexicon-icon-ac-hidden icon-root"
+                    role="presentation"
                   >
                     <use
-                      xlink:href="/o/osb-faro-web/dist/sprite.svg#ac-hidden"
+                      xlink:href="#ac-hidden"
                     />
                   </svg>
                 </button>
@@ -688,11 +688,11 @@ exports[`CustomEventList should render alert notification 1`] = `
             class="caret-root"
           >
             <svg
-              class="icon-root lexicon-icon lexicon-icon-caret-bottom"
-              viewBox=""
+              class="lexicon-icon lexicon-icon-caret-bottom icon-root"
+              role="presentation"
             >
               <use
-                xlink:href="/o/osb-faro-web/dist/sprite.svg#caret-bottom"
+                xlink:href="#caret-bottom"
               />
             </svg>
           </span>
@@ -713,11 +713,11 @@ exports[`CustomEventList should render alert notification 1`] = `
             class="button-root btn btn-unstyled page-link link-disabled"
           >
             <svg
-              class="icon-root lexicon-icon lexicon-icon-angle-left"
-              viewBox=""
+              class="lexicon-icon lexicon-icon-angle-left icon-root"
+              role="presentation"
             >
               <use
-                xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-left"
+                xlink:href="#angle-left"
               />
             </svg>
           </a>
@@ -739,11 +739,11 @@ exports[`CustomEventList should render alert notification 1`] = `
             class="button-root btn btn-unstyled page-link link-disabled"
           >
             <svg
-              class="icon-root lexicon-icon lexicon-icon-angle-right"
-              viewBox=""
+              class="lexicon-icon lexicon-icon-angle-right icon-root"
+              role="presentation"
             >
               <use
-                xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-right"
+                xlink:href="#angle-right"
               />
             </svg>
           </a>

@@ -83,11 +83,11 @@ exports[`AddDataSource should render 1`] = `
                 class="image"
               >
                 <svg
-                  class="icon-root lexicon-icon lexicon-icon-liferay-logo icon-size-xxxl"
-                  viewBox=""
+                  class="lexicon-icon lexicon-icon-liferay-logo icon-root icon-size-xxxl"
+                  role="presentation"
                 >
                   <use
-                    xlink:href="/o/osb-faro-web/dist/sprite.svg#liferay-logo"
+                    xlink:href="#liferay-logo"
                   />
                 </svg>
               </div>

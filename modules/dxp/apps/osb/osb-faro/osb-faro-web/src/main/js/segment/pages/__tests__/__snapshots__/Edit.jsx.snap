@@ -139,11 +139,11 @@ exports[`Edit should render 1`] = `
                           type="button"
                         >
                           <svg
-                            class="icon-root lexicon-icon lexicon-icon-pencil"
-                            viewBox=""
+                            class="lexicon-icon lexicon-icon-pencil icon-root"
+                            role="presentation"
                           >
                             <use
-                              xlink:href="/o/osb-faro-web/dist/sprite.svg#pencil"
+                              xlink:href="#pencil"
                             />
                           </svg>
                         </button>
@@ -191,11 +191,11 @@ exports[`Edit should render 1`] = `
                           class="info-popover-root include-anon-help-icon"
                         >
                           <svg
-                            class="icon-root lexicon-icon lexicon-icon-question-circle-full"
-                            viewBox=""
+                            class="lexicon-icon lexicon-icon-question-circle-full icon-root"
+                            role="presentation"
                           >
                             <use
-                              xlink:href="/o/osb-faro-web/dist/sprite.svg#question-circle-full"
+                              xlink:href="#question-circle-full"
                             />
                           </svg>
                         </span>
@@ -238,11 +238,11 @@ exports[`Edit should render 1`] = `
                             title="Some of your criteria are incomplete or invalid."
                           >
                             <svg
-                              class="icon-root lexicon-icon lexicon-icon-view"
-                              viewBox=""
+                              class="lexicon-icon lexicon-icon-view icon-root"
+                              role="presentation"
                             >
                               <use
-                                xlink:href="/o/osb-faro-web/dist/sprite.svg#view"
+                                xlink:href="#view"
                               />
                             </svg>
                           </span>
@@ -309,11 +309,11 @@ exports[`Edit should render 1`] = `
                           class="caret-root"
                         >
                           <svg
-                            class="icon-root lexicon-icon lexicon-icon-caret-bottom"
-                            viewBox=""
+                            class="lexicon-icon lexicon-icon-caret-bottom icon-root"
+                            role="presentation"
                           >
                             <use
-                              xlink:href="/o/osb-faro-web/dist/sprite.svg#caret-bottom"
+                              xlink:href="#caret-bottom"
                             />
                           </svg>
                         </span>
@@ -349,11 +349,11 @@ exports[`Edit should render 1`] = `
                                 type="button"
                               >
                                 <svg
-                                  class="icon-root lexicon-icon lexicon-icon-search"
-                                  viewBox=""
+                                  class="lexicon-icon lexicon-icon-search icon-root"
+                                  role="presentation"
                                 >
                                   <use
-                                    xlink:href="/o/osb-faro-web/dist/sprite.svg#search"
+                                    xlink:href="#search"
                                   />
                                 </svg>
                               </button>
@@ -381,11 +381,11 @@ exports[`Edit should render 1`] = `
                               class="inline-item"
                             >
                               <svg
-                                class="icon-root lexicon-icon lexicon-icon-drag"
-                                viewBox=""
+                                class="lexicon-icon lexicon-icon-drag icon-root"
+                                role="presentation"
                               >
                                 <use
-                                  xlink:href="/o/osb-faro-web/dist/sprite.svg#drag"
+                                  xlink:href="#drag"
                                 />
                               </svg>
                             </span>
@@ -396,11 +396,11 @@ exports[`Edit should render 1`] = `
                                 class="inline-item"
                               >
                                 <svg
-                                  class="icon-root lexicon-icon lexicon-icon-web-content"
-                                  viewBox=""
+                                  class="lexicon-icon lexicon-icon-web-content icon-root"
+                                  role="presentation"
                                 >
                                   <use
-                                    xlink:href="/o/osb-faro-web/dist/sprite.svg#web-content"
+                                    xlink:href="#web-content"
                                   />
                                 </svg>
                               </span>
@@ -415,11 +415,11 @@ exports[`Edit should render 1`] = `
                               class="inline-item"
                             >
                               <svg
-                                class="icon-root lexicon-icon lexicon-icon-drag"
-                                viewBox=""
+                                class="lexicon-icon lexicon-icon-drag icon-root"
+                                role="presentation"
                               >
                                 <use
-                                  xlink:href="/o/osb-faro-web/dist/sprite.svg#drag"
+                                  xlink:href="#drag"
                                 />
                               </svg>
                             </span>
@@ -430,11 +430,11 @@ exports[`Edit should render 1`] = `
                                 class="inline-item"
                               >
                                 <svg
-                                  class="icon-root lexicon-icon lexicon-icon-web-content"
-                                  viewBox=""
+                                  class="lexicon-icon lexicon-icon-web-content icon-root"
+                                  role="presentation"
                                 >
                                   <use
-                                    xlink:href="/o/osb-faro-web/dist/sprite.svg#web-content"
+                                    xlink:href="#web-content"
                                   />
                                 </svg>
                               </span>
@@ -449,11 +449,11 @@ exports[`Edit should render 1`] = `
                               class="inline-item"
                             >
                               <svg
-                                class="icon-root lexicon-icon lexicon-icon-drag"
-                                viewBox=""
+                                class="lexicon-icon lexicon-icon-drag icon-root"
+                                role="presentation"
                               >
                                 <use
-                                  xlink:href="/o/osb-faro-web/dist/sprite.svg#drag"
+                                  xlink:href="#drag"
                                 />
                               </svg>
                             </span>
@@ -464,11 +464,11 @@ exports[`Edit should render 1`] = `
                                 class="inline-item"
                               >
                                 <svg
-                                  class="icon-root lexicon-icon lexicon-icon-web-content"
-                                  viewBox=""
+                                  class="lexicon-icon lexicon-icon-web-content icon-root"
+                                  role="presentation"
                                 >
                                   <use
-                                    xlink:href="/o/osb-faro-web/dist/sprite.svg#web-content"
+                                    xlink:href="#web-content"
                                   />
                                 </svg>
                               </span>
@@ -483,11 +483,11 @@ exports[`Edit should render 1`] = `
                               class="inline-item"
                             >
                               <svg
-                                class="icon-root lexicon-icon lexicon-icon-drag"
-                                viewBox=""
+                                class="lexicon-icon lexicon-icon-drag icon-root"
+                                role="presentation"
                               >
                                 <use
-                                  xlink:href="/o/osb-faro-web/dist/sprite.svg#drag"
+                                  xlink:href="#drag"
                                 />
                               </svg>
                             </span>
@@ -498,11 +498,11 @@ exports[`Edit should render 1`] = `
                                 class="inline-item"
                               >
                                 <svg
-                                  class="icon-root lexicon-icon lexicon-icon-web-content"
-                                  viewBox=""
+                                  class="lexicon-icon lexicon-icon-web-content icon-root"
+                                  role="presentation"
                                 >
                                   <use
-                                    xlink:href="/o/osb-faro-web/dist/sprite.svg#web-content"
+                                    xlink:href="#web-content"
                                   />
                                 </svg>
                               </span>
@@ -517,11 +517,11 @@ exports[`Edit should render 1`] = `
                               class="inline-item"
                             >
                               <svg
-                                class="icon-root lexicon-icon lexicon-icon-drag"
-                                viewBox=""
+                                class="lexicon-icon lexicon-icon-drag icon-root"
+                                role="presentation"
                               >
                                 <use
-                                  xlink:href="/o/osb-faro-web/dist/sprite.svg#drag"
+                                  xlink:href="#drag"
                                 />
                               </svg>
                             </span>
@@ -532,11 +532,11 @@ exports[`Edit should render 1`] = `
                                 class="inline-item"
                               >
                                 <svg
-                                  class="icon-root lexicon-icon lexicon-icon-web-content"
-                                  viewBox=""
+                                  class="lexicon-icon lexicon-icon-web-content icon-root"
+                                  role="presentation"
                                 >
                                   <use
-                                    xlink:href="/o/osb-faro-web/dist/sprite.svg#web-content"
+                                    xlink:href="#web-content"
                                   />
                                 </svg>
                               </span>
@@ -551,11 +551,11 @@ exports[`Edit should render 1`] = `
                               class="inline-item"
                             >
                               <svg
-                                class="icon-root lexicon-icon lexicon-icon-drag"
-                                viewBox=""
+                                class="lexicon-icon lexicon-icon-drag icon-root"
+                                role="presentation"
                               >
                                 <use
-                                  xlink:href="/o/osb-faro-web/dist/sprite.svg#drag"
+                                  xlink:href="#drag"
                                 />
                               </svg>
                             </span>
@@ -566,11 +566,11 @@ exports[`Edit should render 1`] = `
                                 class="inline-item"
                               >
                                 <svg
-                                  class="icon-root lexicon-icon lexicon-icon-web-content"
-                                  viewBox=""
+                                  class="lexicon-icon lexicon-icon-web-content icon-root"
+                                  role="presentation"
                                 >
                                   <use
-                                    xlink:href="/o/osb-faro-web/dist/sprite.svg#web-content"
+                                    xlink:href="#web-content"
                                   />
                                 </svg>
                               </span>
@@ -585,11 +585,11 @@ exports[`Edit should render 1`] = `
                               class="inline-item"
                             >
                               <svg
-                                class="icon-root lexicon-icon lexicon-icon-drag"
-                                viewBox=""
+                                class="lexicon-icon lexicon-icon-drag icon-root"
+                                role="presentation"
                               >
                                 <use
-                                  xlink:href="/o/osb-faro-web/dist/sprite.svg#drag"
+                                  xlink:href="#drag"
                                 />
                               </svg>
                             </span>
@@ -600,11 +600,11 @@ exports[`Edit should render 1`] = `
                                 class="inline-item"
                               >
                                 <svg
-                                  class="icon-root lexicon-icon lexicon-icon-web-content"
-                                  viewBox=""
+                                  class="lexicon-icon lexicon-icon-web-content icon-root"
+                                  role="presentation"
                                 >
                                   <use
-                                    xlink:href="/o/osb-faro-web/dist/sprite.svg#web-content"
+                                    xlink:href="#web-content"
                                   />
                                 </svg>
                               </span>
@@ -619,11 +619,11 @@ exports[`Edit should render 1`] = `
                               class="inline-item"
                             >
                               <svg
-                                class="icon-root lexicon-icon lexicon-icon-drag"
-                                viewBox=""
+                                class="lexicon-icon lexicon-icon-drag icon-root"
+                                role="presentation"
                               >
                                 <use
-                                  xlink:href="/o/osb-faro-web/dist/sprite.svg#drag"
+                                  xlink:href="#drag"
                                 />
                               </svg>
                             </span>
@@ -634,11 +634,11 @@ exports[`Edit should render 1`] = `
                                 class="inline-item"
                               >
                                 <svg
-                                  class="icon-root lexicon-icon lexicon-icon-web-content"
-                                  viewBox=""
+                                  class="lexicon-icon lexicon-icon-web-content icon-root"
+                                  role="presentation"
                                 >
                                   <use
-                                    xlink:href="/o/osb-faro-web/dist/sprite.svg#web-content"
+                                    xlink:href="#web-content"
                                   />
                                 </svg>
                               </span>
@@ -685,11 +685,11 @@ exports[`Edit should render 1`] = `
                                   class="criteria-message"
                                 >
                                   <svg
-                                    class="icon-root lexicon-icon lexicon-icon-ac-rule icon-size-md"
-                                    viewBox=""
+                                    class="lexicon-icon lexicon-icon-ac-rule icon-root icon-size-md"
+                                    role="presentation"
                                   >
                                     <use
-                                      xlink:href="/o/osb-faro-web/dist/sprite.svg#ac-rule"
+                                      xlink:href="#ac-rule"
                                     />
                                   </svg>
                                   Drag and drop criterion from the right to add rules.
@@ -698,11 +698,11 @@ exports[`Edit should render 1`] = `
                                   class="groups-message"
                                 >
                                   <svg
-                                    class="icon-root lexicon-icon lexicon-icon-ac-group icon-size-md"
-                                    viewBox=""
+                                    class="lexicon-icon lexicon-icon-ac-group icon-root icon-size-md"
+                                    role="presentation"
                                   >
                                     <use
-                                      xlink:href="/o/osb-faro-web/dist/sprite.svg#ac-group"
+                                      xlink:href="#ac-group"
                                     />
                                   </svg>
                                   Drag and drop over an existing criteria to form groups.

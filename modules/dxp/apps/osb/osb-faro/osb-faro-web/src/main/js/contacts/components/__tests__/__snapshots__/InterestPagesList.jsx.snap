@@ -37,11 +37,11 @@ exports[`InterestPagesList should render 1`] = `
                   class="caret-root"
                 >
                   <svg
-                    class="icon-root lexicon-icon lexicon-icon-caret-bottom"
-                    viewBox=""
+                    class="lexicon-icon lexicon-icon-caret-bottom icon-root"
+                    role="presentation"
                   >
                     <use
-                      xlink:href="/o/osb-faro-web/dist/sprite.svg#caret-bottom"
+                      xlink:href="#caret-bottom"
                     />
                   </svg>
                 </span>
@@ -56,11 +56,11 @@ exports[`InterestPagesList should render 1`] = `
                 href="/?field=url&page=1&sortOrder=DESC"
               >
                 <svg
-                  class="icon-root lexicon-icon lexicon-icon-order-arrow-ascending"
-                  viewBox=""
+                  class="lexicon-icon lexicon-icon-order-arrow-ascending icon-root"
+                  role="presentation"
                 >
                   <use
-                    xlink:href="/o/osb-faro-web/dist/sprite.svg#order-arrow-ascending"
+                    xlink:href="#order-arrow-ascending"
                   />
                 </svg>
               </a>
@@ -89,11 +89,11 @@ exports[`InterestPagesList should render 1`] = `
                     type="button"
                   >
                     <svg
-                      class="icon-root lexicon-icon lexicon-icon-search"
-                      viewBox=""
+                      class="lexicon-icon lexicon-icon-search icon-root"
+                      role="presentation"
                     >
                       <use
-                        xlink:href="/o/osb-faro-web/dist/sprite.svg#search"
+                        xlink:href="#search"
                       />
                     </svg>
                   </button>
@@ -142,11 +142,11 @@ exports[`InterestPagesList should render 1`] = `
                   class="inline-item inline-item-after"
                 >
                   <svg
-                    class="icon-root lexicon-icon lexicon-icon-order-arrow-up"
-                    viewBox=""
+                    class="lexicon-icon lexicon-icon-order-arrow-up icon-root"
+                    role="presentation"
                   >
                     <use
-                      xlink:href="/o/osb-faro-web/dist/sprite.svg#order-arrow-up"
+                      xlink:href="#order-arrow-up"
                     />
                   </svg>
                 </span>

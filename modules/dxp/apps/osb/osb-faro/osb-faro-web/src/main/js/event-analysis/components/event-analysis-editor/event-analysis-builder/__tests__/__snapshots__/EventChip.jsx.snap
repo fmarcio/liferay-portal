@@ -19,11 +19,11 @@ exports[`EventChip render 1`] = `
         type="button"
       >
         <svg
-          class="icon-root lexicon-icon lexicon-icon-times-circle"
-          viewBox=""
+          class="lexicon-icon lexicon-icon-times-circle icon-root"
+          role="presentation"
         >
           <use
-            xlink:href="/o/osb-faro-web/dist/sprite.svg#times-circle"
+            xlink:href="#times-circle"
           />
         </svg>
       </button>

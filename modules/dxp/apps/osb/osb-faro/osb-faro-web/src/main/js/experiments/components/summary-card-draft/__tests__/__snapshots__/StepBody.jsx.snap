@@ -18,11 +18,11 @@ exports[`SummaryCardDraft StepBody should render "active card" when status is ac
       type="button"
     >
       <svg
-        class="icon-root lexicon-icon lexicon-icon-home mr-2"
-        viewBox=""
+        class="lexicon-icon lexicon-icon-home icon-root mr-2"
+        role="presentation"
       >
         <use
-          xlink:href="/o/osb-faro-web/dist/sprite.svg#home"
+          xlink:href="#home"
         />
       </svg>
       button label
@@ -51,11 +51,11 @@ exports[`SummaryCardDraft StepBody should render component 1`] = `
         type="button"
       >
         <svg
-          class="icon-root lexicon-icon lexicon-icon-home mr-2"
-          viewBox=""
+          class="lexicon-icon lexicon-icon-home icon-root mr-2"
+          role="presentation"
         >
           <use
-            xlink:href="/o/osb-faro-web/dist/sprite.svg#home"
+            xlink:href="#home"
           />
         </svg>
         button label

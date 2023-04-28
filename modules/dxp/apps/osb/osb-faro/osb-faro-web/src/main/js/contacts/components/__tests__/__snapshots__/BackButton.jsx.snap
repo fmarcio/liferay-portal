@@ -10,11 +10,11 @@ exports[`BackButton should render 1`] = `
       href="/foo.url"
     >
       <svg
-        class="icon-root lexicon-icon lexicon-icon-angle-left inline-item inline-item-before icon-size-sm"
-        viewBox=""
+        class="lexicon-icon lexicon-icon-angle-left icon-root icon-size-sm inline-item inline-item-before"
+        role="presentation"
       >
         <use
-          xlink:href="/o/osb-faro-web/dist/sprite.svg#angle-left"
+          xlink:href="#angle-left"
         />
       </svg>
       foo label

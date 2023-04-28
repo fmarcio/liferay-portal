@@ -22,11 +22,11 @@ exports[`SelectDataSource should render 1`] = `
             class="image"
           >
             <svg
-              class="icon-root lexicon-icon lexicon-icon-csv-logo icon-size-xl"
-              viewBox=""
+              class="lexicon-icon lexicon-icon-csv-logo icon-root icon-size-xxxl"
+              role="presentation"
             >
               <use
-                xlink:href="/o/osb-faro-web/dist/sprite.svg#csv-logo"
+                xlink:href="#csv-logo"
               />
             </svg>
           </div>
@@ -53,11 +53,11 @@ exports[`SelectDataSource should render 1`] = `
             class="image"
           >
             <svg
-              class="icon-root lexicon-icon lexicon-icon-liferay-logo icon-size-xxl"
-              viewBox=""
+              class="lexicon-icon lexicon-icon-liferay-logo icon-root icon-size-xxxl"
+              role="presentation"
             >
               <use
-                xlink:href="/o/osb-faro-web/dist/sprite.svg#liferay-logo"
+                xlink:href="#liferay-logo"
               />
             </svg>
           </div>
@@ -95,11 +95,11 @@ exports[`SelectDataSource should render 1`] = `
             class="image"
           >
             <svg
-              class="icon-root lexicon-icon lexicon-icon-salesforce-logo icon-size-xxl"
-              viewBox=""
+              class="lexicon-icon lexicon-icon-salesforce-logo icon-root icon-size-xxxl"
+              role="presentation"
             >
               <use
-                xlink:href="/o/osb-faro-web/dist/sprite.svg#salesforce-logo"
+                xlink:href="#salesforce-logo"
               />
             </svg>
           </div>
