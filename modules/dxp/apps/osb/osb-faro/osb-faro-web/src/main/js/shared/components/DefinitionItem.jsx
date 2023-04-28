@@ -1,7 +1,7 @@
 import autobind from 'autobind-decorator';
 import Button from 'shared/components/Button';
+import ClayIcon from '@clayui/icon';
 import Form from 'shared/components/form';
-import Icon from 'shared/components/Icon';
 import React from 'react';
 import TextTruncate from 'shared/components/TextTruncate';
 import {PropTypes} from 'prop-types';
@@ -99,7 +99,10 @@ export default class DefinitionItem extends React.Component {
 										onClick={this.handleEditToggle}
 										size='sm'
 									>
-										<Icon symbol='times' />
+										<ClayIcon
+											className='icon-root'
+											symbol='times'
+										/>
 									</Button>
 
 									<Button
@@ -112,7 +115,10 @@ export default class DefinitionItem extends React.Component {
 										size='sm'
 										type='submit'
 									>
-										<Icon symbol='check' />
+										<ClayIcon
+											className='icon-root'
+											symbol='check'
+										/>
 									</Button>
 								</Form.Group>
 							</Form.Form>
@@ -131,7 +137,10 @@ export default class DefinitionItem extends React.Component {
 								onClick={this.handleEditToggle}
 								size='sm'
 							>
-								<Icon symbol='pencil' />
+								<ClayIcon
+									className='icon-root'
+									symbol='pencil'
+								/>
 							</Button>
 						)}
 					</div>

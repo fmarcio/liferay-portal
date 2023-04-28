@@ -1,8 +1,8 @@
 import Button from './Button';
 import Card from './Card';
+import ClayIcon from '@clayui/icon';
 import DatePicker from './date-picker';
 import getCN from 'classnames';
-import Icon from './Icon';
 import Input from './Input';
 import MaskedInput from './MaskedInput';
 import moment from 'moment';
@@ -128,7 +128,7 @@ const DateInput: React.FC<IDateInputProps> = ({
 
 					<Input.Inset position='after'>
 						<Button display='unstyled' onClick={handleClick}>
-							<Icon symbol='calendar' />
+							<ClayIcon className='icon-root' symbol='calendar' />
 						</Button>
 					</Input.Inset>
 				</Input.GroupItem>

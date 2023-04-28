@@ -1,7 +1,7 @@
 import Card from 'shared/components/Card';
 import ClayButton from '@clayui/button';
+import ClayIcon from '@clayui/icon';
 import ClayLink, {ClayLinkContext} from '@clayui/link';
-import Icon from 'shared/components/Icon';
 import React, {useState} from 'react';
 import {CLASSNAME} from '../summary-base-card/constants';
 import {DisplayType} from 'shared/types';
@@ -46,7 +46,10 @@ const SummaryCardDraftStepBody: React.FC<ISummaryCardDraftStepBodyProps> = ({
 					onClick={() => setVisibleModal(true)}
 				>
 					{buttonProps.symbol && (
-						<Icon className='mr-2' symbol={buttonProps.symbol} />
+						<ClayIcon
+							className='icon-root mr-2'
+							symbol={buttonProps.symbol}
+						/>
 					)}
 					{buttonProps.label}
 				</ClayButton>
@@ -76,7 +79,10 @@ const SummaryCardDraftStepBody: React.FC<ISummaryCardDraftStepBodyProps> = ({
 				target='_blank'
 			>
 				{buttonProps.symbol && (
-					<Icon className='mr-2' symbol={buttonProps.symbol} />
+					<ClayIcon
+						className='icon-root mr-2'
+						symbol={buttonProps.symbol}
+					/>
 				)}
 				{buttonProps.label}
 			</ClayLink>

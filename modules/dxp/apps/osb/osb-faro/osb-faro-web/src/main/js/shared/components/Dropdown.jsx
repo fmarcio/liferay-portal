@@ -2,8 +2,8 @@ import * as Breadcrumbs from './Breadcrumbs';
 import * as Nav from './Nav';
 import autobind from 'autobind-decorator';
 import Button from './Button';
+import ClayIcon from '@clayui/icon';
 import getCN from 'classnames';
-import Icon from './Icon';
 import omitDefinedProps from 'shared/util/omitDefinedProps';
 import Overlay, {ALIGNMENTS} from './Overlay';
 import React from 'react';
@@ -291,13 +291,14 @@ export default class Dropdown extends React.Component {
 
 				{icon && (
 					<span>
-						<Icon symbol={icon} />
+						<ClayIcon className='icon-root' symbol={icon} />
 					</span>
 				)}
 
 				{!readOnly && !icon && showCaret && (
 					<span className='caret-root'>
-						<Icon
+						<ClayIcon
+							className='icon-root'
 							symbol={
 								caretDouble
 									? 'caret-double'

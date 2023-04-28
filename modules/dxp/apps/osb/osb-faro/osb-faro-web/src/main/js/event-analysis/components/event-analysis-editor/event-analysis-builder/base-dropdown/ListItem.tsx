@@ -1,7 +1,7 @@
 import Button from 'shared/components/Button';
 import ClayDropdown from '@clayui/drop-down';
+import ClayIcon from '@clayui/icon';
 import getCN from 'classnames';
-import Icon from 'shared/components/Icon';
 import InfoCardPopover from '../InfoCardPopover';
 import Overlay from 'shared/components/Overlay';
 import React, {useRef} from 'react';
@@ -61,7 +61,8 @@ const ListItem: React.FC<IListItemProps> = ({
 				>
 					{isAttribute(item as Attribute) && (
 						<div className='sticker'>
-							<Icon
+							<ClayIcon
+								className='icon-root'
 								symbol={
 									DATA_TYPE_ICONS_MAP[
 										(item as Attribute).dataType

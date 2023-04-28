@@ -1,6 +1,6 @@
 import Button from 'shared/components/Button';
+import ClayIcon from '@clayui/icon';
 import getCN from 'classnames';
-import Icon, {Size} from 'shared/components/Icon';
 import React from 'react';
 
 interface ISelectDataSourceProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -28,14 +28,7 @@ const SelectDataSource: React.FC<ISelectDataSourceProps> = ({
 
 				<div className='section-items'>
 					{dataSources.map(
-						({
-							iconName,
-							iconSize,
-							name,
-							onClick,
-							subtitle,
-							url
-						}) => (
+						({iconName, name, onClick, subtitle, url}) => (
 							<Button
 								className='data-source-item'
 								display='unstyled'
@@ -44,8 +37,8 @@ const SelectDataSource: React.FC<ISelectDataSourceProps> = ({
 								onClick={onClick}
 							>
 								<div className='image'>
-									<Icon
-										size={iconSize as Size}
+									<ClayIcon
+										className='icon-root icon-size-xxxl'
 										symbol={iconName}
 									/>
 								</div>

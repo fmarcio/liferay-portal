@@ -1,19 +1,19 @@
 import * as API from 'shared/api';
 import autobind from 'autobind-decorator';
 import Button from 'shared/components/Button';
+import ClayIcon from '@clayui/icon';
 import debounce from 'shared/util/debounce-decorator';
 import FieldDropDown from './FieldDropDown';
 import Form from 'shared/components/form';
 import getCN from 'classnames';
-import Icon from 'shared/components/Icon';
 import React from 'react';
 import {autoCancel, hasRequest} from 'shared/util/request-decorator';
 import {close, modalTypes, open} from 'shared/actions/modals';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
 import {hasChanges} from 'shared/util/react';
-import {Map} from 'immutable';
 import {map, uniqBy} from 'lodash';
+import {Map} from 'immutable';
 import {PropTypes} from 'prop-types';
 import {sub} from 'shared/util/lang';
 
@@ -364,9 +364,15 @@ export class DataTransformationListRow extends React.Component {
 
 				<Form.GroupItem className='add-on' shrink>
 					{error ? (
-						<Icon symbol='faro-connection-error-ovals' />
+						<ClayIcon
+							className='icon-root'
+							symbol='faro-connection-error-ovals'
+						/>
 					) : (
-						<Icon symbol='faro-connection-success-ovals' />
+						<ClayIcon
+							className='icon-root'
+							symbol='faro-connection-success-ovals'
+						/>
 					)}
 				</Form.GroupItem>
 
@@ -398,8 +404,8 @@ export class DataTransformationListRow extends React.Component {
 									data-tooltip
 									title={this.getTooltipTitle()}
 								>
-									<Icon
-										className='help'
+									<ClayIcon
+										className='icon-root help'
 										symbol={
 											error
 												? 'exclamation-full'
@@ -417,7 +423,10 @@ export class DataTransformationListRow extends React.Component {
 								onClick={this.handleRemove}
 								title={Liferay.Language.get('remove-field')}
 							>
-								<Icon symbol='times-circle' />
+								<ClayIcon
+									className='icon-root'
+									symbol='times-circle'
+								/>
 							</Button>
 						</Form.GroupItem>
 					</>

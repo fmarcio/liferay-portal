@@ -1,6 +1,7 @@
 import * as API from 'shared/api';
 import BaseScreen from './BaseScreen';
 import Button from 'shared/components/Button';
+import ClayIcon from '@clayui/icon';
 import CopyButton from 'shared/components/CopyButton';
 import DataSourceQuery, {
 	DataSource,
@@ -8,7 +9,6 @@ import DataSourceQuery, {
 	DataSourceSyncData
 } from 'shared/queries/DataSourceQuery';
 import getCN from 'classnames';
-import Icon from 'shared/components/Icon';
 import InfoPopover from 'shared/components/InfoPopover';
 import Input from 'shared/components/Input';
 import Label from 'shared/components/form/Label';
@@ -208,16 +208,20 @@ const ConnectDXP: React.FC<IConnectDXPWrapperProps & IConnectDXPProps> = ({
 		<BaseScreen className='connect-dxp' onClose={onClose}>
 			<Modal.Body className='d-flex flex-column align-items-center flex-grow-1 justify-content-center'>
 				<div className='analytics-to-dxp-container'>
-					<Icon size='xl' symbol='dxp-icon' />
+					<ClayIcon
+						className='icon-root icon-size-xl'
+						symbol='dxp-icon'
+					/>
 
-					<Icon
-						className={getCN('arrows', {connected: dxpConnected})}
-						size='lg'
+					<ClayIcon
+						className={getCN('arrows icon-root icon-size-lg', {
+							connected: dxpConnected
+						})}
 						symbol='ac-horizontal-arrows'
 					/>
 
-					<Icon
-						size='xl'
+					<ClayIcon
+						className='icon-root icon-size-xl'
 						symbol={dxpConnected ? 'ac-logo' : 'ac-logo-grayscale'}
 					/>
 				</div>

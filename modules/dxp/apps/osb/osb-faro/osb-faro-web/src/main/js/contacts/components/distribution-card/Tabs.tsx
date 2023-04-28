@@ -1,6 +1,6 @@
 import Button from 'shared/components/Button';
+import ClayIcon from '@clayui/icon';
 import getCN from 'classnames';
-import Icon from 'shared/components/Icon';
 import React, {createRef} from 'react';
 import ScrollableSection from 'shared/components/ScrollableSection';
 import {DistributionTab} from 'shared/util/records';
@@ -54,7 +54,10 @@ const TabItem: React.FC<ITabItemProps> = ({
 					onClick={() => onDelete(id)}
 					size='sm'
 				>
-					<Icon monospaced size='sm' symbol='times' />
+					<ClayIcon
+						className='icon-root icon-size-sm'
+						symbol='times'
+					/>
 				</Button>
 			</div>
 		)}
@@ -136,7 +139,10 @@ export default class Tabs extends React.Component<ITabsProps> {
 					onClick={onAdd}
 					size='sm'
 				>
-					<Icon symbol='plus' />
+					<ClayIcon
+						className='icon-root icon-size-sm'
+						symbol='plus'
+					/>
 				</Button>
 			</div>
 		);

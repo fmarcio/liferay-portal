@@ -1,7 +1,7 @@
 import Button from 'shared/components/Button';
 import Card from 'shared/components/Card';
+import ClayIcon from '@clayui/icon';
 import Constants from 'shared/util/constants';
-import Icon from 'shared/components/Icon';
 import React from 'react';
 import RecommendationPageAssetsQuery from '../queries/RecommendationPageAssetsQuery';
 import RuleItem from './RuleItem';
@@ -42,7 +42,7 @@ const TrainingItem: React.FC<ITrainingItemProps> = ({
 				});
 			}}
 		>
-			<Icon symbol='view' />
+			<ClayIcon className='icon-root' symbol='view' />
 		</Button>
 
 		<RuleItem name={name} value={value} />
@@ -113,7 +113,7 @@ const TrainingItemsCard: React.FC<ITrainingItemsCardProps> = ({
 							});
 						}}
 					>
-						<Icon symbol='view' />
+						<ClayIcon className='icon-root' symbol='view' />
 					</Button>
 
 					{sub(

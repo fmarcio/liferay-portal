@@ -1,8 +1,8 @@
 import * as API from 'shared/api';
 import autobind from 'autobind-decorator';
 import Button from 'shared/components/Button';
+import ClayIcon from '@clayui/icon';
 import getCN from 'classnames';
-import Icon from 'shared/components/Icon';
 import React from 'react';
 import Spinner from 'shared/components/Spinner';
 import TextTruncate from 'shared/components/TextTruncate';
@@ -138,7 +138,12 @@ export default class WorkspaceListItem extends React.Component {
 			);
 		}
 
-		return <Icon symbol={available ? 'angle-right' : 'reload'} />;
+		return (
+			<ClayIcon
+				className='icon-root'
+				symbol={available ? 'angle-right' : 'reload'}
+			/>
+		);
 	}
 
 	@autobind
@@ -228,7 +233,10 @@ export default class WorkspaceListItem extends React.Component {
 					<span className='pr-2'>
 						{Liferay.Language.get('access-requested')}
 					</span>
-					<Icon size='md' symbol='envelope-close' />
+					<ClayIcon
+						className='icon-root icon-size-md'
+						symbol='envelope-close'
+					/>
 				</div>
 			);
 		} else {

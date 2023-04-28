@@ -1,10 +1,10 @@
 import Button from 'shared/components/Button';
 import Card from 'shared/components/Card';
+import ClayIcon from '@clayui/icon';
 import Form, {
 	validateMaxLength,
 	validateRequired
 } from 'shared/components/form';
-import Icon from 'shared/components/Icon';
 import PreferenceMutation from 'settings/data-privacy/queries/PreferenceMutation';
 import PreferenceQuery from 'settings/data-privacy/queries/PreferenceQuery';
 import React, {useRef} from 'react';
@@ -46,7 +46,7 @@ const renderAddButton = (
 	) {
 		return (
 			<Button borderless className='ml-1' display='secondary' {...props}>
-				<Icon symbol='plus' />
+				<ClayIcon className='icon-root' symbol='plus' />
 			</Button>
 		);
 	}
@@ -252,7 +252,10 @@ export const SearchCard: React.FC<ISearchCardProps> = ({
 																	)
 																}
 															>
-																<Icon symbol='trash' />
+																<ClayIcon
+																	className='icon-root'
+																	symbol='trash'
+																/>
 															</Button>
 														)}
 

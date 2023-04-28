@@ -1,13 +1,12 @@
 import autobind from 'autobind-decorator';
 import Button from 'shared/components/Button';
+import ClayIcon from '@clayui/icon';
 import Form from 'shared/components/form';
 import getCN from 'classnames';
-import Icon from 'shared/components/Icon';
 import Label from 'shared/components/form/Label';
 import Promise from 'metal-promise';
 import React from 'react';
 import {Formik} from 'formik';
-
 interface IInputWithEditToggleProps {
 	className?: string;
 	editable: boolean;
@@ -126,7 +125,10 @@ export default class InputWithEditToggle extends React.Component<
 													}}
 													size='sm'
 												>
-													<Icon symbol='times' />
+													<ClayIcon
+														className='icon-root'
+														symbol='times'
+													/>
 												</Button>
 
 												<Button
@@ -139,7 +141,10 @@ export default class InputWithEditToggle extends React.Component<
 													size='sm'
 													type='submit'
 												>
-													<Icon symbol='check' />
+													<ClayIcon
+														className='icon-root'
+														symbol='check'
+													/>
 												</Button>
 											</>
 										) : (
@@ -151,7 +156,10 @@ export default class InputWithEditToggle extends React.Component<
 												onClick={this.handleEditToggle}
 												size='sm'
 											>
-												<Icon symbol='pencil' />
+												<ClayIcon
+													className='icon-root'
+													symbol='pencil'
+												/>
 											</Button>
 										)
 									}

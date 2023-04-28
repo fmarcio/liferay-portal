@@ -1,6 +1,6 @@
 import Button from './Button';
+import ClayIcon from '@clayui/icon';
 import getCN from 'classnames';
-import Icon from './Icon';
 import Input from './Input';
 import Overlay from './Overlay';
 import Promise from 'metal-promise';
@@ -265,7 +265,10 @@ const BaseSelect: React.FC<IBaseSelectProps> = ({
 						{loading ? (
 							<Spinner size='sm' />
 						) : (
-							<Icon symbol='caret-bottom' />
+							<ClayIcon
+								className='icon-root'
+								symbol='caret-bottom'
+							/>
 						)}
 					</Input.Inset>
 				</Input.GroupItem>

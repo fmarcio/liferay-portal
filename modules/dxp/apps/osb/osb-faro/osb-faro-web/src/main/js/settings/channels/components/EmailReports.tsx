@@ -1,7 +1,7 @@
 import * as API from 'shared/api';
 import Button from 'shared/components/Button';
+import ClayIcon from '@clayui/icon';
 import getCN from 'classnames';
-import Icon from 'shared/components/Icon';
 import React, {useEffect, useState} from 'react';
 import Spinner from 'shared/components/Spinner';
 import {addAlert} from 'shared/actions/alerts';
@@ -130,7 +130,7 @@ const EmailReports: React.FC<IEmailReportsProps> = ({
 						data-tooltip-align='top'
 						title={Liferay.Language.get('configure-email-reports')}
 					>
-						<Icon symbol='cog' />
+						<ClayIcon className='icon-root' symbol='cog' />
 					</span>
 				</Button>
 			)}

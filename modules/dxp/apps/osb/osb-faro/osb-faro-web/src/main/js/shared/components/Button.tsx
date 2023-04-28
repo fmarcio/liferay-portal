@@ -1,5 +1,5 @@
+import ClayIcon from '@clayui/icon';
 import getCN from 'classnames';
-import Icon from 'shared/components/Icon';
 import React from 'react';
 import Spinner from 'shared/components/Spinner';
 import {Link} from 'react-router-dom';
@@ -85,11 +85,11 @@ class Button extends React.Component<IButtonProps> {
 		if (children) {
 			return (
 				<span className={classes}>
-					<Icon symbol={icon} />
+					<ClayIcon className='icon-root' symbol={icon} />
 				</span>
 			);
 		} else {
-			return <Icon symbol={icon} />;
+			return <ClayIcon className='icon-root' symbol={icon} />;
 		}
 	}
 

@@ -1,9 +1,9 @@
 import * as API from 'shared/api';
 import autobind from 'autobind-decorator';
 import Button from 'shared/components/Button';
+import ClayIcon from '@clayui/icon';
 import debounce from 'shared/util/debounce-decorator';
 import Form, {validateRequired} from 'shared/components/form';
-import Icon from 'shared/components/Icon';
 import InfoPopover from 'shared/components/InfoPopover';
 import React from 'react';
 import Spinner from 'shared/components/Spinner';
@@ -230,7 +230,10 @@ export class Toolbar extends React.Component<IToolbarProps, IToolbarState> {
 										<span
 											{...this.getPreviewCriteriaTooltipProps()}
 										>
-											<Icon symbol='view' />
+											<ClayIcon
+												className='icon-root'
+												symbol='view'
+											/>
 										</span>
 									</Button>
 								</Button.GroupItem>

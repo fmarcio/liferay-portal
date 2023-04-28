@@ -1,6 +1,6 @@
 import autobind from 'autobind-decorator';
 import Button from './Button';
-import Icon from './Icon';
+import ClayIcon from '@clayui/icon';
 import Input from './Input';
 import omitDefinedProps from 'shared/util/omitDefinedProps';
 import React from 'react';
@@ -110,7 +110,10 @@ export default class SearchInput extends React.Component {
 								display='unstyled'
 								onClick={this.handleClearSearch}
 							>
-								<Icon symbol='times' />
+								<ClayIcon
+									className='icon-root'
+									symbol='times'
+								/>
 							</Button>
 						) : (
 							<Button
@@ -118,7 +121,10 @@ export default class SearchInput extends React.Component {
 								display='unstyled'
 								onClick={this.handleSubmit}
 							>
-								<Icon symbol='search' />
+								<ClayIcon
+									className='icon-root'
+									symbol='search'
+								/>
 							</Button>
 						)}
 					</Input.Inset>

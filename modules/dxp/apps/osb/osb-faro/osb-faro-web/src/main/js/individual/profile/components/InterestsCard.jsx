@@ -1,8 +1,8 @@
 import * as API from 'shared/api';
 import Button from 'shared/components/Button';
 import Card from 'shared/components/Card';
+import ClayIcon from '@clayui/icon';
 import getCN from 'classnames';
-import Icon from 'shared/components/Icon';
 import ListGroup from 'shared/components/list-group';
 import React from 'react';
 import URLConstants from 'shared/util/url-constants';
@@ -128,7 +128,7 @@ export default class InterestsCard extends React.PureComponent {
 					>
 						{Liferay.Language.get('view-all-interests')}
 
-						<Icon symbol='angle-right' />
+						<ClayIcon className='icon-root' symbol='angle-right' />
 					</Button>
 				</Card.Footer>
 			</Card>

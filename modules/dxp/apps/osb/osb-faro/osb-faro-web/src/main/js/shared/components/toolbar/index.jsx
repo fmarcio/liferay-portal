@@ -1,11 +1,11 @@
 import autobind from 'autobind-decorator';
 import Button from 'shared/components/Button';
 import Checkbox from 'shared/components/Checkbox';
+import ClayIcon from '@clayui/icon';
 import Constants, {OrderByDirections} from 'shared/util/constants';
 import FilterAndOrder from 'shared/components/FilterAndOrder';
 import FilterTags from './FilterTags';
 import getCN from 'classnames';
-import Icon from 'shared/components/Icon';
 import Nav from 'shared/components/Nav';
 import NavBar from 'shared/components/NavBar';
 import PropTypes from 'prop-types';
@@ -298,7 +298,8 @@ export default class Toolbar extends React.Component {
 								}
 							}}
 						>
-							<Icon
+							<ClayIcon
+								className='icon-root'
 								symbol={
 									ascending
 										? 'order-arrow-ascending'

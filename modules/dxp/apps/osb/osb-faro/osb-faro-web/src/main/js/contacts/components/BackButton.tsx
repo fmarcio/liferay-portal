@@ -1,5 +1,5 @@
 import Button from 'shared/components/Button';
-import Icon from 'shared/components/Icon';
+import ClayIcon from '@clayui/icon';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -20,9 +20,8 @@ export default class BackButton extends React.Component<BackButtonIProps> {
 		return (
 			<div className='back-button-root'>
 				<Button borderless display='secondary' href={href} outline>
-					<Icon
-						className='inline-item inline-item-before'
-						size='sm'
+					<ClayIcon
+						className='icon-root icon-size-sm inline-item inline-item-before'
 						symbol='angle-left'
 					/>
 

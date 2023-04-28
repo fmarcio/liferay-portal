@@ -1,9 +1,9 @@
 import autobind from 'autobind-decorator';
 import Button from 'shared/components/Button';
+import ClayIcon from '@clayui/icon';
 import Dropdown from './Dropdown';
 import FaroConstants from 'shared/util/constants';
 import getCN from 'classnames';
-import Icon from './Icon';
 import React from 'react';
 import {isFunction, times} from 'lodash';
 import {PropTypes} from 'prop-types';
@@ -210,7 +210,7 @@ class Pagination extends React.Component {
 					onChange={onChange}
 					page={page - 1}
 				>
-					<Icon symbol='angle-left' />
+					<ClayIcon className='icon-root' symbol='angle-left' />
 				</PaginationItem>
 
 				{this.getPages().map((item, index) => (
@@ -231,7 +231,7 @@ class Pagination extends React.Component {
 					onChange={onChange}
 					page={page + 1}
 				>
-					<Icon symbol='angle-right' />
+					<ClayIcon className='icon-root' symbol='angle-right' />
 				</PaginationItem>
 			</ul>
 		);
