@@ -1448,17 +1448,6 @@
   dependencies:
     classnames "^2.2.6"
 
-"@clayui/modal@^3.0.0-alpha.1":
-  version "3.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@clayui/modal/-/modal-3.0.0-alpha.1.tgz#9e15f037062effee2581d9ecfd67810974dcf838"
-  integrity sha512-2m/VbeKagPqq8B+Oc7FRoKwUP5925p83BMTVJnS49fU3+P8AfcmMkeZbm6qTIKvLnJ745rjbsA5WFDGCOK7FHA==
-  dependencies:
-    "@clayui/button" "^3.0.0-alpha.1"
-    "@clayui/icon" "^3.0.0-alpha.1"
-    "@clayui/shared" "^3.0.0-alpha.1"
-    classnames "^2.2.6"
-    warning "^4.0.3"
-
 "@clayui/modal@^3.93.0":
   version "3.94.0"
   resolved "https://registry.yarnpkg.com/@clayui/modal/-/modal-3.94.0.tgz#1694e2765a8759223c3fd5dbaae0d1575d396675"
@@ -1467,6 +1456,18 @@
     "@clayui/button" "^3.92.0"
     "@clayui/icon" "^3.56.0"
     "@clayui/shared" "^3.94.0"
+    aria-hidden "^1.2.2"
+    classnames "^2.2.6"
+    warning "^4.0.3"
+
+"@clayui/modal@^3.95.0":
+  version "3.95.0"
+  resolved "https://registry.yarnpkg.com/@clayui/modal/-/modal-3.95.0.tgz#7be6ccb2b90e401bc4473c256f9d6d719bdc3feb"
+  integrity sha512-6Eu/r3/2g0a6iFOPj+aLIngTNfxqJtIhjI4dvrTATPcJB9adZ/j7ny88VDDOoi6+17+P8dYaUThBhT7nWFmUpA==
+  dependencies:
+    "@clayui/button" "^3.92.0"
+    "@clayui/icon" "^3.56.0"
+    "@clayui/shared" "^3.95.0"
     aria-hidden "^1.2.2"
     classnames "^2.2.6"
     warning "^4.0.3"
@@ -1542,6 +1543,19 @@
   version "3.94.0"
   resolved "https://registry.yarnpkg.com/@clayui/shared/-/shared-3.94.0.tgz#56d42c6e2049611c7eed6eb64be2de5bd6e8990b"
   integrity sha512-71F+R+wjIC0nlMVE28TmwD83qqtdK5mPy+UI5jNI1yMS/+JPb9FMMke370qugkdTu5RMbM/L+XTCLC8s2sD2DQ==
+  dependencies:
+    "@clayui/button" "^3.92.0"
+    "@clayui/link" "^3.88.0"
+    "@clayui/provider" "^3.93.0"
+    aria-hidden "^1.2.2"
+    classnames "^2.2.6"
+    dom-align "^1.12.2"
+    warning "^4.0.3"
+
+"@clayui/shared@^3.95.0":
+  version "3.95.0"
+  resolved "https://registry.yarnpkg.com/@clayui/shared/-/shared-3.95.0.tgz#2f84be2cf4bae303edf494c6ac4c2c44f2de69e6"
+  integrity sha512-WvTaqdS3z0uh2WK1Gy7SQjRFY1oZfNouLZ9XzTWQTmzt774oBwYja37wTInwiv6haHFRir/yqcnGuhyT4o75Sw==
   dependencies:
     "@clayui/button" "^3.92.0"
     "@clayui/link" "^3.88.0"
