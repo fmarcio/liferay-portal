@@ -1,23 +1,30 @@
 import React from 'react';
 import SummarySection from 'experiments/components/summary-section';
 import {formatDateToTimeZone} from 'shared/util/date';
-import {getMetricName, modalDelete} from 'experiments/util/experiments';
+import {getExperimentLink, getMetricName} from 'experiments/util/experiments';
 import {sub} from 'shared/util/lang';
 import {toRounded} from 'shared/util/numbers';
 import {toThousandsABTesting} from 'experiments/util/experiments';
 
 export default ({
 	bestVariant,
-	experimentId,
 	finishedDate,
 	goal,
+	id,
 	metrics: {completion, elapsedDays, estimatedDaysLeft},
+	pageURL,
 	sessions,
 	startedDate,
 	timeZoneId
 }) => ({
 	header: {
-		cardModals: [modalDelete(experimentId)],
+		actions: [
+			{
+				displayType: 'secondary',
+				title: Liferay.Language.get('delete-test'),
+				url: `${getExperimentLink(pageURL, id)}&deleteExperiment=true`
+			}
+		],
 		Description: () => (
 			<div className='date'>
 				<div>

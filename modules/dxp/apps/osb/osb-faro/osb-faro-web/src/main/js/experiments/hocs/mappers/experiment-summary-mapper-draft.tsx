@@ -3,8 +3,7 @@ import RunExperimentModal from 'experiments/components/modals/RunExperimentModal
 import {
 	getExperimentLink,
 	getMetricName,
-	getStep,
-	modalDelete
+	getStep
 } from 'experiments/util/experiments';
 import {sub} from 'shared/util/lang';
 
@@ -22,7 +21,16 @@ export default ({
 
 	return {
 		header: {
-			cardModals: [modalDelete(experimentId)],
+			actions: [
+				{
+					displayType: 'secondary',
+					title: Liferay.Language.get('delete-test'),
+					url: `${getExperimentLink(
+						pageURL,
+						id
+					)}&deleteExperiment=true`
+				}
+			],
 			Description: () =>
 				Liferay.Language.get('finish-the-setup-to-run-the-test'),
 			title: Liferay.Language.get('test-is-in-draft-mode')

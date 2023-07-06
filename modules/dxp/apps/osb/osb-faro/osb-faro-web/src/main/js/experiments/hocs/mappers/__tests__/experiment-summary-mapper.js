@@ -449,9 +449,9 @@ describe('Summary Mapper for status in COMPLETED', () => {
 		);
 	});
 
-	it('should return formatted cardModals', () => {
-		expect(mapper.header.cardModals.length).toBe(1);
-		expect(mapper.header.cardModals[0].title).toEqual('Delete Test');
+	it('should return formatted actions', () => {
+		expect(mapper.header.actions.length).toBe(1);
+		expect(mapper.header.actions[0].title).toEqual('Delete Test');
 	});
 
 	it('should return formatted header', () => {
@@ -520,9 +520,9 @@ describe('Summary Mapper for status in COMPLETED and a variant published', () =>
 		expect(mapper.alert.title).toEqual('Variant 02 has been published.');
 	});
 
-	it('should return formatted cardModals', () => {
-		expect(mapper.header.cardModals.length).toBe(1);
-		expect(mapper.header.cardModals[0].title).toEqual('Delete Test');
+	it('should return formatted actions', () => {
+		expect(mapper.header.actions.length).toBe(1);
+		expect(mapper.header.actions[0].title).toEqual('Delete Test');
 	});
 
 	it('should return formatted header', () => {
@@ -583,9 +583,9 @@ describe('Summary Mapper for status in TERMINATED', () => {
 		expect(mapper).toMatchSnapshot();
 	});
 
-	it('should return formatted cardModals', () => {
-		expect(mapper.header.cardModals.length).toBe(1);
-		expect(mapper.header.cardModals[0].title).toEqual('Delete Test');
+	it('should return formatted actions', () => {
+		expect(mapper.header.actions.length).toBe(1);
+		expect(mapper.header.actions[0].title).toEqual('Delete Test');
 	});
 
 	it('should return formatted header', () => {

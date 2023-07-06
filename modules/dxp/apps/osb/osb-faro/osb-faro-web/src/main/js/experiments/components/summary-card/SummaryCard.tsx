@@ -68,7 +68,7 @@ const withSummaryCard: React.FC<IWithSummaryCard> = ({status, timeZoneId}) => {
 					return (
 						<>
 							<SummaryBaseCard.Header
-								cardModals={header.cardModals}
+								actions={header.actions}
 								modals={header.modals}
 							>
 								<Header

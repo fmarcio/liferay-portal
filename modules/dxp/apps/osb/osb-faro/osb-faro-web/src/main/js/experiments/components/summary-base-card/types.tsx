@@ -26,7 +26,7 @@ export type Description = {
 
 export type Header = {
 	modals?: Array<Modal>;
-	cardModals?: Array<Modal>;
+	actions?: Array<Modal>;
 	Description?: React.FC;
 	title: string;
 };

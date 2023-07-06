@@ -98,7 +98,7 @@ Object {
   },
   "header": Object {
     "Description": [Function],
-    "cardModals": Array [
+    "actions": Array [
       Object {
         "Component": [Function],
         "props": Object {
@@ -141,7 +141,7 @@ Object {
   },
   "header": Object {
     "Description": [Function],
-    "cardModals": Array [
+    "actions": Array [
       Object {
         "Component": [Function],
         "props": Object {
@@ -184,7 +184,7 @@ Object {
   },
   "header": Object {
     "Description": [Function],
-    "cardModals": Array [
+    "actions": Array [
       Object {
         "Component": [Function],
         "props": Object {
@@ -222,7 +222,7 @@ exports[`Summary Mapper for status in DRAFT should display empty state 1`] = `
 Object {
   "header": Object {
     "Description": [Function],
-    "cardModals": Array [
+    "actions": Array [
       Object {
         "Component": [Function],
         "props": Object {
@@ -364,7 +364,7 @@ exports[`Summary Mapper for status in DRAFT should return formatted data 1`] = `
 Object {
   "header": Object {
     "Description": [Function],
-    "cardModals": Array [
+    "actions": Array [
       Object {
         "Component": [Function],
         "props": Object {
@@ -603,7 +603,7 @@ exports[`Summary Mapper for status in TERMINATED should return formatted data fo
 Object {
   "header": Object {
     "Description": [Function],
-    "cardModals": Array [
+    "actions": Array [
       Object {
         "Component": [Function],
         "props": Object {

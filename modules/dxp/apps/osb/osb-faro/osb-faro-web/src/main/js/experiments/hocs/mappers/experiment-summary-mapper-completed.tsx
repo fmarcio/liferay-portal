@@ -2,9 +2,9 @@ import React from 'react';
 import SummarySection from 'experiments/components/summary-section';
 import {formatDateToTimeZone} from 'shared/util/date';
 import {
+	getExperimentLink,
 	getMetricName,
-	mergedVariants,
-	modalDelete
+	mergedVariants
 } from 'experiments/util/experiments';
 import {sub} from 'shared/util/lang';
 import {toRounded} from 'shared/util/numbers';
@@ -12,10 +12,11 @@ import {toThousandsABTesting} from 'experiments/util/experiments';
 
 export default ({
 	dxpVariants,
-	experimentId,
 	finishedDate,
 	goal,
+	id,
 	metrics: {completion, elapsedDays, variantMetrics},
+	pageURL,
 	publishedDXPVariantId,
 	sessions,
 	startedDate,
@@ -48,7 +49,16 @@ export default ({
 						)
 				  },
 		header: {
-			cardModals: [modalDelete(experimentId)],
+			actions: [
+				{
+					displayType: 'secondary',
+					title: Liferay.Language.get('delete-test'),
+					url: `${getExperimentLink(
+						pageURL,
+						id
+					)}&deleteExperiment=true`
+				}
+			],
 			Description: () => (
 				<div className='date'>
 					<div>

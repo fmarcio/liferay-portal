@@ -15,7 +15,7 @@ interface SummaryBaseCardIProps extends React.HTMLAttributes<HTMLElement> {
 interface SummaryBaseCardHeaderIProps
 	extends React.HTMLAttributes<HTMLDivElement> {
 	modals?: Array<Modal>;
-	cardModals?: Array<Modal>;
+	actions?: Array<{displayType: string; title: string; url: string}>;
 	close?: Function;
 	open?: Function;
 }
@@ -29,12 +29,11 @@ const Footer: React.FC<React.HTMLAttributes<HTMLElement>> = ({children}) => (
 );
 
 const Header: React.FC<SummaryBaseCardHeaderIProps> = ({
-	cardModals,
+	actions,
 	children,
 	modals
 }) => {
 	const [actionActive, setActionActive] = useState(false);
-	const [cardActionActive, setCardActionActive] = useState(false);
 	const triggerElementRef = useRef(null);
 	const menuElementRef = useRef(null);
 
@@ -135,48 +134,20 @@ const Header: React.FC<SummaryBaseCardHeaderIProps> = ({
 						</ClayButton.Group>
 					)}
 
-					{cardModals && !!cardModals.length && (
-						<ClayDropDown
-							active={cardActionActive}
-							className='ml-4'
-							onActiveChange={setCardActionActive}
-							trigger={
-								<ClayButton
-									aria-label={Liferay.Language.get('menu')}
-									className='button-root text-white'
-									displayType='unstyled'
-								>
-									<ClayIcon
-										className='icon-root'
-										symbol='ellipsis-v'
-									/>
-								</ClayButton>
-							}
-						>
-							<ClayDropDown.ItemList>
-								{cardModals.map(
-									({Component, props, title}, i) => (
-										<ClayDropDown.Item
-											className='c-pointer'
-											key={i}
-											onClick={
-												Component &&
-												(() => {
-													setModal({
-														Component,
-														props
-													});
-													setVisibleModal(true);
-												})
-											}
-										>
-											{title}
-										</ClayDropDown.Item>
-									)
+					{!!actions.length &&
+						actions.map(({displayType, title, url}, index) => (
+							<a
+								className={getCN(
+									'btn btn-sm',
+									`btn-${displayType}`
 								)}
-							</ClayDropDown.ItemList>
-						</ClayDropDown>
-					)}
+								href={url}
+								key={index}
+								target='_blank'
+							>
+								{title}
+							</a>
+						))}
 				</div>
 			</Card.Header>
 
