@@ -8,6 +8,7 @@ import ClayDropDown from '@clayui/drop-down';
 import ClayIcon from '@clayui/icon';
 import {useModal} from '@clayui/modal';
 import ClayTable from '@clayui/table';
+import {ClayTooltipProvider} from '@clayui/tooltip';
 import {sub} from 'frontend-js-web';
 import PropTypes from 'prop-types';
 import React, {useContext, useState} from 'react';
@@ -55,6 +56,7 @@ function VariantTable({
 	experiment,
 	onVariantDeletion,
 	onVariantEdition,
+	onVariantPublish,
 	selectedSegmentsExperienceId,
 	variants,
 }) {
@@ -81,7 +83,7 @@ function VariantTable({
 
 	return (
 		<>
-			<ClayTable>
+			<ClayTable className="table-sm">
 				<ClayTable.Head>
 					<ClayTable.Row>
 						<ClayTable.Cell expandable headingCell>
@@ -97,6 +99,8 @@ function VariantTable({
 						{experiment.status.value === STATUS_DRAFT && (
 							<ClayTable.Cell />
 						)}
+
+						{publishable && <ClayTable.Cell />}
 					</ClayTable.Row>
 				</ClayTable.Head>
 
@@ -247,6 +251,26 @@ function VariantTable({
 										className="text-secondary"
 									>
 										{indexToPercentageString(split)}
+									</ClayTable.Cell>
+								)}
+
+								{publishable && (
+									<ClayTable.Cell>
+										<ClayTooltipProvider>
+											<ClayButton
+												borderless
+												displayType="secondary"
+												onClick={() =>
+													onVariantPublish(
+														segmentsExperienceId
+													)
+												}
+												size="sm"
+												title="Publish"
+											>
+												<ClayIcon symbol="arrow-right-full" />
+											</ClayButton>
+										</ClayTooltipProvider>
 									</ClayTable.Cell>
 								)}
 							</ClayTable.Row>
