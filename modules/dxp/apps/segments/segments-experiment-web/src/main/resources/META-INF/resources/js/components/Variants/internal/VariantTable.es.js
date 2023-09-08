@@ -14,6 +14,8 @@ import PropTypes from 'prop-types';
 import React, {useContext, useState} from 'react';
 
 import SegmentsExperimentsContext from '../../../context.es';
+import {openPublishModal} from '../../../state/actions.es';
+import {DispatchContext} from '../../../state/context.es';
 import {SegmentsVariantType} from '../../../types.es';
 import {navigateToExperience} from '../../../util/navigation.es';
 import {indexToPercentageString} from '../../../util/percentages.es';
@@ -68,6 +70,7 @@ function VariantTable({
 		variantId: null,
 	});
 	const {editVariantLayoutURL} = useContext(SegmentsExperimentsContext);
+	const dispatch = useContext(DispatchContext);
 
 	const {observer, onClose} = useModal({
 		onClose: () => {
@@ -85,7 +88,7 @@ function VariantTable({
 
 	return (
 		<>
-			<ClayTable>
+			<ClayTable className="table-sm">
 				<ClayTable.Head>
 					<ClayTable.Row>
 						<ClayTable.Cell expandable headingCell>
@@ -101,6 +104,8 @@ function VariantTable({
 						{experiment.status.value === STATUS_DRAFT && (
 							<ClayTable.Cell />
 						)}
+
+						{publishable && <ClayTable.Cell />}
 					</ClayTable.Row>
 				</ClayTable.Head>
 
@@ -251,6 +256,29 @@ function VariantTable({
 										className="text-secondary"
 									>
 										{indexToPercentageString(split)}
+									</ClayTable.Cell>
+								)}
+
+								{publishable && (
+									<ClayTable.Cell>
+										<ClayButton
+											borderless
+											data-title={Liferay.Language.get(
+												'publish'
+											)}
+											displayType="secondary"
+											onClick={() => {
+												dispatch(
+													openPublishModal({
+														experienceId: segmentsExperienceId,
+														experienceName: name,
+													})
+												);
+											}}
+											size="sm"
+										>
+											<ClayIcon symbol="arrow-right-full" />
+										</ClayButton>
 									</ClayTable.Cell>
 								)}
 							</ClayTable.Row>
