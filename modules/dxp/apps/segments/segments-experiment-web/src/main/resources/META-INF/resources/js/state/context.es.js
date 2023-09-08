@@ -12,6 +12,7 @@ const DEFAULT_STATE = {
 	errors: {},
 	experiences: [],
 	experiment: null,
+	publishExperimentModal: {active: false, experienceId: null},
 	reviewExperimentModal: {active: false},
 	selectedExperienceId: null,
 	terminateExperimentModal: {active: false},

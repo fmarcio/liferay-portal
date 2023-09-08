@@ -56,6 +56,20 @@ export function closeDeletionModal() {
 	};
 }
 
+export function closePublishModal() {
+	return {
+		payload: {active: false, experienceId: null},
+		type: 'PUBLISH_EXPERIMENT',
+	};
+}
+
+export function openPublishModal(experienceId) {
+	return {
+		payload: {active: true, experienceId},
+		type: 'PUBLISH_EXPERIMENT',
+	};
+}
+
 export function openDeletionModal() {
 	return {
 		payload: {active: true},
