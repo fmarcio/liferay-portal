@@ -31,6 +31,8 @@ import SegmentsExperimentsActions from './SegmentsExperimentsActions.es';
 import SegmentsExperimentsDetails from './SegmentsExperimentsDetails.es';
 import Variants from './Variants/Variants.es';
 
+import {ConfirmModal} from './ConfirmModal';
+
 function SegmentsExperiments({
 	onCreateSegmentsExperiment,
 	onEditSegmentsExperiment,
@@ -109,6 +111,27 @@ function Experiments({
 				}
 			},
 		});
+
+		// return (
+		// 	<ConfirmModal
+		// 		onConfirm={(isConfimed) => {
+		// 			if (isConfimed) {
+		// 				APIService.publishExperience(body)
+		// 					.then(() => {
+		// 						openSuccessToast();
+
+		// 						navigateToExperience(experienceId);
+		// 					})
+		// 					.catch((_error) => {
+		// 						openErrorToast();
+		// 					});
+		// 			}
+		// 		}}
+		// 		title={Liferay.Language.get(
+		// 			'are-you-sure-you-want-to-publish-this-variant'
+		// 		)}
+		// 	/>
+		// );
 	}
 
 	return (

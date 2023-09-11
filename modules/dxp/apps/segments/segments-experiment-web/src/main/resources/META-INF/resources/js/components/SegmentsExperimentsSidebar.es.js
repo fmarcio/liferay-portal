@@ -15,6 +15,7 @@ import {
 	closeCreationModal,
 	closeDeletionModal,
 	closeEditionModal,
+	closePublishModal,
 	closeTerminateModal,
 	editSegmentsExperiment,
 	openCreationModal,
@@ -77,6 +78,7 @@ function SegmentsExperimentsSidebar({
 		deleteExperimentModal,
 		editExperimentModal,
 		experiment,
+		publishExperimentModal,
 		terminateExperimentModal,
 	} = state;
 
@@ -105,6 +107,13 @@ function SegmentsExperimentsSidebar({
 		onClose: () => dispatch(closeTerminateModal()),
 	});
 
+	const {
+		observer: publishModalObserver,
+		onClose: onPublishModalClose,
+	} = useModal({
+		onClose: () => dispatch(closePublishModal()),
+	});
+
 	useEffect(() => {
 		const segmentsExperimentAction = getSegmentsExperimentAction();
 
@@ -115,12 +124,10 @@ function SegmentsExperimentsSidebar({
 		if (experiment.status.value === STATUS_DRAFT) {
 			if (segmentsExperimentAction === 'reviewAndRun') {
 				dispatch(reviewAndRunExperiment());
-			}
-			else if (segmentsExperimentAction === 'delete') {
+			} else if (segmentsExperimentAction === 'delete') {
 				dispatch(openDeletionModal());
 			}
-		}
-		else if (
+		} else if (
 			experiment.status.value === STATUS_RUNNING &&
 			segmentsExperimentAction === 'terminate'
 		) {
@@ -233,6 +240,13 @@ function SegmentsExperimentsSidebar({
 								)}
 							</p>
 						</ConfirmModal>
+					)}
+
+					{publishExperimentModal.active && (
+						<ConfirmModal
+							observer={publishModalObserver}
+							onCancel={onPublishModalClose}
+						></ConfirmModal>
 					)}
 				</div>
 			</StateContext.Provider>
