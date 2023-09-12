@@ -283,40 +283,56 @@ describe('formatProcessedDate', () => {
 describe('getVariantLabel', () => {
 	it('should return a label in especific cases', () => {
 		expect(
-			getVariantLabel('RUNNING', mockBestVariant, undefined, 'DEFAULT')
-		).toBe('Current Best');
+			getVariantLabel({
+				bestVariant: mockBestVariant,
+				status: 'RUNNING',
+				variantId: 'DEFAULT'
+			})
+		).toEqual({status: 'success', value: 'Current Best'});
 
 		expect(
-			getVariantLabel(
-				'FINISHED_WINNER',
-				mockBestVariant,
-				'DEFAULT',
-				'DEFAULT'
-			)
-		).toBe('Winner');
+			getVariantLabel({
+				bestVariant: mockBestVariant,
+				status: 'FINISHED_WINNER',
+				variantId: 'DEFAULT',
+				winnerVariantId: 'DEFAULT'
+			})
+		).toEqual({status: 'success', value: 'Winner'});
+
+		expect(
+			getVariantLabel({
+				bestVariant: mockBestVariant,
+				publishedDXPVariantId: 'DEFAULT',
+				status: 'TERMINATED',
+				variantId: 'DEFAULT'
+			})
+		).toEqual({status: 'info', value: 'Published'});
 	});
-	it('should return undefined', () => {
+	it('should return null', () => {
 		expect(
-			getVariantLabel('RUNNING', undefined, undefined, 'DEFAULT')
-		).toBe(undefined);
+			getVariantLabel({
+				status: 'RUNNING',
+				variantId: 'DEFAULT'
+			})
+		).toBe(null);
 
 		expect(
-			getVariantLabel(
-				'FINISHED_WINNER',
-				mockBestVariant,
-				'1000',
-				'DEFAULT'
-			)
-		).toBe(undefined);
+			getVariantLabel({
+				bestVariant: mockBestVariant,
+				status: 'FINISHED_WINNER',
+				variantId: 'DEFAULT',
+				winnerVariantId: '1000'
+			})
+		).toBe(null);
 
 		expect(
-			getVariantLabel(
-				'FINISHED_NO_WINNER',
-				mockBestVariant,
-				'DEFAULT',
-				'DEFAULT'
-			)
-		).toBe(undefined);
+			getVariantLabel({
+				bestVariant: mockBestVariant,
+				status: 'FINISHED_NO_WINNER',
+				variantId: 'DEFAULT',
+				winnerVariantId: 'DEFAULT'
+			})
+		).toBe(null);
 	});
 });
 

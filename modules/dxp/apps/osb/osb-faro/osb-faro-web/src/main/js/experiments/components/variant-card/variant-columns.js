@@ -14,6 +14,7 @@ export default ({
 	bestVariant,
 	metric,
 	metricUnit,
+	publishedDXPVariantId,
 	status,
 	winnerDXPVariantId
 }) => [
@@ -21,14 +22,14 @@ export default ({
 		accessor: 'dxpVariantName',
 		cellRenderer: ({data: {dxpVariantId, dxpVariantName}}) => (
 			<VariantTitleCell
-				id={dxpVariantId}
-				label={getVariantLabel(
-					status,
+				label={getVariantLabel({
 					bestVariant,
-					winnerDXPVariantId,
-					dxpVariantId
-				)}
-				title={`${dxpVariantName}`}
+					publishedDXPVariantId,
+					status,
+					variantId: dxpVariantId,
+					winnerDXPVariantId
+				})}
+				title={dxpVariantName}
 			/>
 		),
 		label: Liferay.Language.get('variants'),

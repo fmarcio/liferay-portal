@@ -349,22 +349,30 @@ export const useAddRefetch = (refetch: Function) => {
 	}, [refetch]);
 };
 
-export const getVariantLabel: GetVariantLabel = (
-	status,
+export const getVariantLabel: GetVariantLabel = ({
 	bestVariant,
-	winnerVariantId,
-	variantId
-) => {
-	let label = undefined;
+	publishedDXPVariantId,
+	status,
+	variantId,
+	winnerVariantId
+}) => {
+	let label = null;
 
-	if (
-		bestVariant &&
-		status === 'RUNNING' &&
-		bestVariant.dxpVariantId === variantId
-	) {
-		label = Liferay.Language.get('current-best');
+	if (status === 'RUNNING' && bestVariant?.dxpVariantId === variantId) {
+		label = {
+			status: 'success',
+			value: Liferay.Language.get('current-best')
+		};
 	} else if (status === 'FINISHED_WINNER' && winnerVariantId === variantId) {
-		label = Liferay.Language.get('winner');
+		label = {
+			status: 'success',
+			value: Liferay.Language.get('winner')
+		};
+	} else if (status === 'TERMINATED' && publishedDXPVariantId === variantId) {
+		label = {
+			status: 'info',
+			value: Liferay.Language.get('published')
+		};
 	}
 
 	return label;

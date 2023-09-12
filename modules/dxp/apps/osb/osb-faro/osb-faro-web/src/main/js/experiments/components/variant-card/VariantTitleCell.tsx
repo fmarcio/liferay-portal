@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import {isEllipisActive} from 'shared/util/util';
 
 interface IVariantTitleProps {
-	label?: string;
+	label?: {value: string; status: string};
 	title: string;
 }
 
@@ -29,7 +29,7 @@ const VariantTitle: React.FC<IVariantTitleProps> = ({label, title}) => {
 				{title}
 			</h5>
 
-			{label && <Label display='success'>{label}</Label>}
+			{label && <Label display={label.status}>{label.value}</Label>}
 
 			{ReactDOM.createPortal(
 				<Popover
