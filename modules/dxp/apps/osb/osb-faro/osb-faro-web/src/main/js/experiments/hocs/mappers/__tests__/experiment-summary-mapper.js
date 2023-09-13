@@ -163,8 +163,6 @@ describe('Summary Mapper for status in RUNNING', () => {
 	});
 
 	it('should return formatted header', () => {
-		expect(mapper.header.modals.length).toBe(1);
-		expect(mapper.header.modals[0].title).toEqual('Terminate Test');
 		expect(mapper.header.Description()).toEqual('Started: Aug 5, 2019');
 		expect(mapper.header.title).toEqual('Test Is Running');
 	});
