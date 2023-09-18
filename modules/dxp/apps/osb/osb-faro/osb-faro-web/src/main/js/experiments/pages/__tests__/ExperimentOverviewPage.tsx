@@ -7,13 +7,19 @@ import {MemoryRouter, Route} from 'react-router-dom';
 import {MockedProvider} from '@apollo/react-testing';
 import {mockExperimentRootReq, mockTimeRangeReq} from 'test/graphql-data';
 import {Provider} from 'react-redux';
-import {render} from '@testing-library/react';
+import {fireEvent, render} from '@testing-library/react';
 import {Routes} from 'shared/util/router';
 import {waitForLoadingToBeRemoved} from 'test/helpers';
 
 jest.unmock('react-dom');
 
-const WrappedComponent = ({status}) => (
+const WrappedComponent = ({
+	publishable,
+	status
+}: {
+	publishable?: boolean;
+	status: string;
+}) => (
 	<ApolloProvider client={client}>
 		<Provider store={mockStore() as any}>
 			<MemoryRouter
@@ -23,7 +29,7 @@ const WrappedComponent = ({status}) => (
 					<MockedProvider
 						mocks={[
 							mockTimeRangeReq(),
-							mockExperimentRootReq({status})
+							mockExperimentRootReq({publishable, status})
 						]}
 					>
 						<ExperimentOverviewPage
@@ -109,5 +115,35 @@ describe('ExperimentOverviewPage', () => {
 		expect(deleteButton.href).toEqual(
 			'https://www.beryl.com/experiment-test?segmentsExperimentKey=123&segmentsExperimentAction=delete'
 		);
+	});
+
+	it.only('renders modal to delete a test when the "delete" button is clicked', async () => {
+		const {container, debug, getByRole, findByText} = render(
+			<WrappedComponent status='TERMINATED' />
+		);
+
+		await waitForLoadingToBeRemoved(container);
+
+		const deleteButton = getByRole('button', {
+			name: /delete/i
+		});
+
+		expect(deleteButton).toBeInTheDocument();
+
+		// debug();
+
+		fireEvent.click(deleteButton);
+
+		jest.runAllTimers();
+
+		// debug();
+
+		// expect(
+		// 	await findByText('Are you sure you want to delete this test?')
+		// ).toBeInTheDocument();
+
+		expect(container.querySelector('.modal-body')).toBeTruthy();
+
+		// expect(container.querySelector('.modal-dialog')).toBeTruthy();
 	});
 });

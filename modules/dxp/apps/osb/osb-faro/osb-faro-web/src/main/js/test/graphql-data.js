@@ -264,7 +264,7 @@ export function mockExperimentReq() {
 	};
 }
 
-export function mockExperimentRootReq({status}) {
+export function mockExperimentRootReq({publishable = false, status}) {
 	return {
 		request: {
 			query: EXPERIMENT_ROOT_QUERY,
@@ -280,7 +280,7 @@ export function mockExperimentRootReq({status}) {
 					id: '123',
 					name: 'Experiment Test',
 					pageURL: 'https://www.beryl.com/experiment-test',
-					publishable: false,
+					publishable,
 					status
 				}
 			}
