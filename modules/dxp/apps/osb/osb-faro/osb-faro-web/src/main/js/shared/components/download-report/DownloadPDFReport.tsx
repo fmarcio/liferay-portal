@@ -8,6 +8,7 @@ import {useModal} from '@clayui/modal';
 
 export enum Containers {
 	AcquisitionsCard = 'acquisitionsCardRoot',
+	AssetAppearsOnCard = 'assetAppearsOnCardRoot',
 	AudienceCard = 'audienceCardRoot',
 	CohortAnalysisCard = 'cohortAnalysisCardRoot',
 	InterestsCard = 'interestsCardRoot',
@@ -26,6 +27,10 @@ export const CONTAINERS: {[key in Containers]: TContainer} = {
 	[Containers.AcquisitionsCard]: {
 		label: Liferay.Language.get('acquisitions'),
 		layout: 2
+	},
+	[Containers.AssetAppearsOnCard]: {
+		label: Liferay.Language.get('asset-appears-on'),
+		layout: 1
 	},
 	[Containers.AudienceCard]: {
 		label: Liferay.Language.get('audience'),
@@ -74,10 +79,6 @@ export const CONTAINERS: {[key in Containers]: TContainer} = {
 	[Containers.VisitorsByTimeCard]: {
 		label: Liferay.Language.get('visitors-by-day-and-time'),
 		layout: 3
-	},
-	[Containers.VisitorsBehaviorCard]: {
-		label: Liferay.Language.get('visitors-behavior'),
-		layout: 1
 	}
 };
 
