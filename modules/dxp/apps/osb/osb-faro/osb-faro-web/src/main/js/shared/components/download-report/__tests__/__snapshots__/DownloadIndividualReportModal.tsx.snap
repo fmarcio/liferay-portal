@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DownloadIndividualReportModal renders component 1`] = `
+<div>
+  <button
+    class="btn btn-outline-borderless btn-sm btn-outline-secondary"
+    type="button"
+  >
+    <svg
+      class="lexicon-icon lexicon-icon-download mr-2"
+      role="presentation"
+    >
+      <use
+        href="#download"
+      />
+    </svg>
+    Download Report
+  </button>
+</div>
+`;
