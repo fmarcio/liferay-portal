@@ -1,3 +1,4 @@
+import ClayIcon from '@clayui/icon';
 import React from 'react';
 import {
 	EMPTY_NODE_COLOR,
@@ -7,9 +8,16 @@ import {
 	SANKEY_HEIGHT,
 	URL_COLOR
 } from './utils';
+import {getUrl as getUrlUtil} from 'shared/util/urls';
+import {Item, ITouchpointRouter} from 'assets/components/TouchpointsListCard';
 import {Layer, Rectangle} from 'recharts';
+import {pickBy} from 'lodash';
+import {Routes} from 'shared/util/router';
+import {sub} from 'shared/util/lang';
 import {TitleKey, Type} from './types';
 import {toThousands} from 'shared/util/numbers';
+import {useParams} from 'react-router-dom';
+import {useQueryRangeSelectors} from 'shared/hooks';
 
 function truncateText(text: string, limit: number) {
 	if (text.length > limit) {
@@ -65,6 +73,29 @@ export const Node = ({
 	const x = normalizeNumber(initialX);
 	const y = normalizeNumber(initialY);
 
+	const {channelId, groupId} = useParams();
+	const rangeSelectors = useQueryRangeSelectors();
+
+	const getUrl = ({title, touchpoint}: Item): string => {
+		const router: ITouchpointRouter = {
+			params: {
+				channelId,
+				groupId,
+				title,
+				touchpoint: encodeURIComponent(touchpoint)
+			},
+			query: {
+				...pickBy(rangeSelectors)
+			}
+		};
+
+		return getUrlUtil(Routes.SITES_TOUCHPOINTS_OVERVIEW, router);
+	};
+
+	const hrefValueTitle = !payload.external
+		? getUrl({title: payload.name, touchpoint: payload.url})
+		: null;
+
 	return (
 		<Layer
 			crossOrigin={undefined}
@@ -117,27 +148,68 @@ export const Node = ({
 				</>
 			)}
 
-			<text
-				fontSize='16'
-				fontWeight={SANKEY_HEIGHT}
-				textAnchor='start'
-				x={x}
-				y={showURL(payload.url) ? y - 28 : y - 16}
-			>
-				{truncateText(payload.name, 15)}
-			</text>
-
-			{showURL(payload.url) && (
+			{showURL(payload.url) && !payload.external ? (
+				<a
+					data-tooltip-align='right'
+					href={hrefValueTitle}
+					target='_blank'
+					title={Liferay.Language.get('go-to-dashboard-page')}
+				>
+					<text
+						fontSize='16'
+						fontWeight={SANKEY_HEIGHT}
+						textAnchor='start'
+						x={x}
+						y={y - 32}
+					>
+						{truncateText(payload.name, 15)}
+					</text>
+				</a>
+			) : (
 				<text
-					fill={URL_COLOR}
-					fontSize='12'
-					fontWeight={400}
+					fontSize='16'
+					fontWeight={SANKEY_HEIGHT}
 					textAnchor='start'
 					x={x}
-					y={y - 10}
+					y={y - 16}
 				>
-					{truncateText(payload.url, 25)}
+					{truncateText(payload.name, 15)}
 				</text>
+			)}
+
+			{showURL(payload.url) && (
+				<>
+					<ClayIcon
+						className='icon-root text-secondary'
+						height={16}
+						symbol='shortcut'
+						width={16}
+						x={x}
+						y={y - 22}
+					/>
+
+					<a
+						data-tooltip-align='right'
+						href={payload.url}
+						target='_blank'
+						title={
+							sub(Liferay.Language.get('visit-x'), [
+								payload.url
+							]) as string
+						}
+					>
+						<text
+							fill={URL_COLOR}
+							fontSize='12'
+							fontWeight={400}
+							textAnchor='start'
+							x={x + 20}
+							y={y - 10}
+						>
+							{truncateText(payload.url, 25)}
+						</text>
+					</a>
+				</>
 			)}
 		</Layer>
 	);
