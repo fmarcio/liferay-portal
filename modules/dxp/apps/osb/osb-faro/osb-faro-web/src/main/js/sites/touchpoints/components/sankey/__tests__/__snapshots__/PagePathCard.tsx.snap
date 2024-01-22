@@ -44,12 +44,12 @@ exports[`PagePathCard should render 1`] = `
                 >
                   <path
                     d="
-				 M120,115.88235294117646
-				 C243,115.88235294117646
-				   407,226.77667606255446
-				   530,226.77667606255446
-				 L530,170.894323121378
-				 C407,170.894323121378
+				 M120,88.2051282051282
+				 C243,88.2051282051282
+				   407,240.8446790526212
+				   530,240.8446790526212
+				 L530,212.63955084749296
+				 C407,212.63955084749296
 				   243,60
 				   120,60
 				 Z
@@ -68,14 +68,14 @@ exports[`PagePathCard should render 1`] = `
                 >
                   <path
                     d="
-				 M120,251.76470588235293
-				 C243,251.76470588235293
-				   407,282.65902900373095
-				   530,282.65902900373095
-				 L530,226.77667606255446
-				 C407,226.77667606255446
-				   243,195.88235294117646
-				   120,195.88235294117646
+				 M120,196.41025641025644
+				 C243,196.41025641025644
+				   407,269.04980725774936
+				   530,269.04980725774936
+				 L530,240.84467905262116
+				 C407,240.84467905262116
+				   243,168.2051282051282
+				   120,168.2051282051282
 				 Z
 			   "
                     fill="#FFB46E"
@@ -92,14 +92,14 @@ exports[`PagePathCard should render 1`] = `
                 >
                   <path
                     d="
-				 M120,376.47058823529414
-				 C243,376.47058823529414
-				   407,327.3649113566721
-				   530,327.3649113566721
-				 L530,282.6590290037309
-				 C407,282.6590290037309
-				   243,331.7647058823529
-				   120,331.7647058823529
+				 M120,298.97435897435895
+				 C243,298.97435897435895
+				   407,291.6139098218519
+				   530,291.6139098218519
+				 L530,269.04980725774936
+				 C407,269.04980725774936
+				   243,276.4102564102564
+				   120,276.4102564102564
 				 Z
 			   "
                     fill="#FF5F5F"
@@ -116,14 +116,14 @@ exports[`PagePathCard should render 1`] = `
                 >
                   <path
                     d="
-				 M120,484.4117647058824
-				 C243,484.4117647058824
-				   407,355.3060878272604
-				   530,355.3060878272604
-				 L530,327.3649113566721
-				 C407,327.3649113566721
-				   243,456.4705882352941
-				   120,456.4705882352941
+				 M120,393.0769230769231
+				 C243,393.0769230769231
+				   407,305.716473924416
+				   530,305.716473924416
+				 L530,291.6139098218519
+				 C407,291.6139098218519
+				   243,378.974358974359
+				   120,378.974358974359
 				 Z
 			   "
                     fill="#B077FF"
@@ -140,14 +140,38 @@ exports[`PagePathCard should render 1`] = `
                 >
                   <path
                     d="
-				 M120,570
-				 C243,570
-				   407,360.894323121378
-				   530,360.894323121378
-				 L530,355.30608782726034
-				 C407,355.30608782726034
-				   243,564.4117647058824
-				   120,564.4117647058824
+				 M120,487.1794871794872
+				 C243,487.1794871794872
+				   407,319.81903802698014
+				   530,319.81903802698014
+				 L530,305.71647392441605
+				 C407,305.71647392441605
+				   243,473.0769230769231
+				   120,473.0769230769231
+				 Z
+			   "
+                    fill="#FF73C3"
+                    stroke-width="0"
+                  />
+                </g>
+              </g>
+              <g
+                class="recharts-layer"
+              >
+                <g
+                  class="recharts-layer"
+                  opacity="0.2"
+                >
+                  <path
+                    d="
+				 M120,570.0000000000001
+				 C243,570.0000000000001
+				   407,322.63955084749296
+				   530,322.63955084749296
+				 L530,319.81903802698014
+				 C407,319.81903802698014
+				   243,567.1794871794872
+				   120,567.1794871794872
 				 Z
 			   "
                     fill="#A7A9BC"
@@ -164,38 +188,14 @@ exports[`PagePathCard should render 1`] = `
                 >
                   <path
                     d="
-				 M650,226.77667606255446
-				 C773,226.77667606255446
-				   937,118.67647058823525
-				   1060,118.67647058823525
-				 L1060,62.79411764705878
-				 C937,62.79411764705878
-				   773,170.894323121378
-				   650,170.894323121378
-				 Z
-			   "
-                    fill="#FFD76E"
-                    stroke-width="0"
-                  />
-                </g>
-              </g>
-              <g
-                class="recharts-layer"
-              >
-                <g
-                  class="recharts-layer"
-                  opacity="0.2"
-                >
-                  <path
-                    d="
-				 M650,282.65902900373095
-				 C773,282.65902900373095
-				   937,254.5588235294117
-				   1060,254.5588235294117
-				 L1060,198.67647058823525
-				 C937,198.67647058823525
-				   773,226.77667606255446
-				   650,226.77667606255446
+				 M650,240.8446790526212
+				 C773,240.8446790526212
+				   937,183.7179487179487
+				   1060,183.7179487179487
+				 L1060,155.51282051282047
+				 C937,155.51282051282047
+				   773,212.63955084749296
+				   650,212.63955084749296
 				 Z
 			   "
                     fill="#9CE269"
@@ -212,14 +212,14 @@ exports[`PagePathCard should render 1`] = `
                 >
                   <path
                     d="
-				 M650,310.6002054743192
-				 C773,310.6002054743192
-				   937,362.5
-				   1060,362.5
-				 L1060,334.5588235294117
-				 C937,334.5588235294117
-				   773,282.6590290037309
-				   650,282.6590290037309
+				 M650,269.04980725774936
+				 C773,269.04980725774936
+				   937,291.9230769230769
+				   1060,291.9230769230769
+				 L1060,263.71794871794873
+				 C937,263.71794871794873
+				   773,240.84467905262116
+				   650,240.84467905262116
 				 Z
 			   "
                     fill="#5FC8FF"
@@ -236,14 +236,37 @@ exports[`PagePathCard should render 1`] = `
                 >
                   <path
                     d="
-				 M650,313.39432312137797
-				 C773,313.39432312137797
-				   937,445.2941176470587
-				   1060,445.2941176470587
-				 L1060,442.49999999999994
-				 C937,442.49999999999994
-				   773,310.6002054743192
-				   650,310.6002054743192
+				 M650,283.15237136031345
+				 C773,283.15237136031345
+				   937,386.02564102564105
+				   1060,386.02564102564105
+				 L1060,371.92307692307696
+				 C937,371.92307692307696
+				   773,269.04980725774936
+				   650,269.04980725774936
+				 Z
+			   "
+                    stroke-width="0"
+                  />
+                </g>
+              </g>
+              <g
+                class="recharts-layer"
+              >
+                <g
+                  class="recharts-layer"
+                  opacity="0.2"
+                >
+                  <path
+                    d="
+				 M650,284.5626277705699
+				 C773,284.5626277705699
+				   937,467.4358974358975
+				   1060,467.4358974358975
+				 L1060,466.02564102564105
+				 C937,466.02564102564105
+				   773,283.15237136031345
+				   650,283.15237136031345
 				 Z
 			   "
                     fill="#A7A9BC"
@@ -260,14 +283,14 @@ exports[`PagePathCard should render 1`] = `
                 >
                   <path
                     d="
-				 M650,358.1002054743192
-				 C773,358.1002054743192
+				 M650,307.1267303346724
+				 C773,307.1267303346724
 				   937,570
 				   1060,570
-				 L1060,525.2941176470588
-				 C937,525.2941176470588
-				   773,313.39432312137797
-				   650,313.39432312137797
+				 L1060,547.4358974358975
+				 C937,547.4358974358975
+				   773,284.56262777056986
+				   650,284.56262777056986
 				 Z
 			   "
                     fill="#A7A9BC"
@@ -287,41 +310,67 @@ exports[`PagePathCard should render 1`] = `
                 >
                   <path
                     class="recharts-rectangle"
-                    d="M 530,170.894323121378 h 120 v 190 h -120 Z"
+                    d="M 530,212.63955084749296 h 120 v 110.00000000000001 h -120 Z"
                     fill="#50D2A0"
                     fill-opacity="1"
-                    height="190"
+                    height="110.00000000000001"
                     radius="0"
                     width="120"
                     x="530"
-                    y="170.894323121378"
+                    y="212.63955084749296"
                   />
                   <text
                     text-anchor="middle"
                     x="590"
-                    y="270.89432312137797"
+                    y="272.63955084749296"
                   >
-                    34K
+                    39K
                   </text>
-                  <text
-                    font-size="16"
-                    font-weight="600"
-                    text-anchor="start"
+                  <a
+                    data-tooltip-align="right"
+                    href="/workspace/4567/123/sites/pages/overview/https%253A%252F%252Fwww.liferay.com/Liferay%20Home%20Page?rangeKey=30"
+                    target="_blank"
+                    title="Go to dashboard page"
+                  >
+                    <text
+                      font-size="16"
+                      font-weight="600"
+                      text-anchor="start"
+                      x="530"
+                      y="180.63955084749296"
+                    >
+                      Liferay Home Pa...
+                    </text>
+                  </a>
+                  <svg
+                    class="lexicon-icon lexicon-icon-shortcut icon-root text-secondary"
+                    height="16"
+                    role="presentation"
+                    width="16"
                     x="530"
-                    y="142.894323121378"
+                    y="190.63955084749296"
                   >
-                    Liferay Home Pa...
-                  </text>
-                  <text
-                    fill="#6B6C7E"
-                    font-size="12"
-                    font-weight="400"
-                    text-anchor="start"
-                    x="530"
-                    y="160.894323121378"
+                    <use
+                      href="#shortcut"
+                    />
+                  </svg>
+                  <a
+                    data-tooltip-align="right"
+                    href="https://www.liferay.com"
+                    target="_blank"
+                    title="Visit https://www.liferay.com"
                   >
-                    https://www.liferay.com
-                  </text>
+                    <text
+                      fill="#6B6C7E"
+                      font-size="12"
+                      font-weight="400"
+                      text-anchor="start"
+                      x="550"
+                      y="202.63955084749296"
+                    >
+                      https://www.liferay.com
+                    </text>
+                  </a>
                 </g>
               </g>
               <g
@@ -332,11 +381,11 @@ exports[`PagePathCard should render 1`] = `
                 >
                   <path
                     class="recharts-rectangle"
-                    d="M0,65A 5,5,0,0,1,5,60L 120,60L 120,115.88235294117646L 5,115.88235294117646A 5,5,0,0,1,
-        0,110.88235294117646Z"
+                    d="M0,65A 5,5,0,0,1,5,60L 120,60L 120,88.2051282051282L 5,88.2051282051282A 5,5,0,0,1,
+        0,83.2051282051282Z"
                     fill="#4B9BFF"
                     fill-opacity="1"
-                    height="55.88235294117647"
+                    height="28.205128205128208"
                     radius="5,0,0,5"
                     width="120"
                     x="0"
@@ -345,7 +394,7 @@ exports[`PagePathCard should render 1`] = `
                   <text
                     text-anchor="middle"
                     x="60"
-                    y="92.94117647058823"
+                    y="79.1025641025641"
                   >
                     10K
                   </text>
@@ -354,20 +403,39 @@ exports[`PagePathCard should render 1`] = `
                     font-weight="600"
                     text-anchor="start"
                     x="0"
-                    y="32"
+                    y="44"
                   >
                     Google
                   </text>
-                  <text
-                    fill="#6B6C7E"
-                    font-size="12"
-                    font-weight="400"
-                    text-anchor="start"
+                  <svg
+                    class="lexicon-icon lexicon-icon-shortcut icon-root text-secondary"
+                    height="16"
+                    role="presentation"
+                    width="16"
                     x="0"
-                    y="50"
+                    y="38"
                   >
-                    https://www.google.com
-                  </text>
+                    <use
+                      href="#shortcut"
+                    />
+                  </svg>
+                  <a
+                    data-tooltip-align="right"
+                    href="https://www.google.com"
+                    target="_blank"
+                    title=""
+                  >
+                    <text
+                      fill="#6B6C7E"
+                      font-size="12"
+                      font-weight="400"
+                      text-anchor="start"
+                      x="20"
+                      y="50"
+                    >
+                      https://www.google.com
+                    </text>
+                  </a>
                 </g>
               </g>
               <g
@@ -378,20 +446,20 @@ exports[`PagePathCard should render 1`] = `
                 >
                   <path
                     class="recharts-rectangle"
-                    d="M0,200.88235294117646A 5,5,0,0,1,5,195.88235294117646L 120,195.88235294117646L 120,251.76470588235293L 5,251.76470588235293A 5,5,0,0,1,
-        0,246.76470588235293Z"
+                    d="M0,173.2051282051282A 5,5,0,0,1,5,168.2051282051282L 120,168.2051282051282L 120,196.4102564102564L 5,196.4102564102564A 5,5,0,0,1,
+        0,191.4102564102564Z"
                     fill="#FFB46E"
                     fill-opacity="1"
-                    height="55.88235294117647"
+                    height="28.205128205128208"
                     radius="5,0,0,5"
                     width="120"
                     x="0"
-                    y="195.88235294117646"
+                    y="168.2051282051282"
                   />
                   <text
                     text-anchor="middle"
                     x="60"
-                    y="228.8235294117647"
+                    y="187.30769230769232"
                   >
                     10K
                   </text>
@@ -400,20 +468,39 @@ exports[`PagePathCard should render 1`] = `
                     font-weight="600"
                     text-anchor="start"
                     x="0"
-                    y="167.88235294117646"
+                    y="152.2051282051282"
                   >
                     Facebook
                   </text>
-                  <text
-                    fill="#6B6C7E"
-                    font-size="12"
-                    font-weight="400"
-                    text-anchor="start"
+                  <svg
+                    class="lexicon-icon lexicon-icon-shortcut icon-root text-secondary"
+                    height="16"
+                    role="presentation"
+                    width="16"
                     x="0"
-                    y="185.88235294117646"
+                    y="146.2051282051282"
                   >
-                    https://www.facebook.com
-                  </text>
+                    <use
+                      href="#shortcut"
+                    />
+                  </svg>
+                  <a
+                    data-tooltip-align="right"
+                    href="https://www.facebook.com"
+                    target="_blank"
+                    title=""
+                  >
+                    <text
+                      fill="#6B6C7E"
+                      font-size="12"
+                      font-weight="400"
+                      text-anchor="start"
+                      x="20"
+                      y="158.2051282051282"
+                    >
+                      https://www.facebook.com
+                    </text>
+                  </a>
                 </g>
               </g>
               <g
@@ -424,20 +511,20 @@ exports[`PagePathCard should render 1`] = `
                 >
                   <path
                     class="recharts-rectangle"
-                    d="M0,336.7647058823529A 5,5,0,0,1,5,331.7647058823529L 120,331.7647058823529L 120,376.4705882352941L 5,376.4705882352941A 5,5,0,0,1,
-        0,371.4705882352941Z"
+                    d="M0,281.4102564102564A 5,5,0,0,1,5,276.4102564102564L 120,276.4102564102564L 120,298.97435897435895L 5,298.97435897435895A 5,5,0,0,1,
+        0,293.97435897435895Z"
                     fill="#FF5F5F"
                     fill-opacity="1"
-                    height="44.70588235294118"
+                    height="22.564102564102566"
                     radius="5,0,0,5"
                     width="120"
                     x="0"
-                    y="331.7647058823529"
+                    y="276.4102564102564"
                   />
                   <text
                     text-anchor="middle"
                     x="60"
-                    y="359.11764705882354"
+                    y="292.6923076923077"
                   >
                     8K
                   </text>
@@ -446,20 +533,39 @@ exports[`PagePathCard should render 1`] = `
                     font-weight="600"
                     text-anchor="start"
                     x="0"
-                    y="303.7647058823529"
+                    y="260.4102564102564"
                   >
                     Instagram
                   </text>
-                  <text
-                    fill="#6B6C7E"
-                    font-size="12"
-                    font-weight="400"
-                    text-anchor="start"
+                  <svg
+                    class="lexicon-icon lexicon-icon-shortcut icon-root text-secondary"
+                    height="16"
+                    role="presentation"
+                    width="16"
                     x="0"
-                    y="321.7647058823529"
+                    y="254.4102564102564"
                   >
-                    https://www.instagram.com
-                  </text>
+                    <use
+                      href="#shortcut"
+                    />
+                  </svg>
+                  <a
+                    data-tooltip-align="right"
+                    href="https://www.instagram.com"
+                    target="_blank"
+                    title=""
+                  >
+                    <text
+                      fill="#6B6C7E"
+                      font-size="12"
+                      font-weight="400"
+                      text-anchor="start"
+                      x="20"
+                      y="266.4102564102564"
+                    >
+                      https://www.instagram.com
+                    </text>
+                  </a>
                 </g>
               </g>
               <g
@@ -470,20 +576,92 @@ exports[`PagePathCard should render 1`] = `
                 >
                   <path
                     class="recharts-rectangle"
-                    d="M0,461.4705882352941A 5,5,0,0,1,5,456.4705882352941L 120,456.4705882352941L 120,484.4117647058823L 5,484.4117647058823A 5,5,0,0,1,
-        0,479.4117647058823Z"
+                    d="M0,383.974358974359A 5,5,0,0,1,5,378.974358974359L 120,378.974358974359L 120,393.0769230769231L 5,393.0769230769231A 5,5,0,0,1,
+        0,388.0769230769231Z"
                     fill="#B077FF"
                     fill-opacity="1"
-                    height="27.941176470588236"
+                    height="14.102564102564104"
                     radius="5,0,0,5"
                     width="120"
                     x="0"
-                    y="456.4705882352941"
+                    y="378.974358974359"
                   />
                   <text
                     text-anchor="middle"
                     x="60"
-                    y="475.44117647058823"
+                    y="391.02564102564105"
+                  >
+                    5K
+                  </text>
+                  <a
+                    data-tooltip-align="right"
+                    href="/workspace/4567/123/sites/pages/overview/https%253A%252F%252Fwww.site4.com/Site%204?rangeKey=30"
+                    target="_blank"
+                    title="Go to dashboard page"
+                  >
+                    <text
+                      font-size="16"
+                      font-weight="600"
+                      text-anchor="start"
+                      x="0"
+                      y="346.974358974359"
+                    >
+                      Site 4
+                    </text>
+                  </a>
+                  <svg
+                    class="lexicon-icon lexicon-icon-shortcut icon-root text-secondary"
+                    height="16"
+                    role="presentation"
+                    width="16"
+                    x="0"
+                    y="356.974358974359"
+                  >
+                    <use
+                      href="#shortcut"
+                    />
+                  </svg>
+                  <a
+                    data-tooltip-align="right"
+                    href="https://www.site4.com"
+                    target="_blank"
+                    title="Visit https://www.site4.com"
+                  >
+                    <text
+                      fill="#6B6C7E"
+                      font-size="12"
+                      font-weight="400"
+                      text-anchor="start"
+                      x="20"
+                      y="368.974358974359"
+                    >
+                      https://www.site4.com
+                    </text>
+                  </a>
+                </g>
+              </g>
+              <g
+                class="recharts-layer"
+              >
+                <g
+                  class="recharts-layer"
+                >
+                  <path
+                    class="recharts-rectangle"
+                    d="M0,478.0769230769231A 5,5,0,0,1,5,473.0769230769231L 120,473.0769230769231L 120,487.1794871794872L 5,487.1794871794872A 5,5,0,0,1,
+        0,482.1794871794872Z"
+                    fill="#FF73C3"
+                    fill-opacity="1"
+                    height="14.102564102564104"
+                    radius="5,0,0,5"
+                    width="120"
+                    x="0"
+                    y="473.0769230769231"
+                  />
+                  <text
+                    text-anchor="middle"
+                    x="60"
+                    y="485.12820512820514"
                   >
                     5K
                   </text>
@@ -492,7 +670,7 @@ exports[`PagePathCard should render 1`] = `
                     font-weight="600"
                     text-anchor="start"
                     x="0"
-                    y="440.4705882352941"
+                    y="457.0769230769231"
                   >
                     Direct Traffic
                   </text>
@@ -506,20 +684,20 @@ exports[`PagePathCard should render 1`] = `
                 >
                   <path
                     class="recharts-rectangle"
-                    d="M0,567.2058823529411A 2.794117647058824,2.794117647058824,0,0,1,2.794117647058824,564.4117647058823L 120,564.4117647058823L 120,570L 2.794117647058824,570A 2.794117647058824,2.794117647058824,0,0,1,
-        0,567.2058823529412Z"
+                    d="M0,568.5897435897436A 1.4102564102564104,1.4102564102564104,0,0,1,1.4102564102564104,567.1794871794872L 120,567.1794871794872L 120,570L 1.4102564102564104,570A 1.4102564102564104,1.4102564102564104,0,0,1,
+        0,568.5897435897435Z"
                     fill="#A7A9BC"
                     fill-opacity="1"
-                    height="5.588235294117648"
+                    height="2.8205128205128207"
                     radius="5,0,0,5"
                     width="120"
                     x="0"
-                    y="564.4117647058823"
+                    y="567.1794871794872"
                   />
                   <text
                     text-anchor="middle"
                     x="60"
-                    y="572.2058823529411"
+                    y="573.5897435897436"
                   >
                     1K
                   </text>
@@ -528,7 +706,7 @@ exports[`PagePathCard should render 1`] = `
                     font-weight="600"
                     text-anchor="start"
                     x="0"
-                    y="548.4117647058823"
+                    y="551.1794871794872"
                   >
                     Other Referrals
                   </text>
@@ -542,90 +720,69 @@ exports[`PagePathCard should render 1`] = `
                 >
                   <path
                     class="recharts-rectangle"
-                    d="M1060,62.79411764705878L 1175,62.79411764705878A 5,5,0,0,1,
-        1180,67.79411764705878L 1180,113.67647058823525A 5,5,0,0,1,
-        1175,118.67647058823525L 1060,118.67647058823525Z"
-                    fill="#FFD76E"
-                    fill-opacity="1"
-                    height="55.88235294117647"
-                    radius="0,5,5,0"
-                    width="120"
-                    x="1060"
-                    y="62.79411764705878"
-                  />
-                  <text
-                    text-anchor="middle"
-                    x="1120"
-                    y="95.73529411764702"
-                  >
-                    10K
-                  </text>
-                  <text
-                    font-size="16"
-                    font-weight="600"
-                    text-anchor="start"
-                    x="1060"
-                    y="34.79411764705878"
-                  >
-                    Site 1
-                  </text>
-                  <text
-                    fill="#6B6C7E"
-                    font-size="12"
-                    font-weight="400"
-                    text-anchor="start"
-                    x="1060"
-                    y="52.79411764705878"
-                  >
-                    https://www.site1.com
-                  </text>
-                </g>
-              </g>
-              <g
-                class="recharts-layer"
-              >
-                <g
-                  class="recharts-layer"
-                >
-                  <path
-                    class="recharts-rectangle"
-                    d="M1060,198.67647058823525L 1175,198.67647058823525A 5,5,0,0,1,
-        1180,203.67647058823525L 1180,249.5588235294117A 5,5,0,0,1,
-        1175,254.5588235294117L 1060,254.5588235294117Z"
+                    d="M1060,155.5128205128205L 1175,155.5128205128205A 5,5,0,0,1,
+        1180,160.5128205128205L 1180,178.7179487179487A 5,5,0,0,1,
+        1175,183.7179487179487L 1060,183.7179487179487Z"
                     fill="#9CE269"
                     fill-opacity="1"
-                    height="55.88235294117647"
+                    height="28.205128205128208"
                     radius="0,5,5,0"
                     width="120"
                     x="1060"
-                    y="198.67647058823525"
+                    y="155.5128205128205"
                   />
                   <text
                     text-anchor="middle"
                     x="1120"
-                    y="231.61764705882348"
+                    y="174.6153846153846"
                   >
                     10K
                   </text>
-                  <text
-                    font-size="16"
-                    font-weight="600"
-                    text-anchor="start"
-                    x="1060"
-                    y="170.67647058823525"
+                  <a
+                    data-tooltip-align="right"
+                    href="/workspace/4567/123/sites/pages/overview/https%253A%252F%252Fwww.site1.com/Site%201?rangeKey=30"
+                    target="_blank"
+                    title="Go to dashboard page"
                   >
-                    Site 2
-                  </text>
-                  <text
-                    fill="#6B6C7E"
-                    font-size="12"
-                    font-weight="400"
-                    text-anchor="start"
+                    <text
+                      font-size="16"
+                      font-weight="600"
+                      text-anchor="start"
+                      x="1060"
+                      y="123.5128205128205"
+                    >
+                      Site 1
+                    </text>
+                  </a>
+                  <svg
+                    class="lexicon-icon lexicon-icon-shortcut icon-root text-secondary"
+                    height="16"
+                    role="presentation"
+                    width="16"
                     x="1060"
-                    y="188.67647058823525"
+                    y="133.5128205128205"
                   >
-                    https://www.site2.com
-                  </text>
+                    <use
+                      href="#shortcut"
+                    />
+                  </svg>
+                  <a
+                    data-tooltip-align="right"
+                    href="https://www.site1.com"
+                    target="_blank"
+                    title="Visit https://www.site1.com"
+                  >
+                    <text
+                      fill="#6B6C7E"
+                      font-size="12"
+                      font-weight="400"
+                      text-anchor="start"
+                      x="1080"
+                      y="145.5128205128205"
+                    >
+                      https://www.site1.com
+                    </text>
+                  </a>
                 </g>
               </g>
               <g
@@ -636,43 +793,141 @@ exports[`PagePathCard should render 1`] = `
                 >
                   <path
                     class="recharts-rectangle"
-                    d="M1060,334.5588235294117L 1175,334.5588235294117A 5,5,0,0,1,
-        1180,339.5588235294117L 1180,357.49999999999994A 5,5,0,0,1,
-        1175,362.49999999999994L 1060,362.49999999999994Z"
+                    d="M1060,263.71794871794873L 1175,263.71794871794873A 5,5,0,0,1,
+        1180,268.71794871794873L 1180,286.92307692307696A 5,5,0,0,1,
+        1175,291.92307692307696L 1060,291.92307692307696Z"
                     fill="#5FC8FF"
                     fill-opacity="1"
-                    height="27.941176470588236"
+                    height="28.205128205128208"
                     radius="0,5,5,0"
                     width="120"
                     x="1060"
-                    y="334.5588235294117"
+                    y="263.71794871794873"
                   />
                   <text
                     text-anchor="middle"
                     x="1120"
-                    y="353.52941176470586"
+                    y="282.8205128205128"
+                  >
+                    10K
+                  </text>
+                  <a
+                    data-tooltip-align="right"
+                    href="/workspace/4567/123/sites/pages/overview/https%253A%252F%252Fwww.site2.com/Site%202?rangeKey=30"
+                    target="_blank"
+                    title="Go to dashboard page"
+                  >
+                    <text
+                      font-size="16"
+                      font-weight="600"
+                      text-anchor="start"
+                      x="1060"
+                      y="231.71794871794873"
+                    >
+                      Site 2
+                    </text>
+                  </a>
+                  <svg
+                    class="lexicon-icon lexicon-icon-shortcut icon-root text-secondary"
+                    height="16"
+                    role="presentation"
+                    width="16"
+                    x="1060"
+                    y="241.71794871794873"
+                  >
+                    <use
+                      href="#shortcut"
+                    />
+                  </svg>
+                  <a
+                    data-tooltip-align="right"
+                    href="https://www.site2.com"
+                    target="_blank"
+                    title="Visit https://www.site2.com"
+                  >
+                    <text
+                      fill="#6B6C7E"
+                      font-size="12"
+                      font-weight="400"
+                      text-anchor="start"
+                      x="1080"
+                      y="253.71794871794873"
+                    >
+                      https://www.site2.com
+                    </text>
+                  </a>
+                </g>
+              </g>
+              <g
+                class="recharts-layer"
+              >
+                <g
+                  class="recharts-layer"
+                >
+                  <path
+                    class="recharts-rectangle"
+                    d="M1060,371.92307692307696L 1175,371.92307692307696A 5,5,0,0,1,
+        1180,376.92307692307696L 1180,381.02564102564105A 5,5,0,0,1,
+        1175,386.02564102564105L 1060,386.02564102564105Z"
+                    fill-opacity="1"
+                    height="14.102564102564104"
+                    radius="0,5,5,0"
+                    width="120"
+                    x="1060"
+                    y="371.92307692307696"
+                  />
+                  <text
+                    text-anchor="middle"
+                    x="1120"
+                    y="383.974358974359"
                   >
                     5K
                   </text>
-                  <text
-                    font-size="16"
-                    font-weight="600"
-                    text-anchor="start"
-                    x="1060"
-                    y="306.5588235294117"
+                  <a
+                    data-tooltip-align="right"
+                    href="/workspace/4567/123/sites/pages/overview/https%253A%252F%252Fwww.site3.com/Site%203?rangeKey=30"
+                    target="_blank"
+                    title="Go to dashboard page"
                   >
-                    Site 3
-                  </text>
-                  <text
-                    fill="#6B6C7E"
-                    font-size="12"
-                    font-weight="400"
-                    text-anchor="start"
+                    <text
+                      font-size="16"
+                      font-weight="600"
+                      text-anchor="start"
+                      x="1060"
+                      y="339.92307692307696"
+                    >
+                      Site 3
+                    </text>
+                  </a>
+                  <svg
+                    class="lexicon-icon lexicon-icon-shortcut icon-root text-secondary"
+                    height="16"
+                    role="presentation"
+                    width="16"
                     x="1060"
-                    y="324.5588235294117"
+                    y="349.92307692307696"
                   >
-                    https://www.site3.com
-                  </text>
+                    <use
+                      href="#shortcut"
+                    />
+                  </svg>
+                  <a
+                    data-tooltip-align="right"
+                    href="https://www.site3.com"
+                    target="_blank"
+                    title="Visit https://www.site3.com"
+                  >
+                    <text
+                      fill="#6B6C7E"
+                      font-size="12"
+                      font-weight="400"
+                      text-anchor="start"
+                      x="1080"
+                      y="361.92307692307696"
+                    >
+                      https://www.site3.com
+                    </text>
+                  </a>
                 </g>
               </g>
               <g
@@ -683,21 +938,21 @@ exports[`PagePathCard should render 1`] = `
                 >
                   <path
                     class="recharts-rectangle"
-                    d="M1060,442.49999999999994L 1178.6029411764705,442.49999999999994A 1.397058823529412,1.397058823529412,0,0,1,
-        1180,443.89705882352933L 1180,443.8970588235294A 1.397058823529412,1.397058823529412,0,0,1,
-        1178.6029411764705,445.2941176470588L 1060,445.2941176470588Z"
+                    d="M1060,466.02564102564105L 1179.2948717948718,466.02564102564105A 0.7051282051282052,0.7051282051282052,0,0,1,
+        1180,466.7307692307693L 1180,466.7307692307692A 0.7051282051282052,0.7051282051282052,0,0,1,
+        1179.2948717948718,467.43589743589746L 1060,467.43589743589746Z"
                     fill="#A7A9BC"
                     fill-opacity="1"
-                    height="2.794117647058824"
+                    height="1.4102564102564104"
                     radius="0,5,5,0"
                     width="120"
                     x="1060"
-                    y="442.49999999999994"
+                    y="466.02564102564105"
                   />
                   <text
                     text-anchor="middle"
                     x="1120"
-                    y="448.89705882352933"
+                    y="471.7307692307693"
                   >
                     500
                   </text>
@@ -706,7 +961,7 @@ exports[`PagePathCard should render 1`] = `
                     font-weight="600"
                     text-anchor="start"
                     x="1060"
-                    y="426.49999999999994"
+                    y="450.02564102564105"
                   >
                     Other Pages
                   </text>
@@ -720,21 +975,21 @@ exports[`PagePathCard should render 1`] = `
                 >
                   <path
                     class="recharts-rectangle"
-                    d="M1060,525.2941176470588L 1175,525.2941176470588A 5,5,0,0,1,
-        1180,530.2941176470588L 1180,565A 5,5,0,0,1,
+                    d="M1060,547.4358974358975L 1175,547.4358974358975A 5,5,0,0,1,
+        1180,552.4358974358975L 1180,565A 5,5,0,0,1,
         1175,570L 1060,570Z"
                     fill="#A7A9BC"
                     fill-opacity="1"
-                    height="44.70588235294118"
+                    height="22.564102564102566"
                     radius="0,5,5,0"
                     width="120"
                     x="1060"
-                    y="525.2941176470588"
+                    y="547.4358974358975"
                   />
                   <text
                     text-anchor="middle"
                     x="1120"
-                    y="552.6470588235294"
+                    y="563.7179487179487"
                   >
                     8K
                   </text>
@@ -743,7 +998,7 @@ exports[`PagePathCard should render 1`] = `
                     font-weight="600"
                     text-anchor="start"
                     x="1060"
-                    y="509.2941176470588"
+                    y="531.4358974358975"
                   >
                     Drop Offs
                   </text>
