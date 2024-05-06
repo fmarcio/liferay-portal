@@ -13,6 +13,14 @@ import {
 } from '../utils/custom-inputs';
 import {isBoolean, isNil, isNull} from 'lodash';
 import {SafeResults} from 'shared/hoc/util';
+import EventAttributeDefinitionsQuery, {
+	EventAttributeDefinitionsData,
+	EventAttributeDefinitionsVariables
+} from 'event-analysis/queries/EventAttributeDefinitionsQuery';
+import {useQuery} from '@apollo/react-hooks';
+import {NAME} from 'shared/util/pagination';
+import {OrderByDirections} from 'shared/util/constants';
+import {AttributeTypes} from 'event-analysis/utils/types';
 
 type Touched = {
 	attribute: boolean;
@@ -38,7 +46,7 @@ const EventInput: React.FC<IEventInputProps> = ({
 	id,
 	onChange,
 	operatorRenderer: OperatorDropdown,
-	property: {entityName, options, type},
+	property: {entityName, id: eventDefinitionId, options, type},
 	touched,
 	valid,
 	value: valueIMap
@@ -62,15 +70,6 @@ const EventInput: React.FC<IEventInputProps> = ({
 			});
 		}
 	}, [valid]);
-
-	// TODO: useEffect below is temporary. Remove it when LPD-23023 is merged and before sending LPD-23024.
-
-	useEffect(() => {
-		onChange({
-			touched: {attribute: true, attributeValue: true},
-			valid: {attribute: true, attributeValue: true}
-		});
-	}, []);
 
 	const getConjunctionDateFilterIMap = value => {
 		const conjunctionDateFilterIndex = getIndexFromPropertyName(
@@ -177,9 +176,130 @@ const EventInput: React.FC<IEventInputProps> = ({
 		);
 	}
 
+	// const result = useQuery<
+	// 	EventAttributeDefinitionsData,
+	// 	EventAttributeDefinitionsVariables
+	// >(EventAttributeDefinitionsQuery, {
+	// 	variables: {
+	// 		eventDefinitionId,
+	// 		keyword: '',
+	// 		page: 0,
+	// 		size: 25,
+	// 		sort: {
+	// 			column: NAME,
+	// 			type: OrderByDirections.Ascending
+	// 		},
+	// 		type: AttributeTypes.All
+	// 	}
+	// });
+
+	const mockAttributes = [
+		{
+			dataType: 'STRING',
+			displayName: 'teste',
+			encodedName: 'testeEncoded',
+			id: '123',
+			name: 'TESTE',
+			type: 'GLOBAL'
+		}
+	];
+
+	const result = {
+		data: {
+			eventAttributeDefinitions: {
+				eventAttributeDefinitions: [
+					{
+						dataType: 'STRING',
+						description: null,
+						displayName: 'canonicalUrl',
+						encodedName: 'canonicalUrlENCODED',
+						id: '10',
+						name: 'canonicalUrl',
+						sampleValue: 'http://localhost:7400',
+						type: 'GLOBAL',
+						__typename: 'EventAttributeDefinition'
+					},
+					{
+						dataType: 'STRING',
+						description: null,
+						displayName: 'pageDescription',
+						encodedName: 'pageDescriptionENCODED',
+						id: '24',
+						name: 'pageDescription',
+						sampleValue: '',
+						type: 'GLOBAL',
+						__typename: 'EventAttributeDefinition'
+					},
+					{
+						dataType: 'STRING',
+						description: null,
+						displayName: 'pageKeywords',
+						encodedName: 'pageKeywordsENCODED',
+						id: '25',
+						name: 'pageKeywords',
+						sampleValue: '',
+						type: 'GLOBAL',
+						__typename: 'EventAttributeDefinition'
+					},
+					{
+						dataType: 'STRING',
+						description: null,
+						displayName: 'pageTitle',
+						encodedName: 'pageTitleENCODED',
+						id: '26',
+						name: 'pageTitle',
+						sampleValue: 'Home - Liferay',
+						type: 'GLOBAL',
+						__typename: 'EventAttributeDefinition'
+					},
+					{
+						dataType: 'STRING',
+						description: null,
+						displayName: 'referrer',
+						encodedName: 'referrerENCODED',
+						id: '28',
+						name: 'referrer',
+						sampleValue:
+							'http://localhost:7400/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_InstanceSettingsPortlet&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_com_liferay_configuration_admin_web_portlet_InstanceSettingsPortlet_mvcRenderCommandName=%2Fconfiguration_admin%2Fview_configuration_screen&_com_liferay_configuration_admin_web_portlet_InstanceSettingsPortlet_configurationScreenKey=2-synced-contact-data',
+						type: 'GLOBAL',
+						__typename: 'EventAttributeDefinition'
+					},
+					{
+						dataType: 'STRING',
+						description: null,
+						displayName: 'url',
+						encodedName: 'urlENCODED',
+						id: '35',
+						name: 'url',
+						sampleValue: 'http://localhost:7400/web/guest',
+						type: 'GLOBAL',
+						__typename: 'EventAttributeDefinition'
+					},
+					{
+						dataType: 'STRING',
+						description: null,
+						displayName: 'alalala lalla',
+						encodedName: 'alallaENCODED',
+						id: '39',
+						name: 'url',
+						sampleValue: 'http://localhost:7400/web/guest',
+						type: 'GLOBAL',
+						__typename: 'EventAttributeDefinition'
+					}
+				],
+				total: 6,
+				__typename: 'EventAttributeDefinitionBag'
+			}
+		},
+		loading: false,
+		error: false
+	};
+
+	// console.log('result: ', result);
+
 	return (
 		<div className='criteria-statement'>
-			<SafeResults page={false} pageDisplay={false}>
+			<SafeResults {...result} page={false} pageDisplay={false}>
 				{data => {
 					const attributes =
 						data?.eventAttributeDefinitions
@@ -235,9 +355,7 @@ const EventInput: React.FC<IEventInputProps> = ({
 								/>
 							</Form.Group>
 
-							{/* TODO: !type below is temporary. Remove it when LPD-23023 is merged and before sending LPD-23024. */}
-
-							{!type && (
+							{!!attributes.length && (
 								<Form.Group autoFit>
 									<Form.GroupItem
 										className='conjunction'

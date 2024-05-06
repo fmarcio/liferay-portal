@@ -53,6 +53,7 @@ export type Attribute = {
 	dataType: DataTypes;
 	description?: string;
 	displayName?: string;
+	encodedName?: string;
 	id: string;
 	name: string;
 	recentValues?: {

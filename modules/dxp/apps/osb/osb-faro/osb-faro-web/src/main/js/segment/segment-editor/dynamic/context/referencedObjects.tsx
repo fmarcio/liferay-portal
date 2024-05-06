@@ -109,11 +109,22 @@ export const referencedEntitiesReducer = (
 				[entityType],
 				Map(payload.map(item => [item.get('id'), item]))
 			);
-		case ActionType.AddEntity:
+		case ActionType.AddEntity: {
+			if (payload?.get('eventType') === 'customEvent') {
+				return state.setIn(
+					[
+						entityType,
+						getPropertyNameFromRaw(payload.get('encodedName'))
+					],
+					payload
+				);
+			}
+
 			return state.setIn(
 				[entityType, getPropertyNameFromRaw(payload.get('id'))],
 				payload
 			);
+		}
 		case ActionType.ReplaceAll:
 			return payload;
 		default:

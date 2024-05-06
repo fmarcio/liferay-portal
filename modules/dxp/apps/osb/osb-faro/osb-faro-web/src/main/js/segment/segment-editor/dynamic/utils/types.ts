@@ -21,6 +21,7 @@ export type CriterionGroup = {
 };
 
 export type Criterion = {
+	encodedName?: string;
 	defaultValue?: string;
 	operatorName?: Conjunctions &
 		CustomFunctionOperators &

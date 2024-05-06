@@ -2,6 +2,7 @@ import {PropertyTypes} from 'segment/segment-editor/dynamic/utils/constants';
 import {Record} from 'immutable';
 
 interface IProperty {
+	encodedName?: string;
 	entityName: string;
 	entityType?: string;
 	id?: string;
@@ -14,6 +15,7 @@ interface IProperty {
 
 export default class Property
 	extends Record({
+		encodedName: '',
 		entityName: '',
 		entityType: '',
 		id: null,
@@ -24,6 +26,7 @@ export default class Property
 		type: null
 	})
 	implements IProperty {
+	encodedName?: string;
 	entityName: string;
 	entityType: string;
 	id: string;

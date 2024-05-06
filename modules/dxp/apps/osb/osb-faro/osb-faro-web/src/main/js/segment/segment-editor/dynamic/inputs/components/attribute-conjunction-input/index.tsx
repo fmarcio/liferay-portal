@@ -54,29 +54,40 @@ const AttributeFilterConjunctionInput: React.FC<IAttributeFilterConjunctionInput
 	valid
 }) => {
 	useEffect(() => {
-		if (!getAttributeId()) {
+		if (!getAttributeEncodedName()) {
 			const defaultAttribute = attributes[0];
 
 			setAttribute(defaultAttribute);
 		}
 	}, []);
 
+	// ORIGINAL
+	// const getAttributeFromContext = () => {
+	// 	const attributeId = getAttributId();
+
+	// 	return referencedEntities
+	// 		.getIn([EntityType.Attributes, attributeId], Map({}))
+	// 		.toJS();
+	// };
+
 	const getAttributeFromContext = () => {
-		const attributeId = getAttributeId();
+		const attributeEncodedName = getAttributeEncodedName();
 
 		return referencedEntities
-			.getIn([EntityType.Attributes, attributeId], Map({}))
+			.getIn([EntityType.Attributes, attributeEncodedName], Map({}))
 			.toJS();
 	};
 
-	const getAttributeId = (): string => {
-		const [, id] = conjunctionCriterion.propertyName.split('/');
+	const getAttributeEncodedName = (): string => {
+		const [, encodedName] = conjunctionCriterion.propertyName.split('/');
 
-		return id;
+		return encodedName;
 	};
 
 	const handleAttributeChange = value => {
-		const attribute = attributes.find(({id}) => id === value);
+		const attribute = attributes.find(
+			({encodedName}) => encodedName === value
+		);
 
 		setAttribute(attribute);
 	};
@@ -84,7 +95,7 @@ const AttributeFilterConjunctionInput: React.FC<IAttributeFilterConjunctionInput
 	const setAttribute = (attribute: Attribute) => {
 		addEntity({
 			entityType: EntityType.Attributes,
-			payload: Map(attribute)
+			payload: Map({...attribute, eventType: 'customEvent'})
 		});
 
 		const defaultAttributeValue = getDefaultAttributeValue(
@@ -99,7 +110,7 @@ const AttributeFilterConjunctionInput: React.FC<IAttributeFilterConjunctionInput
 		onChange({
 			criterion: {
 				operatorName: defaultAttributeOperator as Criterion['operatorName'],
-				propertyName: `attribute/${attribute.id}`,
+				propertyName: `attribute/${attribute.encodedName}`,
 				value: defaultAttributeValue
 			},
 			touched: {...touched, attribute: true, attributeValue: false},
@@ -123,12 +134,14 @@ const AttributeFilterConjunctionInput: React.FC<IAttributeFilterConjunctionInput
 			<Form.GroupItem shrink>
 				<Picker
 					className='attribute-input'
-					items={attributes.map(({displayName, id, name}) => ({
-						label: displayName || name,
-						value: id
-					}))}
+					items={attributes.map(
+						({displayName, encodedName, name}) => ({
+							label: displayName || name,
+							value: encodedName
+						})
+					)}
 					onSelectionChange={handleAttributeChange}
-					selectedKey={getAttributeId()}
+					selectedKey={getAttributeEncodedName()}
 				>
 					{({label, value}) => <Option key={value}>{label}</Option>}
 				</Picker>
