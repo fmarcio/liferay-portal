@@ -1,5 +1,9 @@
 import AttributeConjunctionInput from './components/attribute-conjunction-input';
 import DateFilterConjunctionInput from './components/DateFilterConjunctionInput';
+import EventPropertiesQuery, {
+	EventPropertiesData,
+	EventPropertiesVariables
+} from '../queries/EventPropertiesQuery';
 import Form from 'shared/components/form';
 import OccurenceConjunctionInput from './components/OccurenceConjunctionInput';
 import React, {useEffect} from 'react';
@@ -12,15 +16,10 @@ import {
 	getIndexFromPropertyName
 } from '../utils/custom-inputs';
 import {isBoolean, isNil, isNull} from 'lodash';
-import {SafeResults} from 'shared/hoc/util';
-import EventAttributeDefinitionsQuery, {
-	EventAttributeDefinitionsData,
-	EventAttributeDefinitionsVariables
-} from 'event-analysis/queries/EventAttributeDefinitionsQuery';
-import {useQuery} from '@apollo/react-hooks';
 import {NAME} from 'shared/util/pagination';
 import {OrderByDirections} from 'shared/util/constants';
-import {AttributeTypes} from 'event-analysis/utils/types';
+import {SafeResults} from 'shared/hoc/util';
+import {useQuery} from '@apollo/react-hooks';
 
 type Touched = {
 	attribute: boolean;
@@ -46,11 +45,12 @@ const EventInput: React.FC<IEventInputProps> = ({
 	id,
 	onChange,
 	operatorRenderer: OperatorDropdown,
-	property: {entityName, id: eventDefinitionId, options, type},
+	property,
 	touched,
 	valid,
 	value: valueIMap
 }) => {
+	const {entityName, id: eventDefinitionId, options, type} = property;
 	let _completedAnalytics = false;
 
 	useEffect(() => {
@@ -176,121 +176,28 @@ const EventInput: React.FC<IEventInputProps> = ({
 		);
 	}
 
-	// const result = useQuery<
-	// 	EventAttributeDefinitionsData,
-	// 	EventAttributeDefinitionsVariables
-	// >(EventAttributeDefinitionsQuery, {
-	// 	variables: {
-	// 		eventDefinitionId,
-	// 		keyword: '',
-	// 		page: 0,
-	// 		size: 25,
-	// 		sort: {
-	// 			column: NAME,
-	// 			type: OrderByDirections.Ascending
-	// 		},
-	// 		type: AttributeTypes.All
-	// 	}
-	// });
-
-	const result = {
-		data: {
-			eventAttributeDefinitions: {
-				eventAttributeDefinitions: [
-					{
-						dataType: 'STRING',
-						description: null,
-						displayName: 'canonicalUrl',
-						encodedName: 'canonicalUrlENCODED',
-						id: '10',
-						name: 'canonicalUrl',
-						sampleValue: 'http://localhost:7400',
-						type: 'GLOBAL',
-						__typename: 'EventAttributeDefinition'
-					},
-					{
-						dataType: 'STRING',
-						description: null,
-						displayName: 'pageDescription',
-						encodedName: 'pageDescriptionENCODED',
-						id: '24',
-						name: 'pageDescription',
-						sampleValue: '',
-						type: 'GLOBAL',
-						__typename: 'EventAttributeDefinition'
-					},
-					{
-						dataType: 'STRING',
-						description: null,
-						displayName: 'pageKeywords',
-						encodedName: 'pageKeywordsENCODED',
-						id: '25',
-						name: 'pageKeywords',
-						sampleValue: '',
-						type: 'GLOBAL',
-						__typename: 'EventAttributeDefinition'
-					},
-					{
-						dataType: 'STRING',
-						description: null,
-						displayName: 'pageTitle',
-						encodedName: 'pageTitleENCODED',
-						id: '26',
-						name: 'pageTitle',
-						sampleValue: 'Home - Liferay',
-						type: 'GLOBAL',
-						__typename: 'EventAttributeDefinition'
-					},
-					{
-						dataType: 'STRING',
-						description: null,
-						displayName: 'referrer',
-						encodedName: 'referrerENCODED',
-						id: '28',
-						name: 'referrer',
-						sampleValue:
-							'http://localhost:7400/group/control_panel/manage?p_p_id=com_liferay_configuration_admin_web_portlet_InstanceSettingsPortlet&p_p_lifecycle=0&p_p_state=maximized&p_p_mode=view&_com_liferay_configuration_admin_web_portlet_InstanceSettingsPortlet_mvcRenderCommandName=%2Fconfiguration_admin%2Fview_configuration_screen&_com_liferay_configuration_admin_web_portlet_InstanceSettingsPortlet_configurationScreenKey=2-synced-contact-data',
-						type: 'GLOBAL',
-						__typename: 'EventAttributeDefinition'
-					},
-					{
-						dataType: 'STRING',
-						description: null,
-						displayName: 'url',
-						encodedName: 'urlENCODED',
-						id: '35',
-						name: 'url',
-						sampleValue: 'http://localhost:7400/web/guest',
-						type: 'GLOBAL',
-						__typename: 'EventAttributeDefinition'
-					},
-					{
-						dataType: 'STRING',
-						description: null,
-						displayName: 'alalala lalla',
-						encodedName: 'alallaENCODED',
-						id: '39',
-						name: 'url',
-						sampleValue: 'http://localhost:7400/web/guest',
-						type: 'GLOBAL',
-						__typename: 'EventAttributeDefinition'
-					}
-				],
-				total: 6,
-				__typename: 'EventAttributeDefinitionBag'
+	const result = useQuery<EventPropertiesData, EventPropertiesVariables>(
+		EventPropertiesQuery,
+		{
+			variables: {
+				eventDefinitionId: '123',
+				keyword: '',
+				page: 0,
+				size: 25,
+				sort: {
+					column: NAME,
+					type: OrderByDirections.Ascending
+				}
 			}
-		},
-		loading: false,
-		error: false
-	};
+		}
+	);
 
 	return (
 		<div className='criteria-statement'>
 			<SafeResults {...result} page={false} pageDisplay={false}>
 				{data => {
 					const attributes =
-						data?.eventAttributeDefinitions
-							?.eventAttributeDefinitions || [];
+						data?.eventProperties?.eventProperties || [];
 
 					return (
 						<>
