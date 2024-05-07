@@ -64,9 +64,10 @@ const AttributeFilterConjunctionInput: React.FC<IAttributeFilterConjunctionInput
 	const getAttributeFromContext = () => {
 		const attributeId = getAttributeId();
 
-		return referencedEntities
-			.getIn([EntityType.Attributes, attributeId], Map({}))
-			.toJS();
+		return attributes.find(attribute => attribute.id === attributeId) || {};
+		// return referencedEntities
+		// 	.getIn([EntityType.Attributes, attributeId], Map({}))
+		// 	.toJS();
 	};
 
 	const getAttributeId = (): string => {

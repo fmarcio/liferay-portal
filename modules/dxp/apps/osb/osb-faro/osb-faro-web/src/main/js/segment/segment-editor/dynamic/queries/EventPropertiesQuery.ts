@@ -15,7 +15,7 @@ export interface EventPropertiesData {
 }
 
 export interface EventPropertiesVariables {
-	eventDefinitionId?: string;
+	eventId?: string;
 	keyword?: string;
 	page?: number;
 	size: number;
@@ -24,14 +24,14 @@ export interface EventPropertiesVariables {
 
 export default gql`
 	query EventProperties(
-		$eventDefinitionId: String!
+		$eventId: String!
 		$keyword: String
 		$page: Int!
 		$size: Int!
 		$sort: Sort!
 	) {
 		eventProperties(
-			eventDefinitionId: $eventDefinitionId
+			eventId: $eventId
 			keyword: $keyword
 			page: $page
 			size: $size

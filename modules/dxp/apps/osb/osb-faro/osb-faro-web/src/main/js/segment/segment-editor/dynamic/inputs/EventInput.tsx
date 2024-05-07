@@ -50,7 +50,7 @@ const EventInput: React.FC<IEventInputProps> = ({
 	valid,
 	value: valueIMap
 }) => {
-	const {entityName, id: eventDefinitionId, options, type} = property;
+	const {entityName, id: eventId, options, type} = property;
 	let _completedAnalytics = false;
 
 	useEffect(() => {
@@ -180,7 +180,7 @@ const EventInput: React.FC<IEventInputProps> = ({
 		EventPropertiesQuery,
 		{
 			variables: {
-				eventDefinitionId: '123',
+				eventId,
 				keyword: '',
 				page: 0,
 				size: 25,

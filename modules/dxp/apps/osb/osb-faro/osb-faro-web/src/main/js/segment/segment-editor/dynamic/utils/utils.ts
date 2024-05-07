@@ -384,7 +384,7 @@ export const convertEventToProperty = (
 
 	return new Property({
 		entityName: Liferay.Language.get('event'),
-		id,
+		id: name,
 		label: displayName || name,
 		name,
 		options: [{label: 'hidden', value: hidden}],
