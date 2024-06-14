@@ -254,7 +254,7 @@ test('shows outside pages in path analysis', async ({apiHelpers, page}) => {
 
 	const channelName = 'My Property - ' + getRandomString();
 
-	await syncAnalyticsCloud(apiHelpers, page, channelName);
+	await syncAnalyticsCloud(apiHelpers, {name: channelName}, page);
 
 	await goToWithReferrer(
 		page,
@@ -329,7 +329,7 @@ test('shows tracked pages in path analysis', async ({apiHelpers, page}) => {
 
 	const channelName = 'My Property - ' + getRandomString();
 
-	await syncAnalyticsCloud(apiHelpers, page, channelName);
+	await syncAnalyticsCloud(apiHelpers, {name: channelName}, page);
 
 	await navigateToSitePage(page, '', pageTitle1);
 

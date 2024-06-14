@@ -29,7 +29,7 @@ test('check if updated custom event displayName is shown on segment criteria car
 	const channelName = 'My Property - ' + getRandomString();
 	const customEventName = 'CustomEvent' + new Date().getTime();
 
-	await syncAnalyticsCloud(apiHelpers, page, channelName);
+	await syncAnalyticsCloud(apiHelpers, {name: channelName}, page);
 	await page.goto(liferayConfig.environment.baseUrl);
 	await page.waitForTimeout(3000);
 

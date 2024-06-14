@@ -93,9 +93,11 @@ export async function syncAllContacts(page) {
 	await page.getByRole('button', {exact: true, name: 'Next'}).click();
 }
 
-export async function syncAnalyticsCloud(apiHelpers, page, propertyName) {
-	await createChannel(apiHelpers, propertyName);
-
+export async function syncAnalyticsCloud(apiHelpers, channel, page) {
+	if (!channel.id) {
+		await createChannel(apiHelpers, channel.name);
+	}
+		
 	await createDataSource(page);
 
 	await goToAnalyticsCloudInstanceSettings(page);
@@ -106,7 +108,7 @@ export async function syncAnalyticsCloud(apiHelpers, page, propertyName) {
 
 	await connectToAnalyticsCloud(page);
 
-	await syncSite(page, propertyName);
+	await syncSite(page, channel.name);
 
 	await syncAllContacts(page);
 
