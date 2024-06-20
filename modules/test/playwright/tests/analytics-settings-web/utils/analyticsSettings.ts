@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
-import {expect} from '@playwright/test';
+import {Page, expect} from '@playwright/test';
 
 import {liferayConfig} from '../../../liferay.config';
 import {createChannel} from '../../osb-faro-web/utils/channel';
@@ -97,7 +97,7 @@ export async function syncAnalyticsCloud(apiHelpers, channel, page) {
 	if (!channel.id) {
 		await createChannel(apiHelpers, channel.name);
 	}
-		
+
 	await createDataSource(page);
 
 	await goToAnalyticsCloudInstanceSettings(page);
