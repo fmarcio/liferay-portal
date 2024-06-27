@@ -11,23 +11,60 @@ import {loginAnalyticsCloudTest} from '../../fixtures/loginAnalyticsCloudTest';
 import {loginTest} from '../../fixtures/loginTest';
 import {liferayConfig} from '../../liferay.config';
 import getRandomString from '../../utils/getRandomString';
-import {syncAnalyticsCloud} from '../analytics-settings-web/utils/analyticsSettings';
+import {
+	createSitePage,
+	syncAnalyticsCloud,
+} from '../analytics-settings-web/utils/analyticsSettings';
 import {navigateToACSitesPageViaURL} from './utils/navigation';
 import {CardSelector} from './utils/selectors';
 import {closeSessions} from './utils/sessions';
 import {changeTimeFilter} from './utils/time-filter';
+import {featureFlagsTest} from '../../fixtures/featureFlagsTest';
+import {ApiHelpers} from '../../helpers/ApiHelpers';
 
 export const test = mergeTests(
 	apiHelpersTest,
 	dataApiHelpersTest,
+	featureFlagsTest({
+		'LPS-178052': true,
+	}),
 	loginAnalyticsCloudTest(),
 	loginTest()
 );
 
-async function sendEventByURL(page: Page, queryParams: string) {
-	await page.goto(liferayConfig.environment.baseUrl + `/home?${queryParams}`);
+async function navigateToDXPandDeleteSite({
+	apiHelpers,
+	page,
+	site,
+}: {
+	apiHelpers: ApiHelpers;
+	page: Page;
+	site: Site;
+}) {
+	await page.goto(liferayConfig.environment.baseUrl);
 
-	await page.waitForTimeout(3000);
+	await apiHelpers.headlessSite.deleteSite(String(site.id));
+}
+
+async function navigateToDXPByChannelViaURL({
+	page,
+	pageName,
+	queryParams,
+	siteName,
+}: {
+	page: Page;
+	pageName: string;
+	queryParams: string;
+	siteName: string;
+}) {
+	await page.goto(
+		liferayConfig.environment.baseUrl +
+			`/web/${siteName}/${pageName}?${queryParams}`
+	);
+
+	// This timeout is required because the backend needs this time to process the event properly.
+
+	await page.waitForTimeout(12000);
 }
 
 async function checkAcquisitionChannelCount(
@@ -64,15 +101,33 @@ test('check if acquisition card displays PAID SEARCH channel after receiving an 
 	page,
 }) => {
 	const channelName = 'My Property - ' + getRandomString();
+	const siteName = getRandomString();
+	const pageTitle = 'MyPage-' + getRandomString();
+
+	const site = await apiHelpers.headlessSite.createSite({
+		name: siteName,
+	});
+
+	await createSitePage({
+		apiHelpers,
+		pageTitle,
+		siteName,
+	});
 
 	const {channel, project} = await syncAnalyticsCloud({
 		apiHelpers,
 		channelName,
 		page,
+		siteName,
 	});
 
 	await test.step('send event to initialize channel followed by closing the session', async () => {
-		await sendEventByURL(page, 'utm_medium=paidsearch');
+		await navigateToDXPByChannelViaURL({
+			page,
+			pageName: pageTitle,
+			queryParams: 'utm_medium=paidsearch',
+			siteName,
+		});
 
 		await closeSessions(apiHelpers, page);
 	});
@@ -83,8 +138,6 @@ test('check if acquisition card displays PAID SEARCH channel after receiving an 
 			page,
 			projectID: project.groupId,
 		});
-
-		await page.waitForTimeout(3000);
 	});
 
 	await test.step('change time filter in Acquisition card to Last 24 Hours and check if channel has count as 1', async () => {
@@ -103,6 +156,10 @@ test('check if acquisition card displays PAID SEARCH channel after receiving an 
 			project.groupId
 		);
 	});
+
+	await test.step('delete site on DXP side', async () => {
+		navigateToDXPandDeleteSite({apiHelpers, page, site});
+	});
 });
 
 test('check if acquisition card displays DIRECT channel after receiving an event', async ({
@@ -110,15 +167,33 @@ test('check if acquisition card displays DIRECT channel after receiving an event
 	page,
 }) => {
 	const channelName = 'My Property - ' + getRandomString();
+	const siteName = getRandomString();
+	const pageTitle = 'MyPage-' + getRandomString();
+
+	const site = await apiHelpers.headlessSite.createSite({
+		name: siteName,
+	});
+
+	await createSitePage({
+		apiHelpers,
+		pageTitle,
+		siteName,
+	});
 
 	const {channel, project} = await syncAnalyticsCloud({
 		apiHelpers,
 		channelName,
 		page,
+		siteName,
 	});
 
 	await test.step('send event to initialize channel followed by closing the session', async () => {
-		await sendEventByURL(page, '');
+		await navigateToDXPByChannelViaURL({
+			page,
+			pageName: pageTitle,
+			queryParams: '',
+			siteName,
+		});
 
 		await closeSessions(apiHelpers, page);
 	});
@@ -129,8 +204,6 @@ test('check if acquisition card displays DIRECT channel after receiving an event
 			page,
 			projectID: project.groupId,
 		});
-
-		await page.waitForTimeout(3000);
 	});
 
 	await test.step('change time filter in Acquisition card to Last 24 Hours and check if channel has count as 1', async () => {
@@ -149,6 +222,10 @@ test('check if acquisition card displays DIRECT channel after receiving an event
 			project.groupId
 		);
 	});
+
+	await test.step('delete site on DXP side', async () => {
+		navigateToDXPandDeleteSite({apiHelpers, page, site});
+	});
 });
 
 test('check if acquisition card displays SOCIAL channel after receiving an event', async ({
@@ -156,15 +233,33 @@ test('check if acquisition card displays SOCIAL channel after receiving an event
 	page,
 }) => {
 	const channelName = 'My Property - ' + getRandomString();
+	const siteName = getRandomString();
+	const pageTitle = 'MyPage-' + getRandomString();
+
+	const site = await apiHelpers.headlessSite.createSite({
+		name: siteName,
+	});
+
+	await createSitePage({
+		apiHelpers,
+		pageTitle,
+		siteName,
+	});
 
 	const {channel, project} = await syncAnalyticsCloud({
 		apiHelpers,
 		channelName,
 		page,
+		siteName,
 	});
 
 	await test.step('send event to initialize channel followed by closing the session', async () => {
-		await sendEventByURL(page, 'utm_medium=social');
+		await navigateToDXPByChannelViaURL({
+			page,
+			pageName: pageTitle,
+			queryParams: 'utm_medium=social',
+			siteName,
+		});
 
 		await closeSessions(apiHelpers, page);
 	});
@@ -175,8 +270,6 @@ test('check if acquisition card displays SOCIAL channel after receiving an event
 			page,
 			projectID: project.groupId,
 		});
-
-		await page.waitForTimeout(3000);
 	});
 
 	await test.step('change time filter in Acquisition card to Last 24 Hours and check if channel has count as 1', async () => {
@@ -195,6 +288,10 @@ test('check if acquisition card displays SOCIAL channel after receiving an event
 			project.groupId
 		);
 	});
+
+	await test.step('delete site on DXP side', async () => {
+		navigateToDXPandDeleteSite({apiHelpers, page, site});
+	});
 });
 
 test('check if acquisition card displays EMAIL channel after receiving an event', async ({
@@ -202,15 +299,33 @@ test('check if acquisition card displays EMAIL channel after receiving an event'
 	page,
 }) => {
 	const channelName = 'My Property - ' + getRandomString();
+	const siteName = getRandomString();
+	const pageTitle = 'MyPage-' + getRandomString();
+
+	const site = await apiHelpers.headlessSite.createSite({
+		name: siteName,
+	});
+
+	await createSitePage({
+		apiHelpers,
+		pageTitle,
+		siteName,
+	});
 
 	const {channel, project} = await syncAnalyticsCloud({
 		apiHelpers,
 		channelName,
 		page,
+		siteName,
 	});
 
 	await test.step('send event to initialize channel followed by closing the session', async () => {
-		await sendEventByURL(page, 'utm_medium=email');
+		await navigateToDXPByChannelViaURL({
+			page,
+			pageName: pageTitle,
+			queryParams: 'utm_medium=email',
+			siteName,
+		});
 
 		await closeSessions(apiHelpers, page);
 	});
@@ -221,8 +336,6 @@ test('check if acquisition card displays EMAIL channel after receiving an event'
 			page,
 			projectID: project.groupId,
 		});
-
-		await page.waitForTimeout(3000);
 	});
 
 	await test.step('change time filter in Acquisition card to Last 24 Hours and check if channel has count as 1', async () => {
@@ -241,6 +354,10 @@ test('check if acquisition card displays EMAIL channel after receiving an event'
 			project.groupId
 		);
 	});
+
+	await test.step('delete site on DXP side', async () => {
+		navigateToDXPandDeleteSite({apiHelpers, page, site});
+	});
 });
 
 test('check if acquisition card displays AFFILIATES channel after receiving an event', async ({
@@ -248,15 +365,33 @@ test('check if acquisition card displays AFFILIATES channel after receiving an e
 	page,
 }) => {
 	const channelName = 'My Property - ' + getRandomString();
+	const siteName = getRandomString();
+	const pageTitle = 'MyPage-' + getRandomString();
+
+	const site = await apiHelpers.headlessSite.createSite({
+		name: siteName,
+	});
+
+	await createSitePage({
+		apiHelpers,
+		pageTitle,
+		siteName,
+	});
 
 	const {channel, project} = await syncAnalyticsCloud({
 		apiHelpers,
 		channelName,
 		page,
+		siteName,
 	});
 
 	await test.step('send event to initialize channel followed by closing the session', async () => {
-		await sendEventByURL(page, 'utm_medium=affiliate');
+		await navigateToDXPByChannelViaURL({
+			page,
+			pageName: pageTitle,
+			queryParams: 'utm_medium=affiliate',
+			siteName,
+		});
 
 		await closeSessions(apiHelpers, page);
 	});
@@ -267,8 +402,6 @@ test('check if acquisition card displays AFFILIATES channel after receiving an e
 			page,
 			projectID: project.groupId,
 		});
-
-		await page.waitForTimeout(3000);
 	});
 
 	await test.step('change time filter in Acquisition card to Last 24 Hours and check if channel has count as 1', async () => {
@@ -287,6 +420,10 @@ test('check if acquisition card displays AFFILIATES channel after receiving an e
 			project.groupId
 		);
 	});
+
+	await test.step('delete site on DXP side', async () => {
+		navigateToDXPandDeleteSite({apiHelpers, page, site});
+	});
 });
 
 test('check if acquisition card displays ORGANIC channel after receiving an event', async ({
@@ -294,15 +431,33 @@ test('check if acquisition card displays ORGANIC channel after receiving an even
 	page,
 }) => {
 	const channelName = 'My Property - ' + getRandomString();
+	const siteName = getRandomString();
+	const pageTitle = 'MyPage-' + getRandomString();
+
+	const site = await apiHelpers.headlessSite.createSite({
+		name: siteName,
+	});
+
+	await createSitePage({
+		apiHelpers,
+		pageTitle,
+		siteName,
+	});
 
 	const {channel, project} = await syncAnalyticsCloud({
 		apiHelpers,
 		channelName,
 		page,
+		siteName,
 	});
 
 	await test.step('send event to initialize channel followed by closing the session', async () => {
-		await sendEventByURL(page, 'utm_medium=organic');
+		await navigateToDXPByChannelViaURL({
+			page,
+			pageName: pageTitle,
+			queryParams: 'utm_medium=organic',
+			siteName,
+		});
 
 		await closeSessions(apiHelpers, page);
 	});
@@ -313,8 +468,6 @@ test('check if acquisition card displays ORGANIC channel after receiving an even
 			page,
 			projectID: project.groupId,
 		});
-
-		await page.waitForTimeout(3000);
 	});
 
 	await test.step('change time filter in Acquisition card to Last 24 Hours and check if channel has count as 1', async () => {
@@ -333,6 +486,10 @@ test('check if acquisition card displays ORGANIC channel after receiving an even
 			project.groupId
 		);
 	});
+
+	await test.step('delete site on DXP side', async () => {
+		navigateToDXPandDeleteSite({apiHelpers, page, site});
+	});
 });
 
 test('check if acquisition card displays DISPLAY channel after receiving an event', async ({
@@ -340,15 +497,33 @@ test('check if acquisition card displays DISPLAY channel after receiving an even
 	page,
 }) => {
 	const channelName = 'My Property - ' + getRandomString();
+	const siteName = getRandomString();
+	const pageTitle = 'MyPage-' + getRandomString();
+
+	const site = await apiHelpers.headlessSite.createSite({
+		name: siteName,
+	});
+
+	await createSitePage({
+		apiHelpers,
+		pageTitle,
+		siteName,
+	});
 
 	const {channel, project} = await syncAnalyticsCloud({
 		apiHelpers,
 		channelName,
 		page,
+		siteName,
 	});
 
 	await test.step('send event to initialize channel followed by closing the session', async () => {
-		await sendEventByURL(page, 'utm_medium=display');
+		await navigateToDXPByChannelViaURL({
+			page,
+			pageName: pageTitle,
+			queryParams: 'utm_medium=display',
+			siteName,
+		});
 
 		await closeSessions(apiHelpers, page);
 	});
@@ -359,8 +534,6 @@ test('check if acquisition card displays DISPLAY channel after receiving an even
 			page,
 			projectID: project.groupId,
 		});
-
-		await page.waitForTimeout(3000);
 	});
 
 	await test.step('change time filter in Acquisition card to Last 24 Hours and check if channel has count as 1', async () => {
@@ -379,6 +552,10 @@ test('check if acquisition card displays DISPLAY channel after receiving an even
 			project.groupId
 		);
 	});
+
+	await test.step('delete site on DXP side', async () => {
+		navigateToDXPandDeleteSite({apiHelpers, page, site});
+	});
 });
 
 test('check if acquisition card displays REFERRAL channel after receiving an event', async ({
@@ -386,15 +563,33 @@ test('check if acquisition card displays REFERRAL channel after receiving an eve
 	page,
 }) => {
 	const channelName = 'My Property - ' + getRandomString();
+	const siteName = getRandomString();
+	const pageTitle = 'MyPage-' + getRandomString();
+
+	const site = await apiHelpers.headlessSite.createSite({
+		name: siteName,
+	});
+
+	await createSitePage({
+		apiHelpers,
+		pageTitle,
+		siteName,
+	});
 
 	const {channel, project} = await syncAnalyticsCloud({
 		apiHelpers,
 		channelName,
 		page,
+		siteName,
 	});
 
 	await test.step('send event to initialize channel followed by closing the session', async () => {
-		await sendEventByURL(page, 'utm_medium=referral');
+		await navigateToDXPByChannelViaURL({
+			page,
+			pageName: pageTitle,
+			queryParams: 'utm_medium=referral',
+			siteName,
+		});
 
 		await closeSessions(apiHelpers, page);
 	});
@@ -405,8 +600,6 @@ test('check if acquisition card displays REFERRAL channel after receiving an eve
 			page,
 			projectID: project.groupId,
 		});
-
-		await page.waitForTimeout(3000);
 	});
 
 	await test.step('change time filter in Acquisition card to Last 24 Hours and check if channel has count as 1', async () => {
@@ -425,6 +618,10 @@ test('check if acquisition card displays REFERRAL channel after receiving an eve
 			project.groupId
 		);
 	});
+
+	await test.step('delete site on DXP side', async () => {
+		navigateToDXPandDeleteSite({apiHelpers, page, site});
+	});
 });
 
 test('check if acquisition card displays OTHER channel after receiving an event', async ({
@@ -432,15 +629,33 @@ test('check if acquisition card displays OTHER channel after receiving an event'
 	page,
 }) => {
 	const channelName = 'My Property - ' + getRandomString();
+	const siteName = getRandomString();
+	const pageTitle = 'MyPage-' + getRandomString();
+
+	const site = await apiHelpers.headlessSite.createSite({
+		name: siteName,
+	});
+
+	await createSitePage({
+		apiHelpers,
+		pageTitle,
+		siteName,
+	});
 
 	const {channel, project} = await syncAnalyticsCloud({
 		apiHelpers,
 		channelName,
 		page,
+		siteName,
 	});
 
 	await test.step('send event to initialize channel followed by closing the session', async () => {
-		await sendEventByURL(page, 'utm_medium=other');
+		await navigateToDXPByChannelViaURL({
+			page,
+			pageName: pageTitle,
+			queryParams: 'utm_medium=other',
+			siteName,
+		});
 
 		await closeSessions(apiHelpers, page);
 	});
@@ -451,8 +666,6 @@ test('check if acquisition card displays OTHER channel after receiving an event'
 			page,
 			projectID: project.groupId,
 		});
-
-		await page.waitForTimeout(3000);
 	});
 
 	await test.step('change time filter in Acquisition card to Last 24 Hours and check if channel has count as 1', async () => {
@@ -470,5 +683,9 @@ test('check if acquisition card displays OTHER channel after receiving an event'
 			`[${channel.id}]`,
 			project.groupId
 		);
+	});
+
+	await test.step('delete site on DXP side', async () => {
+		navigateToDXPandDeleteSite({apiHelpers, page, site});
 	});
 });
