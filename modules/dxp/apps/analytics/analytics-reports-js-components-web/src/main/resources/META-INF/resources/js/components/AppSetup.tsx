@@ -7,15 +7,17 @@ import ClayAlert from '@clayui/alert';
 import {Provider as ClayIconProvider} from '@clayui/core';
 import ClayLink from '@clayui/link';
 import ClayLoadingIndicator from '@clayui/loading-indicator';
+import {ClayTooltipProvider} from '@clayui/tooltip';
 import {fetch} from 'frontend-js-web';
 import React, {useEffect, useState} from 'react';
 
 import {AnalyticsReportsProvider} from '../AnalyticsReportsContext';
-import {AssetTypes} from '../types/global';
+import {AssetTypes, Version} from '../types/global';
 import EmptyState from './EmptyState';
 
 interface IAppSetupProps extends React.HTMLAttributes<HTMLElement> {
 	contentPerformanceDataFetchURL: string;
+	getItemVersionsURL: string;
 }
 
 type Data = {
@@ -29,11 +31,13 @@ type Data = {
 	isAdmin: boolean;
 	siteEditDepotEntryDepotAdminPortletURL: string;
 	siteSyncedToAnalyticsCloud: boolean;
+	versions: Version[] | null;
 };
 
 const AppSetup: React.FC<IAppSetupProps> = ({
 	children,
 	contentPerformanceDataFetchURL,
+	getItemVersionsURL,
 }) => {
 	const [data, setData] = useState<Data | null>(null);
 	const [loading, setLoading] = useState(true);
@@ -46,18 +50,52 @@ const AppSetup: React.FC<IAppSetupProps> = ({
 					method: 'GET',
 				});
 
+				if (!response.ok) {
+					throw new Error();
+				}
+
 				const data = await response.json();
 
 				if (data.error) {
 					throw new Error(data.error);
 				}
 
-				setData(data);
+				let versionsData:
+					| ({versions: Version[]} & {error: string})
+					| null = null;
+
+				if (getItemVersionsURL) {
+					const responseVersions = await fetch(getItemVersionsURL, {
+						method: 'GET',
+					});
+
+					if (!responseVersions.ok) {
+						throw new Error();
+					}
+
+					versionsData = await responseVersions.json();
+
+					if (versionsData?.error) {
+						throw new Error(versionsData.error);
+					}
+				}
+
+				setData({
+					...data,
+					versions: versionsData?.versions.map(
+						({createDate, version}) => ({
+							createDate,
+							version,
+						})
+					),
+				});
 				setLoading(false);
 				setError('');
 			}
 			catch (error: any) {
-				console.error(error);
+				if (process.env.NODE_ENV === 'development') {
+					console.error(error);
+				}
 
 				setData(null);
 				setLoading(false);
@@ -66,7 +104,7 @@ const AppSetup: React.FC<IAppSetupProps> = ({
 		}
 
 		fetchData();
-	}, [contentPerformanceDataFetchURL]);
+	}, [contentPerformanceDataFetchURL, getItemVersionsURL]);
 
 	if (loading) {
 		return (
@@ -187,13 +225,18 @@ const AppSetup: React.FC<IAppSetupProps> = ({
 		<ClayIconProvider
 			spritemap={`${Liferay.ThemeDisplay.getPathThemeImages()}/clay/icons.svg`}
 		>
-			<AnalyticsReportsProvider
-				assetId={data?.assetId ?? '0'}
-				assetType={data?.assetType ?? null}
-				groupId={data?.groupId ?? '0'}
-			>
-				{children}
-			</AnalyticsReportsProvider>
+			<ClayTooltipProvider>
+				<div>
+					<AnalyticsReportsProvider
+						assetId={data?.assetId ?? '0'}
+						assetType={data?.assetType ?? null}
+						groupId={data?.groupId ?? '0'}
+						versions={data?.versions ?? null}
+					>
+						{children}
+					</AnalyticsReportsProvider>
+				</div>
+			</ClayTooltipProvider>
 		</ClayIconProvider>
 	);
 };
