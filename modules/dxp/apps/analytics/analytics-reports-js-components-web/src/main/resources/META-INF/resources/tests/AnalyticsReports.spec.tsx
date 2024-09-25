@@ -83,7 +83,10 @@ describe('AnalyticsReports Overview Metrics', () => {
 		);
 
 		const {container, getByText} = render(
-			<AnalyticsReports contentPerformanceDataFetchURL="/o/api/fake-url" />
+			<AnalyticsReports
+				contentPerformanceDataFetchURL="/o/api/fake-url"
+				getItemVersionsURL=""
+			/>
 		);
 
 		await waitForElementToBeRemoved(
@@ -113,7 +116,10 @@ describe('AnalyticsReports Overview Metrics', () => {
 		);
 
 		const {container, getByText} = render(
-			<AnalyticsReports contentPerformanceDataFetchURL="/o/api/fake-url" />
+			<AnalyticsReports
+				contentPerformanceDataFetchURL="/o/api/fake-url"
+				getItemVersionsURL=""
+			/>
 		);
 
 		await waitForElementToBeRemoved(
@@ -144,7 +150,10 @@ describe('AnalyticsReports Overview Metrics', () => {
 		);
 
 		const {container, getByText} = render(
-			<AnalyticsReports contentPerformanceDataFetchURL="/o/api/fake-url" />
+			<AnalyticsReports
+				contentPerformanceDataFetchURL="/o/api/fake-url"
+				getItemVersionsURL=""
+			/>
 		);
 
 		await waitForElementToBeRemoved(
@@ -180,7 +189,10 @@ describe('AnalyticsReports Overview Metrics', () => {
 		);
 
 		const {container, getByText} = render(
-			<AnalyticsReports contentPerformanceDataFetchURL="/o/api/fake-url" />
+			<AnalyticsReports
+				contentPerformanceDataFetchURL="/o/api/fake-url"
+				getItemVersionsURL=""
+			/>
 		);
 
 		await waitForElementToBeRemoved(
@@ -200,7 +212,10 @@ describe('AnalyticsReports Filter by Individuals', () => {
 		);
 
 		const {container, getByTestId} = render(
-			<AnalyticsReports contentPerformanceDataFetchURL="/o/api/fake-url" />
+			<AnalyticsReports
+				contentPerformanceDataFetchURL="/o/api/fake-url"
+				getItemVersionsURL=""
+			/>
 		);
 
 		await waitForElementToBeRemoved(
@@ -224,7 +239,10 @@ describe('AnalyticsReports Filter by Individuals', () => {
 		);
 
 		const {container, getByTestId} = render(
-			<AnalyticsReports contentPerformanceDataFetchURL="/o/api/fake-url" />
+			<AnalyticsReports
+				contentPerformanceDataFetchURL="/o/api/fake-url"
+				getItemVersionsURL=""
+			/>
 		);
 
 		await waitForElementToBeRemoved(
@@ -248,7 +266,10 @@ describe('AnalyticsReports Filter by Individuals', () => {
 		);
 
 		const {container, getByTestId} = render(
-			<AnalyticsReports contentPerformanceDataFetchURL="/o/api/fake-url" />
+			<AnalyticsReports
+				contentPerformanceDataFetchURL="/o/api/fake-url"
+				getItemVersionsURL=""
+			/>
 		);
 
 		await waitForElementToBeRemoved(
@@ -274,7 +295,10 @@ describe('AnalyticsReports Filter by RangeSelectors', () => {
 		);
 
 		const {container, getByTestId} = render(
-			<AnalyticsReports contentPerformanceDataFetchURL="/o/api/fake-url" />
+			<AnalyticsReports
+				contentPerformanceDataFetchURL="/o/api/fake-url"
+				getItemVersionsURL=""
+			/>
 		);
 
 		await waitForElementToBeRemoved(
@@ -296,7 +320,10 @@ describe('AnalyticsReports Filter by RangeSelectors', () => {
 		);
 
 		const {container, getByTestId} = render(
-			<AnalyticsReports contentPerformanceDataFetchURL="/o/api/fake-url" />
+			<AnalyticsReports
+				contentPerformanceDataFetchURL="/o/api/fake-url"
+				getItemVersionsURL=""
+			/>
 		);
 
 		await waitForElementToBeRemoved(
@@ -320,7 +347,10 @@ describe('AnalyticsReports Filter by RangeSelectors', () => {
 		);
 
 		const {container, getByTestId} = render(
-			<AnalyticsReports contentPerformanceDataFetchURL="/o/api/fake-url" />
+			<AnalyticsReports
+				contentPerformanceDataFetchURL="/o/api/fake-url"
+				getItemVersionsURL=""
+			/>
 		);
 
 		await waitForElementToBeRemoved(
@@ -344,7 +374,10 @@ describe('AnalyticsReports Filter by RangeSelectors', () => {
 		);
 
 		const {container, getByTestId} = render(
-			<AnalyticsReports contentPerformanceDataFetchURL="/o/api/fake-url" />
+			<AnalyticsReports
+				contentPerformanceDataFetchURL="/o/api/fake-url"
+				getItemVersionsURL=""
+			/>
 		);
 
 		await waitForElementToBeRemoved(
