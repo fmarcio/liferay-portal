@@ -48,6 +48,10 @@ const AnalyticsReports: React.FC<AnalyticsReports> = ({
 				<GlobalFilters />
 
 				<OverviewMetrics />
+
+				<VisitorsBehavior />
+
+				<InteractionsByPage />
 			</AppSetup>
 		</div>
 	);
