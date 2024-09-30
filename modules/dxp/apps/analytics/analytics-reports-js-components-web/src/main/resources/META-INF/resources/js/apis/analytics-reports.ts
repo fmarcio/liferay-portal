@@ -75,3 +75,24 @@ export function fetchAssetAppearsOnHistogram({
 		}
 	);
 }
+
+export function fetchAssetDevices({
+	assetId,
+	assetType,
+	groupId,
+	individual,
+	rangeSelector,
+}: {
+	assetId: string;
+	assetType: string;
+	groupId: string;
+	individual: Individuals;
+	rangeSelector: RangeSelectors;
+}) {
+	return fetch(
+		`${API_PREFIX}/${groupId}/asset-metrics/${assetType}/devices?assetId=${assetId}&identityType=${individual}&rangeKey=${rangeSelector}`,
+		{
+			method: 'GET',
+		}
+	);
+}
