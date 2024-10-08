@@ -7,7 +7,7 @@ import React, {useContext} from 'react';
 
 import {AnalyticsReportsContext} from '../AnalyticsReportsContext';
 import {Individuals, RangeSelectors} from '../types/global';
-import {formatDate} from '../utils/date';
+import {getDateRange} from '../utils/date';
 import Filter from './Filter';
 import Title from './Title';
 
@@ -17,17 +17,6 @@ const individualFilterLang = {
 		'anonymous-individuals'
 	),
 	[Individuals.KnownIndividuals]: Liferay.Language.get('known-individuals'),
-};
-
-const getDateRange = (rangeSelector: RangeSelectors) => {
-	function getDate(value: number) {
-		return new Date(new Date().setDate(new Date().getDate() - value));
-	}
-
-	const startDate = getDate(1);
-	const endDate = getDate(Number(rangeSelector));
-
-	return `${formatDate(endDate)} - ${formatDate(startDate)}`;
 };
 
 const GlobalFilters = () => {
@@ -65,18 +54,20 @@ const GlobalFilters = () => {
 		},
 	];
 
-	if (process.env.NODE_ENV === 'development') {
-		timeFilterItems = [
-			{
-				description: getDateRange(RangeSelectors.Last24Hours),
-				label: Liferay.Util.sub(Liferay.Language.get('last-x-hours'), [
-					RangeSelectors.Last24Hours,
-				]),
-				value: RangeSelectors.Last24Hours,
-			},
-			...timeFilterItems,
-		];
-	}
+	// if (process.env.NODE_ENV === 'development') {
+
+	timeFilterItems = [
+		{
+			description: getDateRange(RangeSelectors.Last24Hours),
+			label: Liferay.Util.sub(Liferay.Language.get('last-x-hours'), [
+				RangeSelectors.Last24Hours,
+			]),
+			value: RangeSelectors.Last24Hours,
+		},
+		...timeFilterItems,
+	];
+
+	// }
 
 	return (
 		<div className="d-flex global-filters justify-content-between mb-3">

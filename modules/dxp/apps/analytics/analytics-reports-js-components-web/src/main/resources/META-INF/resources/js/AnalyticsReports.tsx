@@ -8,6 +8,7 @@ import React, {useEffect, useRef} from 'react';
 import AppSetup from './components/AppSetup';
 import GlobalFilters from './components/GlobalFilters';
 import OverviewMetrics from './components/OverviewMetrics';
+import AssetDevices from './components/asset-devices/AssetDevices';
 import InteractionsByPage from './components/interactions-by-page/InteractionsByPage';
 import VisitorsBehavior from './components/visitors-behavior/VisitorsBehavior';
 
@@ -49,9 +50,11 @@ const AnalyticsReports: React.FC<AnalyticsReports> = ({
 
 				<OverviewMetrics />
 
-				<VisitorsBehavior />
+				{/* <VisitorsBehavior /> */}
 
-				<InteractionsByPage />
+				{/* <InteractionsByPage /> */}
+
+				<AssetDevices />
 			</AppSetup>
 		</div>
 	);
