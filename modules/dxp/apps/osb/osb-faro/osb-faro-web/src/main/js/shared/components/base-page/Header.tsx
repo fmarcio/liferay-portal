@@ -1,5 +1,6 @@
 import Breadcrumbs from 'shared/components/Breadcrumbs';
 import classNames from 'classnames';
+import ClayBadge from '@clayui/badge';
 import ClayButton from '@clayui/button';
 import ClayDropDown, {Align} from '@clayui/drop-down';
 import ClayIcon from '@clayui/icon';
@@ -17,6 +18,7 @@ import {IBreadcrumbArgs} from 'shared/util/breadcrumbs';
 import {pickBy} from 'lodash';
 
 type NavBarItem = {
+	deprecated?: boolean;
 	exact: boolean;
 	label: string;
 	route: string;
@@ -43,7 +45,7 @@ const NavBar: React.FC<INavBarProps> = ({
 	return (
 		<div className='row'>
 			<ClayNavigationBar triggerLabel={activeLabel}>
-				{items.map(({label, route}) => (
+				{items.map(({deprecated, label, route}) => (
 					<ClayNavigationBar.Item
 						active={matchedRoute === route}
 						key={label}
@@ -56,6 +58,17 @@ const NavBar: React.FC<INavBarProps> = ({
 							onClick={() => setActiveLabel(label)}
 						>
 							{label}
+
+							{deprecated && (
+								<ClayBadge
+									className='ml-1'
+									displayType='warning'
+									label={Liferay.Language.get(
+										'deprecated'
+									).toUpperCase()}
+									translucent
+								/>
+							)}
 						</ClayLink>
 					</ClayNavigationBar.Item>
 				))}
@@ -156,6 +169,7 @@ const Section: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
 }) => <div className={getCN('header-section', className)}>{children}</div>;
 
 interface ITitleSectionProps extends React.HTMLAttributes<HTMLDivElement> {
+	deprecated?: boolean;
 	subtitle?: React.ReactNode | string;
 	title?: string;
 }
@@ -174,13 +188,14 @@ interface IActionsProps extends React.HTMLAttributes<HTMLDivElement> {
 const TitleSection: React.FC<ITitleSectionProps> = ({
 	children,
 	className,
+	deprecated = false,
 	subtitle,
 	title
 }) => (
 	<Section className={getCN('title-section', className, {subtitle})}>
 		<span className='align-items-center d-flex'>
 			<h1 className='title text-truncate'>
-				<TextTruncate title={title} />
+				<TextTruncate deprecated={deprecated} title={title} />
 			</h1>
 
 			{children}
