@@ -74,6 +74,36 @@ describe('BasePage.Header', () => {
 			expect(container).toMatchSnapshot();
 		});
 
+		it('renders NavBar with deprecated label', () => {
+			const {container} = render(
+				<BrowserRouter>
+					<Header.NavBar
+						items={[
+							{
+								deprecated: true,
+								exact: true,
+								label: 'Test',
+								route: Routes.CONTACTS_ACCOUNT
+							}
+						]}
+						routeParams={{
+							groupId: '123',
+							id: '321'
+						}}
+						routeQueries={{rangeKey: '30'}}
+					/>
+				</BrowserRouter>
+			);
+
+			const deprecatedBadge = document.querySelector(
+				'.badge.badge-warning.badge-translucent'
+			);
+
+			expect(container).toMatchSnapshot();
+			expect(deprecatedBadge).toBeInTheDocument();
+			expect(deprecatedBadge).toHaveTextContent('DEPRECATED');
+		});
+
 		it('renders NavBar w/o routeQueries', () => {
 			const {container} = render(
 				<BrowserRouter>
@@ -145,3 +175,45 @@ describe('BasePage.Header', () => {
 		});
 	});
 });
+
+// describe('Custom Asset NavBar', () => {
+// 	afterEach(cleanup);
+
+// 	beforeAll(() => {
+// 		delete window.location;
+
+// 		window.location = {
+// 			pathname: '/workspace/123/456789/assets/custom'
+// 		};
+// 	});
+
+// 	it('renders Custom Asset NavBar with deprecated label', () => {
+// 		const {container} = render(
+// 			<BrowserRouter>
+// 				<Header.NavBar
+// 					items={[
+// 						{
+// 							deprecated: true,
+// 							exact: true,
+// 							label: 'Custom',
+// 							route: Routes.ASSETS_CUSTOM
+// 						}
+// 					]}
+// 					routeParams={{
+// 						groupId: '123',
+// 						id: '321'
+// 					}}
+// 					routeQueries={{rangeKey: '30'}}
+// 				/>
+// 			</BrowserRouter>
+// 		);
+
+// 		const deprecatedBadge = document.querySelector(
+// 			'.badge.badge-warning.badge-translucent'
+// 		);
+
+// 		expect(container).toMatchSnapshot();
+// 		expect(deprecatedBadge).toBeInTheDocument();
+// 		expect(deprecatedBadge).toHaveTextContent('DEPRECATED');
+// 	});
+// });
