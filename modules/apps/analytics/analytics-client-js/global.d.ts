@@ -5,7 +5,7 @@
 
 interface Window {
 	Liferay: {
-		FeatureFlags: {
+		FeatureFlags?: {
 			[key: string]: boolean;
 		};
 		ThemeDisplay?: {
@@ -25,6 +25,14 @@ interface Window {
 					type: any,
 					options: {}
 				) => void;
+			};
+			LocalStorage?: {
+				TYPES?: {
+					[key: string]: string;
+				};
+				getItem: (key: string, type: string) => void;
+				removeItem: (key: string, type: string) => void;
+				setItem: (key: string, value: any, type: string) => void;
 			};
 		};
 	};
@@ -48,7 +56,7 @@ declare namespace Analytics {
 		[key: string]: Function;
 	};
 
-	type Plugin = (analytics?: Instance) => void;
+	type Plugin = (analytics?: any) => void;
 
 	type EventProps = {
 		[key: string]: boolean | number | string;
