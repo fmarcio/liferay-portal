@@ -7,13 +7,15 @@ import {STORAGE_KEY_CONTEXTS} from './constants';
 import {convertMapToArr} from './map';
 import {getItem, setItem} from './storage';
 
-const getContexts = (contextStorageKey = STORAGE_KEY_CONTEXTS) => {
+const getContexts = (
+	contextStorageKey = STORAGE_KEY_CONTEXTS
+): Map<any, any> => {
 	const storedContextKvArr = getItem(contextStorageKey);
 
 	const storedContexts = new Map();
 
 	if (storedContextKvArr) {
-		storedContextKvArr.forEach(([key, value]) =>
+		storedContextKvArr.forEach(([key, value]: [string, object]) =>
 			storedContexts.set(key, value)
 		);
 	}
@@ -21,7 +23,10 @@ const getContexts = (contextStorageKey = STORAGE_KEY_CONTEXTS) => {
 	return storedContexts;
 };
 
-const setContexts = (contextsMap, contextStorageKey = STORAGE_KEY_CONTEXTS) => {
+const setContexts = (
+	contextsMap: Map<any, any>,
+	contextStorageKey = STORAGE_KEY_CONTEXTS
+): void => {
 	setItem(contextStorageKey, convertMapToArr(contextsMap));
 };
 
