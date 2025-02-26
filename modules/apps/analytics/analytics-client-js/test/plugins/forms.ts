@@ -7,6 +7,15 @@ import fetchMock from 'fetch-mock';
 
 import AnalyticsClient from '../../src/analytics';
 
+const INITIAL_CONFIG = {
+	channelId: '123456789',
+	dataSourceId: 'MyDataSourceId',
+	endpointUrl: 'https://osbasahpublisher-projectid.lfr.cloud',
+	flushInterval: 2000,
+	projectId: '123456',
+	userId: 'id-s7uatimmxgo',
+};
+
 const applicationId = 'Form';
 
 const createDynamicFormElement = async (attrs) => {
@@ -64,7 +73,7 @@ describe('Forms Plugin', () => {
 
 		fetchMock.mock('*', () => 200);
 
-		Analytics = AnalyticsClient.create();
+		Analytics = AnalyticsClient.create(INITIAL_CONFIG);
 	});
 
 	afterEach(() => {

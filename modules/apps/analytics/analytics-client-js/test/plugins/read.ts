@@ -12,6 +12,15 @@ import {
 	viewDurationByWords,
 } from '../../src/plugins/read';
 
+const INITIAL_CONFIG = {
+	channelId: '123456789',
+	dataSourceId: 'MyDataSourceId',
+	endpointUrl: 'https://osbasahpublisher-projectid.lfr.cloud',
+	flushInterval: 2000,
+	projectId: '123456',
+	userId: 'id-s7uatimmxgo',
+};
+
 const ENGLISH_TEXT =
 	'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain';
 const LOGOGRAPHIC_TEXT =
@@ -70,7 +79,7 @@ describe('Read Plugin', () => {
 
 		fetchMock.mock('*', () => 200);
 
-		Analytics = AnalyticsClient.create();
+		Analytics = AnalyticsClient.create(INITIAL_CONFIG);
 	});
 
 	afterEach(() => {
@@ -161,7 +170,7 @@ describe('Read Plugin', () => {
 			// Restart Analytics
 
 			Analytics.dispose();
-			Analytics = AnalyticsClient.create();
+			Analytics = AnalyticsClient.create(INITIAL_CONFIG);
 
 			const blogElement = createMainContent();
 			const expectedReadDuration = Math.trunc(

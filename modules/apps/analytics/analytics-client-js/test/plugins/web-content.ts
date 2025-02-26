@@ -66,7 +66,14 @@ describe('WebContent Plugin', () => {
 
 		fetchMock.mock('*', () => 200);
 
-		Analytics = AnalyticsClient.create();
+		Analytics = AnalyticsClient.create({
+			channelId: '123456789',
+			dataSourceId: 'MyDataSourceId',
+			endpointUrl: 'https://osbasahpublisher-projectid.lfr.cloud',
+			flushInterval: 2000,
+			projectId: '123456',
+			userId: 'id-s7uatimmxgo',
+		});
 	});
 
 	afterEach(() => {
