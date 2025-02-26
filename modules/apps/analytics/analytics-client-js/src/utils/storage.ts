@@ -5,7 +5,10 @@
 
 import ProcessLock from 'browser-tabs-lock';
 
-const getItem = (key: string) => {
+const getItem = (key: string): any => {
+
+	// @ts-ignore
+
 	const Liferay = window.Liferay;
 
 	let data;
@@ -32,7 +35,10 @@ const getItem = (key: string) => {
 	return data;
 };
 
-const setItem = (key: string, value: any) => {
+const setItem = (key: string, value: any): void => {
+
+	// @ts-ignore
+
 	const Liferay = window.Liferay;
 
 	try {
@@ -52,7 +58,10 @@ const setItem = (key: string, value: any) => {
 	}
 };
 
-const removeItem = (key: string) => {
+const removeItem = (key: string): void => {
+
+	// @ts-ignore
+
 	const Liferay = window.Liferay;
 
 	try {
@@ -74,7 +83,7 @@ const removeItem = (key: string) => {
 /**
  * Get the stringified size of a value in kilobytes.
  */
-const getStorageSizeInKb = (val: string) => {
+const getStorageSizeInKb = (val: string): number => {
 	return Number((JSON.stringify(val).length * 2) / 1024);
 };
 
@@ -85,7 +94,10 @@ const getStorageSizeInKb = (val: string) => {
  * be able to acquire a lock for a particular key to run its callback
  * until the process with the active lock releases it.
  */
-const verifyStorageLimitForKey = (storageKey: string, limit: number) => {
+const verifyStorageLimitForKey = (
+	storageKey: string,
+	limit: number
+): Promise<void> => {
 	const storedValue = getItem(storageKey);
 
 	if (!storedValue.length) {
