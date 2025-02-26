@@ -5,7 +5,7 @@
 
 import ProcessLock from 'browser-tabs-lock';
 
-const getItem = (key) => {
+const getItem = (key: string) => {
 	const Liferay = window.Liferay;
 
 	let data;
@@ -14,16 +14,16 @@ const getItem = (key) => {
 		let item;
 
 		if (Liferay?.FeatureFlags?.['LPD-10588']) {
-			item = Liferay.Util.LocalStorage.getItem(
+			item = Liferay?.Util?.LocalStorage?.getItem?.(
 				key,
-				Liferay.Util.LocalStorage.TYPES.PERFORMANCE
+				Liferay?.Util?.LocalStorage?.TYPES?.PERFORMANCE as string
 			);
 		}
 		else {
 			item = localStorage.getItem(key);
 		}
 
-		data = JSON.parse(item);
+		data = JSON.parse(item as string);
 	}
 	catch (error) {
 		return;
@@ -32,15 +32,15 @@ const getItem = (key) => {
 	return data;
 };
 
-const setItem = (key, value) => {
+const setItem = (key: string, value: any) => {
 	const Liferay = window.Liferay;
 
 	try {
 		if (Liferay?.FeatureFlags?.['LPD-10588']) {
-			Liferay.Util.LocalStorage.setItem(
+			Liferay?.Util?.LocalStorage?.setItem?.(
 				key,
 				JSON.stringify(value),
-				Liferay.Util.LocalStorage.TYPES.PERFORMANCE
+				Liferay?.Util?.LocalStorage?.TYPES?.PERFORMANCE as string
 			);
 		}
 		else {
@@ -52,14 +52,14 @@ const setItem = (key, value) => {
 	}
 };
 
-const removeItem = (key) => {
+const removeItem = (key: string) => {
 	const Liferay = window.Liferay;
 
 	try {
 		if (Liferay?.FeatureFlags?.['LPD-10588']) {
-			Liferay.Util.LocalStorage.removeItem(
+			Liferay?.Util?.LocalStorage?.removeItem?.(
 				key,
-				Liferay.Util.LocalStorage.TYPES.PERFORMANCE
+				Liferay?.Util?.LocalStorage?.TYPES?.PERFORMANCE as string
 			);
 		}
 		else {
@@ -73,11 +73,8 @@ const removeItem = (key) => {
 
 /**
  * Get the stringified size of a value in kilobytes.
- *
- * @param {String} val - Stringifiable value.
- * @returns {Number} - Storage size in of value.
  */
-const getStorageSizeInKb = (val) => {
+const getStorageSizeInKb = (val: string) => {
 	return Number((JSON.stringify(val).length * 2) / 1024);
 };
 
@@ -87,12 +84,8 @@ const getStorageSizeInKb = (val) => {
  * Note: Because we are using a ProcessLock, no other process should
  * be able to acquire a lock for a particular key to run its callback
  * until the process with the active lock releases it.
- *
- * @param {string} storageKey - The storage key to verify size for.
- * @param {Number} limit - Limit of storage size for given storageKey.
- * @returns {Promise}
  */
-const verifyStorageLimitForKey = (storageKey, limit) => {
+const verifyStorageLimitForKey = (storageKey: string, limit: number) => {
 	const storedValue = getItem(storageKey);
 
 	if (!storedValue.length) {
