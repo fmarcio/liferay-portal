@@ -31,7 +31,9 @@ window.Liferay = {
 
 describe('Storage Utils', () => {
 	beforeEach(() => {
-		window.Liferay.FeatureFlags['LPD-10588'] = false;
+		if (window.Liferay?.FeatureFlags) {
+			window.Liferay.FeatureFlags['LPD-10588'] = false;
+		}
 
 		localStorage.removeItem(STORAGE_KEY);
 	});
@@ -46,7 +48,9 @@ describe('Storage Utils', () => {
 		});
 
 		it('Removes an item from localStorage by using Liferay Instance', () => {
-			window.Liferay.FeatureFlags['LPD-10588'] = true;
+			if (window.Liferay?.FeatureFlags) {
+				window.Liferay.FeatureFlags['LPD-10588'] = true;
+			}
 
 			removeItem(STORAGE_KEY);
 
@@ -66,7 +70,9 @@ describe('Storage Utils', () => {
 		});
 
 		it('Retrieves an item from localStorage by using Liferay Instance', () => {
-			window.Liferay.FeatureFlags['LPD-10588'] = true;
+			if (window.Liferay?.FeatureFlags) {
+				window.Liferay.FeatureFlags['LPD-10588'] = true;
+			}
 
 			getItem(STORAGE_KEY);
 
@@ -94,7 +100,9 @@ describe('Storage Utils', () => {
 		});
 
 		it('Sets an item in localStorage by using Liferay Instance', () => {
-			window.Liferay.FeatureFlags['LPD-10588'] = true;
+			if (window.Liferay?.FeatureFlags) {
+				window.Liferay.FeatureFlags['LPD-10588'] = true;
+			}
 
 			const expected = {name: 'foo'};
 

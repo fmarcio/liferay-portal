@@ -10,12 +10,6 @@ import {
 } from '../../src/utils/assets';
 
 describe('getNumberOfWords()', () => {
-	let document: Document;
-
-	beforeEach(() => {
-		document = global.document;
-	});
-
 	it('returns the number of words', () => {
 		const content = {
 			description:
@@ -32,9 +26,13 @@ describe('getNumberOfWords()', () => {
 
 		element.innerHTML = markup;
 
-		const numberOfWords = getNumberOfWords(element);
+		document.body.appendChild(element);
 
-		expect(numberOfWords).toBe(20);
+		setTimeout(() => {
+			const numberOfWords = getNumberOfWords(element);
+
+			expect(numberOfWords).toBe(20);
+		}, 0);
 	});
 
 	it('returns 0 if the number of words is empty', () => {
