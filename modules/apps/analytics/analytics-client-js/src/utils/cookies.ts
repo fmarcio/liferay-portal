@@ -14,7 +14,7 @@ import {
 	STORAGE_KEY_STORAGE_VERSION,
 } from './constants';
 
-const AC_COOKIE_LIST = [
+const AC_COOKIE_LIST: string[] = [
 	STORAGE_KEY_CHANNEL_ID,
 	STORAGE_KEY_CONTEXTS,
 	STORAGE_KEY_EVENTS,
@@ -25,8 +25,8 @@ const AC_COOKIE_LIST = [
 	STORAGE_KEY_STORAGE_VERSION,
 ];
 
-export function removeCookiesFromUserBrowser() {
-	const cookies = document.cookie.split(';');
+export function removeCookiesFromUserBrowser(): void {
+	const cookies: string[] = document.cookie.split(';');
 
 	if (cookies.length) {
 		for (const cookie of cookies) {
