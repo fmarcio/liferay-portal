@@ -5,14 +5,17 @@
 
 /**
  * Debounces function execution.
- * @param {!function()} fn
- * @param {number} delay
- * @returns {!function()}
  */
-function debounce(fn, delay) {
+function debounce(fn: Function, delay: number): Function {
 	return function debounced() {
 		const args = arguments;
+
 		cancelDebounce(debounced);
+
+		// TODO: find a way to type this debounced.id
+
+		// @ts-ignore
+
 		debounced.id = setTimeout(() => {
 			fn.apply(null, args);
 		}, delay);
@@ -23,7 +26,12 @@ function debounce(fn, delay) {
  * Cancels the scheduled debounced function.
  * @param {function()} debounced
  */
-function cancelDebounce(debounced) {
+function cancelDebounce(debounced: Function) {
+
+	// TODO: find a way to type this debounced.id
+
+	// @ts-ignore
+
 	clearTimeout(debounced.id);
 }
 
