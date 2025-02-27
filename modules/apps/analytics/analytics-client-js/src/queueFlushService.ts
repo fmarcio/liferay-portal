@@ -3,6 +3,8 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
+import EventMessageQueue from './queues/eventMessageQueue';
+import EventsQueue from './queues/eventsQueue';
 import {
 	FLUSH_INTERVAL,
 	LIMIT_FAILED_ATTEMPTS,
@@ -26,13 +28,25 @@ import {getRetryDelay} from './utils/delay';
  * be proccessed and a delay will be added to loop.
  */
 class QueueFlushService {
-	constructor(config = {}) {
+	attemptNumber: number;
+	initialFlushInterval: number;
+	processing: boolean;
+	queues: {
+		instance: EventsQueue | EventMessageQueue;
+		name: string;
+		priority?: number;
+	}[];
+	flushInterval: number;
+	processInterval: NodeJS.Timeout | null;
+
+	constructor(config: Analytics.Config) {
 		this.attemptNumber = 1;
 		this.initialFlushInterval = config.flushInterval || FLUSH_INTERVAL;
 		this.processing = false;
 		this.queues = [];
 
 		this.flushInterval = this.initialFlushInterval;
+		this.processInterval = null;
 
 		this._startsFlushLoop();
 	}
@@ -42,7 +56,10 @@ class QueueFlushService {
 	 * @param {MessageQueue} queueInstance
 	 * @param {QueueConfig} config
 	 */
-	addQueue(queueInstance, config = {}) {
+	addQueue(
+		queueInstance: EventsQueue | EventMessageQueue,
+		config: Analytics.Config | {} = {}
+	) {
 		this.queues.push(
 			Object.assign(config, {
 				instance: queueInstance,
@@ -56,7 +73,7 @@ class QueueFlushService {
 	 * Remove a queue
 	 * @param {string} queueName
 	 */
-	removeQueue(queueName) {
+	removeQueue(queueName: string) {
 		this.queues = this.queues.filter(({name}) => queueName !== name);
 	}
 
