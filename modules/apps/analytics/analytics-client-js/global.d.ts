@@ -52,12 +52,6 @@ declare namespace Analytics {
 		userId: string;
 	};
 
-	type Middleware = {
-		[key: string]: Function;
-	};
-
-	type Plugin = (analytics?: any) => void;
-
 	type EventProps = {
 		[key: string]: boolean | number | string;
 	};
@@ -66,4 +60,22 @@ declare namespace Analytics {
 		email: string;
 		name: string;
 	};
+
+	type Message = {
+		channelId: string;
+		context: {
+			[key: string]: string;
+		};
+		dataSourceId: string;
+		emailAddressHashed: string;
+		events: Analytics.EventProps[];
+		id: string;
+		userId: string;
+	};
+
+	type Middleware = {
+		[key: string]: Function;
+	};
+
+	type Plugin = (analytics?: Analytics) => void;
 }
