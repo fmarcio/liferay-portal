@@ -69,14 +69,14 @@ class ClientAdapter {
 	/**
 	 * Returns a resolved or rejected promise as per the response status or if the request times out.
 	 */
-	sendWithTimeout(payload: {id: string; item: Analytics.Message}) {
+	sendWithTimeout(payload: Analytics.Event | Analytics.Identity) {
 		return Promise.race([this.send(payload), this._timeout()]);
 	}
 
 	/**
 	 * Send a request with given payload and url.
 	 */
-	send(payload: {id: string; item: Analytics.Message}) {
+	send(payload: Analytics.Event | Analytics.Identity) {
 		const parameters = this._getRequestParameters();
 
 		Object.assign(parameters, {

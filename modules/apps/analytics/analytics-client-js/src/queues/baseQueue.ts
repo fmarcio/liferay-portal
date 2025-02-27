@@ -38,7 +38,7 @@ class BaseQueue {
 	/**
 	 * Adds an item to the queue.
 	 */
-	addItem(item: {id: string; item: Analytics.Message}) {
+	addItem(item: Analytics.Event | Analytics.Identity) {
 		this._enqueue(item);
 
 		verifyStorageLimitForKey(this.name, this.maxSize);
@@ -48,7 +48,9 @@ class BaseQueue {
 	 * Remove an item from the queue by id.
 	 */
 	_dequeue(id: string) {
-		const queue = this.getItems();
+		const queue = this.getItems() as (Analytics.Message & {
+			item?: Analytics.Message;
+		})[];
 
 		setItem(
 			this.name,
@@ -65,7 +67,7 @@ class BaseQueue {
 	/**
 	 * Add a message to the queue and process messages.
 	 */
-	_enqueue(entry: {id: string; item: Analytics.Message}) {
+	_enqueue(entry: Analytics.Event | Analytics.Identity) {
 		const queue = this.getItems();
 
 		queue.push(entry);
@@ -76,7 +78,7 @@ class BaseQueue {
 	/**
 	 * Get queued messages.
 	 */
-	getItems(): {id: string; item: Analytics.Message}[] {
+	getItems(): (Analytics.Event | Analytics.Identity | Analytics.Message)[] {
 		return getItem(this.name) || [];
 	}
 

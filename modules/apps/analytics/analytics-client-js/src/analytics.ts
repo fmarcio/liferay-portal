@@ -261,12 +261,10 @@ class Analytics {
 
 		const currentContextHash = this._getCurrentContextHash();
 
-		// @ts-ignore
-
-		this?.[STORAGE_KEY_EVENTS].addItem(
+		this[STORAGE_KEY_EVENTS]?.addItem(
 			normalizeEvent(
 				eventId,
-				applicationId,
+				applicationId as string,
 				otherEventProps,
 				currentContextHash
 			)
@@ -297,7 +295,7 @@ class Analytics {
 	 * different than the previously stored one, we will save this new identity and
 	 * send a request updating the Identity Service.
 	 */
-	setIdentity(identity: Analytics.Identity) {
+	setIdentity(identity: {email: string; name: string}) {
 		if (this._isTrackingDisabled()) {
 			return;
 		}
@@ -548,6 +546,7 @@ class Analytics {
 		});
 
 		this[STORAGE_KEY_MESSAGE_IDENTITY] = identityMessageQueue;
+
 		this._queueFlushService?.addQueue(identityMessageQueue, {
 			priority: QUEUE_PRIORITY_IDENTITY,
 		});

@@ -37,7 +37,7 @@ class QueueFlushService {
 		priority?: number;
 	}[];
 	flushInterval: number;
-	processInterval: NodeJS.Timeout | null;
+	processInterval: NodeJS.Timeout | null = null;
 
 	constructor(config: Analytics.Config) {
 		this.attemptNumber = 1;
@@ -46,7 +46,6 @@ class QueueFlushService {
 		this.queues = [];
 
 		this.flushInterval = this.initialFlushInterval;
-		this.processInterval = null;
 
 		this._startsFlushLoop();
 	}

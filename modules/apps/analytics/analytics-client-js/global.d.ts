@@ -52,14 +52,34 @@ declare namespace Analytics {
 		userId: string;
 	};
 
+	type Event = {
+		applicationId: string;
+		contextHash: string;
+		eventDate: string;
+		eventId: string;
+		eventLocalDate: string;
+		properties: Analytics.EventProps;
+	};
+
 	type EventProps = {
 		[key: string]: boolean | number | string;
 	};
 
 	type Identity = {
-		email: string;
-		name: string;
+		channelId: string;
+		dataSourceId: string;
+		emailAddressHashed: string;
+		id: string;
+		userId: string;
 	};
+
+	// type Payload = (
+	// 	| Analytics.Event
+	// 	| Analytics.Identity
+	// 	| Analytics.Message
+	// ) & {
+	// 	item?: {id: string};
+	// };
 
 	type Message = {
 		channelId: string;
@@ -68,7 +88,7 @@ declare namespace Analytics {
 		};
 		dataSourceId: string;
 		emailAddressHashed: string;
-		events: Analytics.EventProps[];
+		events: Event[];
 		id: string;
 		userId: string;
 	};

@@ -91,11 +91,11 @@ const clickEvent = ({
  * @returns {Object}
  */
 export function normalizeEvent(
-	eventId,
-	applicationId,
-	properties,
-	contextHash
-) {
+	eventId: string,
+	applicationId: string,
+	properties: Analytics.EventProps,
+	contextHash: string
+): Analytics.Event {
 	const date = new Date();
 	const eventDate = date.toISOString();
 	const eventLocalDate = convertUTCDateToLocalDate(date).toISOString();
