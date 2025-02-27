@@ -5,13 +5,24 @@
 
 import ProcessLock from 'browser-tabs-lock';
 
+import Analytics from '../analytics';
 import {QUEUE_STORAGE_LIMIT} from '../utils/constants';
 import {getRetryDelay} from '../utils/delay';
 import {getItem, setItem, verifyStorageLimitForKey} from '../utils/storage';
 
 class BaseQueue {
 	maxSize: number;
-	constructor({analyticsInstance, name}) {
+	name: string;
+	lock: ProcessLock;
+	analyticsInstance: Analytics;
+
+	constructor({
+		analyticsInstance,
+		name,
+	}: {
+		analyticsInstance: Analytics;
+		name: string;
+	}) {
 		this.maxSize = QUEUE_STORAGE_LIMIT;
 		this.name = name;
 		this.lock = new ProcessLock();
@@ -26,11 +37,8 @@ class BaseQueue {
 
 	/**
 	 * Adds an item to the queue.
-	 *
-	 * @param {AnalyticsMessage} item
-	 * @returns {Promise}
 	 */
-	addItem(item) {
+	addItem(item: {id: string; item: Analytics.Message}) {
 		this._enqueue(item);
 
 		verifyStorageLimitForKey(this.name, this.maxSize);
@@ -38,10 +46,8 @@ class BaseQueue {
 
 	/**
 	 * Remove an item from the queue by id.
-	 *
-	 * @param {string} id - The Message ID.
 	 */
-	_dequeue(id) {
+	_dequeue(id: string) {
 		const queue = this.getItems();
 
 		setItem(
@@ -58,11 +64,8 @@ class BaseQueue {
 
 	/**
 	 * Add a message to the queue and process messages.
-	 *
-	 * @param {Message} entry
-	 * @param {boolean} - Whether _processMessages should run immediately after enqueuing message.
 	 */
-	_enqueue(entry) {
+	_enqueue(entry: {id: string; item: Analytics.Message}) {
 		const queue = this.getItems();
 
 		queue.push(entry);
@@ -72,10 +75,8 @@ class BaseQueue {
 
 	/**
 	 * Get queued messages.
-	 *
-	 * @returns {Array.<AnalyticsMessage>}
 	 */
-	getItems() {
+	getItems(): {id: string; item: Analytics.Message}[] {
 		return getItem(this.name) || [];
 	}
 

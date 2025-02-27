@@ -28,7 +28,7 @@ class BaseSendMessageQueue extends BaseQueue {
 	}
 
 	onFlush() {
-		return this.getItems().map((message: {id: string}) =>
+		return this.getItems().map((message) =>
 			this.clientAdapter
 				.sendWithTimeout(message)
 				.then(() => {
