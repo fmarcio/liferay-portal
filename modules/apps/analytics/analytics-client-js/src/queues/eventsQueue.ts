@@ -3,11 +3,18 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
+import Analytics from '../analytics';
 import {STORAGE_KEY_EVENTS, STORAGE_KEY_MESSAGES} from '../utils/constants';
 import BaseCreateMessageQueue from './baseCreateMessageQueue';
 
 class EventsQueue extends BaseCreateMessageQueue {
-	constructor({analyticsInstance, name = STORAGE_KEY_EVENTS}) {
+	constructor({
+		analyticsInstance,
+		name = STORAGE_KEY_EVENTS,
+	}: {
+		analyticsInstance: Analytics;
+		name?: string;
+	}) {
 		super({analyticsInstance, flushTo: STORAGE_KEY_MESSAGES, name});
 	}
 }
