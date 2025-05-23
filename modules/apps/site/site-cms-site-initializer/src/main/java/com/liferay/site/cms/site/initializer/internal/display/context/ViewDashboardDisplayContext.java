@@ -10,6 +10,7 @@ import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.object.constants.ObjectFolderConstants;
 
 import java.util.Map;
 
@@ -17,6 +18,16 @@ import java.util.Map;
  * @author Adriano Interaminense
  */
 public class ViewDashboardDisplayContext {
+
+	public Map<String, Object> getConstants() {
+	return HashMapBuilder.<String, Object>put(
+		"ercContentStructures",
+		ObjectFolderConstants.EXTERNAL_REFERENCE_CODE_CONTENT_STRUCTURES
+	).put(
+		"ercFileTypes",
+		ObjectFolderConstants.EXTERNAL_REFERENCE_CODE_FILE_TYPES
+	).build();
+}
 
 	public ViewDashboardDisplayContext(ThemeDisplay themeDisplay) {
 		_themeDisplay = themeDisplay;
@@ -29,7 +40,7 @@ public class ViewDashboardDisplayContext {
 				LayoutLocalServiceUtil.getLayoutByFriendlyURL(
 					_themeDisplay.getScopeGroupId(), false, "/dashboard"),
 				_themeDisplay)
-		).build();
+		).put("constants", getConstants()).build();
 	}
 
 	private final ThemeDisplay _themeDisplay;
