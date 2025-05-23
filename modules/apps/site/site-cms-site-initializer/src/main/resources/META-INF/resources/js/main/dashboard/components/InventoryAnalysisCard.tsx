@@ -8,6 +8,10 @@ import {Body, Cell, Head, Row, Table, Text} from '@clayui/core';
 import {ClayPaginationBarWithBasicItems} from '@clayui/pagination-bar';
 import React, {useState} from 'react';
 
+import {AllCategoriesDropdown} from './AllCategoriesDropdown';
+import {AllStructuresDropdown} from './AllStructuresDropdown';
+import {AllTagsDropdown} from './AllTagsDropdown';
+import {AllVocabulariesDropdown} from './AllVocabulariesDropdown';
 import {BaseCard} from './BaseCard';
 import {FilterDropdown} from './FilterDropdown';
 
@@ -42,50 +46,6 @@ const structureTypes = [
 	{
 		label: Liferay.Language.get('structure-02'),
 		value: 'structure02',
-	},
-];
-
-const structures = [
-	{
-		label: Liferay.Language.get('all-structure'),
-		value: 'all',
-	},
-	{
-		label: Liferay.Language.get('structure-02'),
-		value: 'structure02',
-	},
-];
-
-const vocabularies = [
-	{
-		label: Liferay.Language.get('all-vocabularies'),
-		value: 'all',
-	},
-	{
-		label: Liferay.Language.get('vocabulary-02'),
-		value: 'vocabulary02',
-	},
-];
-
-const categories = [
-	{
-		label: Liferay.Language.get('all-categories'),
-		value: 'all',
-	},
-	{
-		label: Liferay.Language.get('category-02'),
-		value: 'category02',
-	},
-];
-
-const tags = [
-	{
-		label: Liferay.Language.get('all-tags'),
-		value: 'all',
-	},
-	{
-		label: Liferay.Language.get('tag-02'),
-		value: 'tag02',
 	},
 ];
 
@@ -132,10 +92,6 @@ export function InventoryAnalysisCard() {
 	const [structureTypeId, setStructureTypeId] = useState(
 		structureTypes[0].value
 	);
-	const [structureId, setStructureId] = useState(structures[0].value);
-	const [vocabularyId, setVocabularyId] = useState(vocabularies[0].value);
-	const [categoryId, setCategoryId] = useState(categories[0].value);
-	const [tagId, setTagId] = useState(tags[0].value);
 
 	const [delta, setDelta] = useState(4);
 
@@ -200,59 +156,13 @@ export function InventoryAnalysisCard() {
 						</Text>
 					</span>
 
-					<FilterDropdown
-						active={structureId}
-						filterByValue="structures"
-						icon="edit-layout"
-						items={structures}
-						onSelectItem={(structure) =>
-							setStructureId(structure.value)
-						}
-						triggerLabel={
-							structures.find(({value}) => value === structureId)
-								?.label ?? ''
-						}
-					/>
+					<AllStructuresDropdown />
 
-					<FilterDropdown
-						active={vocabularyId}
-						filterByValue="vocabularies"
-						icon="vocabulary"
-						items={vocabularies}
-						onSelectItem={(vocabulary) =>
-							setVocabularyId(vocabulary.value)
-						}
-						triggerLabel={
-							vocabularies.find(
-								({value}) => value === vocabularyId
-							)?.label ?? ''
-						}
-					/>
+					<AllVocabulariesDropdown />
 
-					<FilterDropdown
-						active={categoryId}
-						filterByValue="categories"
-						icon="categories"
-						items={categories}
-						onSelectItem={(category) =>
-							setCategoryId(category.value)
-						}
-						triggerLabel={
-							categories.find(({value}) => value === categoryId)
-								?.label ?? ''
-						}
-					/>
+					<AllCategoriesDropdown />
 
-					<FilterDropdown
-						active={tagId}
-						filterByValue="tags"
-						icon="tag"
-						items={tags}
-						onSelectItem={(tag) => setTagId(tag.value)}
-						triggerLabel={
-							tags.find(({value}) => value === tagId)?.label ?? ''
-						}
-					/>
+					<AllTagsDropdown />
 				</div>
 
 				<Table
