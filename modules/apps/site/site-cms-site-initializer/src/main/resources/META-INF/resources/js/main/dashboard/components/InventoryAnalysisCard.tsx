@@ -14,6 +14,8 @@ import {AllTagsDropdown} from './AllTagsDropdown';
 import {AllVocabulariesDropdown} from './AllVocabulariesDropdown';
 import {BaseCard} from './BaseCard';
 import {Item} from './FilterDropdown';
+import { GroupByDropdown, IStructureProps } from './GroupByDropdown';
+
 
 export interface IAllFiltersDropdown extends React.HTMLAttributes<HTMLElement> {
 	item: Item;
@@ -43,35 +45,10 @@ const VolumeChart = ({
 	);
 };
 
-type Data = {
-	assets: {count: number; title: string}[];
-	totalCount: number;
-};
+const mapData = (data: IStructureProps) => {
+	if (!data || !data.items || !data.items.length) return [];
 
-const mockData: Data = {
-	assets: [
-		{
-			count: 999999,
-			title: 'title 1',
-		},
-		{
-			count: 999999,
-			title: 'title 2',
-		},
-		{
-			count: 999999,
-			title: 'title 3',
-		},
-		{
-			count: 999999,
-			title: 'title 4',
-		},
-	],
-	totalCount: 1000,
-};
-
-const mapData = (data: Data) => {
-	return data.assets.map(({count, title}) => {
+	return data.items.map(({count, title}) => {
 		const percentage = (count / data.totalCount) * 100;
 
 		return {
@@ -81,6 +58,11 @@ const mapData = (data: Data) => {
 		};
 	});
 };
+
+export const initialStructureType = {
+	label: Liferay.Language.get('category'),
+	value: 'category',
+}
 
 export const initialCategory = {
 	label: Liferay.Language.get('all-categories'),
@@ -107,8 +89,11 @@ export function InventoryAnalysisCard() {
 
 	const [category, setCategory] = useState<Item>(initialCategory);
 	const [structure, setStructure] = useState<Item>(initialStructure);
+	const [structureType, setStructureType] = useState<Item>(initialStructureType);
 	const [tag, setTag] = useState<Item>(initialTag);
 	const [vocabulary, setVocabulary] = useState<Item>(initialVocabulary);
+
+	const [structureTypeData, setStructureTypeData] = useState<IStructureProps>(); //Se possivel criar um mock para passar a key
 
 	const deltas = [
 		{
@@ -127,24 +112,34 @@ export function InventoryAnalysisCard() {
 		},
 	];
 
+	React.useEffect(() => {
+		console.log('✅ Dados recebidos no pai:', structureTypeData);
+	}, [structureTypeData]);
+
+	console.log('🎯 Dados do gráfico:', structureTypeData ? mapData(structureTypeData) : []);
+
 	return (
 		<div className="cms-dashboard__inventory-analysis">
 			<BaseCard
-				Preferences={
-					<ClayButtonWithIcon
-						aria-label={Liferay.Language.get('download')}
-						borderless
-						displayType="secondary"
-						size="sm"
-						symbol="download"
-					/>
-				}
 				description={Liferay.Language.get(
 					'this-report-provides-a-breakdown-of-total-assets-by-categorization,-structure-type,-or-space'
 				)}
 				title={Liferay.Language.get('inventory-analysis')}
 			>
+
 				<div className="align-items-center d-flex">
+					<span className="ml-1 mr-2">
+						<Text size={3} weight="semi-bold">
+							{Liferay.Language.get('group-by')}
+						</Text>
+					</span>
+
+					<GroupByDropdown
+						item={structureType}
+						onSelectItem={setStructureType}
+						setStructureTypeData={setStructureTypeData}
+					/>
+
 					<span className="ml-3 mr-2">
 						<Text size={3} weight="semi-bold">
 							{Liferay.Language.get('filter-by')}
@@ -168,7 +163,7 @@ export function InventoryAnalysisCard() {
 
 					<AllTagsDropdown item={tag} onSelectItem={setTag} />
 				</div>
-
+				
 				<Table
 					borderless
 					columnsVisibility={false}
@@ -179,7 +174,7 @@ export function InventoryAnalysisCard() {
 						items={[
 							{
 								id: 'title',
-								name: Liferay.Language.get('structure-title'),
+								name: Liferay.Language.get('structure-label'),
 								width: '200px',
 							},
 							{
@@ -205,7 +200,7 @@ export function InventoryAnalysisCard() {
 						)}
 					</Head>
 
-					<Body defaultItems={mapData(mockData)}>
+					<Body defaultItems={structureTypeData ? mapData(structureTypeData) : []}>
 						{(row) => (
 							<Row>
 								<Cell width="10%">
