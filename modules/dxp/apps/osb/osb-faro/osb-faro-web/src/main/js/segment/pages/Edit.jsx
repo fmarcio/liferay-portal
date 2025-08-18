@@ -14,6 +14,8 @@ const PAGE_MAP = {
 	[SegmentTypes.Static]: StaticSegment
 };
 
+console.log('TEST');
+
 export class Edit extends React.Component {
 	static defaultProps = {
 		type: SegmentTypes.Dynamic
