@@ -458,7 +458,7 @@ public abstract class BaseSectionDisplayContext {
 				null, null, null),
 			new FDSActionDropdownItem(
 				null, "trash", "delete",
-				language.get(httpServletRequest, "delete"), null, "delete",
+				language.get(httpServletRequest, "delete"), "delete", "delete",
 				null));
 	}
 

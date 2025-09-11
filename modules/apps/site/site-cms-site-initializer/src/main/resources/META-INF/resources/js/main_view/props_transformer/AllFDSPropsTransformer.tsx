@@ -7,13 +7,15 @@ import {IInternalRenderer, IView} from '@liferay/frontend-data-set-web';
 import {openModal} from 'frontend-js-components-web';
 import React from 'react';
 
+import {
+	openAssetUsageModal,
+	openMultipleAssetUsageModal,
+} from '../../common/components/assets_usage_list/utils';
 import formatActionURL from '../../common/utils/formatActionURL';
 import {ISearchAssetObjectEntry} from '../../structure_builder/types/AssetType';
 import AssetTypeInfoPanel from '../info_panel/AssetTypeInfoPanelContent';
 import FilePreviewerModalContent from '../modal/FilePreviewerModalContent';
 import createAssetAction from './actions/createAssetAction';
-import deleteAssetEntriesBulkAction from './actions/deleteAssetEntriesBulkAction';
-import deleteItemAction from './actions/deleteItemAction';
 import fileDropAction from './actions/fileDropAction';
 import multipleFilesUploadAction, {
 	MultipleFileUploaderData,
@@ -164,7 +166,7 @@ export default function AllFDSPropsTransformer({
 			loadData: () => {};
 		}) {
 			if (action?.data?.id === 'delete') {
-				await deleteItemAction(itemData, loadData);
+				openAssetUsageModal(itemData, loadData);
 			}
 
 			if (
@@ -215,16 +217,15 @@ export default function AllFDSPropsTransformer({
 		},
 		onBulkActionItemClick: ({
 			action,
+			loadData,
 			selectedData,
 		}: {
 			action: any;
+			loadData?: () => {};
 			selectedData: any;
 		}) => {
 			if (action?.data?.id === 'delete') {
-				deleteAssetEntriesBulkAction({
-					actionId: action.data.id,
-					selectedData,
-				});
+				openMultipleAssetUsageModal(selectedData.items, loadData);
 			}
 		},
 		views: transformViewsItemsProps({

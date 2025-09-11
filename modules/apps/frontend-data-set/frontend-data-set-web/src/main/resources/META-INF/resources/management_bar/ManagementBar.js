@@ -12,6 +12,7 @@ import NavBar from './controls/NavBar';
 import ActiveFiltersBar from './controls/filters/ActiveFiltersBar';
 
 function ManagementBar({
+	apiURL,
 	bulkActions,
 	creationMenu,
 	dataLoading,
@@ -55,6 +56,7 @@ function ManagementBar({
 		<>
 			{selectionType === 'multiple' && (
 				<BulkActions
+					apiURL={apiURL}
 					bulkActions={bulkActions}
 					deselectItems={deselectItems}
 					fluid={fluid}

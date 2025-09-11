@@ -7,14 +7,16 @@ import {IInternalRenderer, IView} from '@liferay/frontend-data-set-web';
 import {openModal} from 'frontend-js-components-web';
 import React from 'react';
 
+import {
+	openAssetUsageModal,
+	openMultipleAssetUsageModal,
+} from '../../common/components/assets_usage_list/utils';
 import formatActionURL from '../../common/utils/formatActionURL';
 import {ISearchAssetObjectEntry} from '../../structure_builder/types/AssetType';
 import DefaultPermissionModalContent from '../default_permission/DefaultPermissionModalContent';
 import AssetTypeInfoPanel from '../info_panel/AssetTypeInfoPanelContent';
 import createAssetAction from './actions/createAssetAction';
 import createFolderAction from './actions/createFolderAction';
-import deleteAssetEntriesBulkAction from './actions/deleteAssetEntriesBulkAction';
-import deleteItemAction from './actions/deleteItemAction';
 import shareAction from './actions/shareAction';
 import AssetTypeRenderer from './cell_renderers/AssetTypeRenderer';
 import AuthorRenderer from './cell_renderers/AuthorRenderer';
@@ -173,20 +175,7 @@ export default function ContentFDSPropsTransformer({
 				});
 			}
 			else if (action?.data?.id === 'delete') {
-				await deleteItemAction(itemData, loadData);
-			}
-
-			if (
-				action?.data?.id === 'export-for-translation' ||
-				action?.data?.id === 'import-translation'
-			) {
-				event?.preventDefault();
-
-				openModal({
-					size: 'full-screen',
-					title: action.label,
-					url: formatActionURL(itemData, action.href),
-				});
+				openAssetUsageModal(itemData, loadData);
 			}
 			else if (action?.data?.id === 'share') {
 				const {autocompleteURL, collaboratorURLs} = additionalProps;
@@ -197,6 +186,18 @@ export default function ContentFDSPropsTransformer({
 					creator: itemData.embedded.creator,
 					itemId: itemData.embedded.id,
 					title: itemData.embedded?.title,
+				});
+			}
+			else if (
+				action?.data?.id === 'export-for-translation' ||
+				action?.data?.id === 'import-translation'
+			) {
+				event?.preventDefault();
+
+				openModal({
+					size: 'full-screen',
+					title: action.label,
+					url: formatActionURL(itemData, action.href),
 				});
 			}
 			else if (action?.data?.id === 'view-content') {
@@ -211,16 +212,15 @@ export default function ContentFDSPropsTransformer({
 		},
 		onBulkActionItemClick: ({
 			action,
+			loadData,
 			selectedData,
 		}: {
 			action: any;
-			selectedData: any;
+			loadData?: () => {};
+			selectedData: {items: ItemData[]};
 		}) => {
 			if (action?.data?.id === 'delete') {
-				deleteAssetEntriesBulkAction({
-					actionId: action.data.id,
-					selectedData,
-				});
+				openMultipleAssetUsageModal(selectedData.items, loadData);
 			}
 		},
 		views: transformViewsItemsProps({

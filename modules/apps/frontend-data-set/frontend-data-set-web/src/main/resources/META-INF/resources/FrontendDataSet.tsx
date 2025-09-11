@@ -809,6 +809,7 @@ const FrontendDataSetContent = ({
 	const managementBar = showManagementBar ? (
 		<div className="management-bar-wrapper">
 			<ManagementBar
+				apiURL={apiURL}
 				bulkActions={bulkActions}
 				creationMenu={creationMenu}
 				dataLoading={dataLoading}

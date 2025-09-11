@@ -33,6 +33,7 @@ function getRichPayload(payload, key, values = []) {
 }
 
 function BulkActions({
+	apiURL,
 	bulkActions,
 	fluid,
 	handleCheckboxClick,
@@ -108,6 +109,7 @@ function BulkActions({
 		else if (onBulkActionItemClick) {
 			onBulkActionItemClick({
 				action: actionDefinition,
+				apiURL,
 				formId,
 				formName,
 				loadData,

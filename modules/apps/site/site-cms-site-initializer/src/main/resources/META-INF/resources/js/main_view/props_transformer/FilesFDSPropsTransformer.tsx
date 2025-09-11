@@ -7,6 +7,10 @@ import {IInternalRenderer, IView} from '@liferay/frontend-data-set-web';
 import {openModal} from 'frontend-js-components-web';
 import React from 'react';
 
+import {
+	openAssetUsageModal,
+	openMultipleAssetUsageModal,
+} from '../../common/components/assets_usage_list/utils';
 import {START_TASK} from '../../common/utils/events';
 import {ISearchAssetObjectEntry} from '../../structure_builder/types/AssetType';
 import DefaultPermissionModalContent from '../default_permission/DefaultPermissionModalContent';
@@ -14,7 +18,6 @@ import AssetTypeInfoPanel from '../info_panel/AssetTypeInfoPanelContent';
 import FilePreviewerModalContent from '../modal/FilePreviewerModalContent';
 import createAssetAction from './actions/createAssetAction';
 import createFolderAction from './actions/createFolderAction';
-import deleteAssetEntriesBulkAction from './actions/deleteAssetEntriesBulkAction';
 import deleteItemAction from './actions/deleteItemAction';
 import fileDropAction from './actions/fileDropAction';
 import multipleFilesUploadAction, {
@@ -204,11 +207,7 @@ export default function FilesFDSPropsTransformer({
 					size: 'full-screen',
 				});
 			}
-			else if (action?.data?.id === 'delete') {
-				await deleteItemAction(itemData, loadData);
-			}
-
-			if (action?.data?.id === 'share') {
+			else if (action?.data?.id === 'share') {
 				const {autocompleteURL, collaboratorURLs} = additionalProps;
 
 				shareAction({
@@ -218,6 +217,9 @@ export default function FilesFDSPropsTransformer({
 					itemId: itemData.embedded.id,
 					title: itemData.embedded?.title,
 				});
+			}
+			if (action?.data.id === 'delete') {
+				openAssetUsageModal(itemData, loadData);
 			}
 			else if (action?.data?.id === 'view-file') {
 				openModal({
@@ -235,16 +237,15 @@ export default function FilesFDSPropsTransformer({
 		},
 		onBulkActionItemClick: ({
 			action,
+			loadData,
 			selectedData,
 		}: {
 			action: any;
+			loadData?: () => {};
 			selectedData: any;
 		}) => {
 			if (action?.data?.id === 'delete') {
-				deleteAssetEntriesBulkAction({
-					actionId: action.data.id,
-					selectedData,
-				});
+				openMultipleAssetUsageModal(selectedData.items, loadData);
 			}
 			else if (action?.data?.id === 'download') {
 				Liferay.fire(START_TASK, {

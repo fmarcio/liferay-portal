@@ -6,6 +6,7 @@
 import {IInternalRenderer} from '@liferay/frontend-data-set-web';
 import {openModal} from 'frontend-js-components-web';
 
+import {openAssetUsageModal} from '../../common/components/assets_usage_list/utils';
 import formatActionURL from '../../common/utils/formatActionURL';
 import FilePreviewerModalContent from '../modal/FilePreviewerModalContent';
 import shareAction from './actions/shareAction';
@@ -66,12 +67,17 @@ export default function HomeRecentAssetsFDSPropsTransformer({
 			action,
 			event,
 			itemData,
+			loadData,
 		}: {
 			action: any;
 			event: Event;
-			itemData: any;
+			itemData: ItemData;
+			loadData: () => {};
 		}) => {
-			if (
+			if (action?.data.id === 'delete') {
+				openAssetUsageModal(itemData, loadData);
+			}
+			else if (
 				action?.data?.id === 'export-for-translation' ||
 				action?.data?.id === 'import-translation'
 			) {
