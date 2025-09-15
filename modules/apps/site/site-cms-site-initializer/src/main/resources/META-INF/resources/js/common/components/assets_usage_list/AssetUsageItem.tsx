@@ -18,28 +18,31 @@ interface IAssetUsageItemProps {
 }
 
 const AssetUsageItem: React.FC<IAssetUsageItemProps> = ({item, onClick}) => {
+	const {name} = item;
+	const {deletionType, mimeType, usages} = item.attributes;
+
 	return (
 		<>
 			<ClayList.ItemField>
-				<AssetIcon mimeType={item.mimeType as MimeTypes} />
+				<AssetIcon mimeType={mimeType as MimeTypes} />
 			</ClayList.ItemField>
 
 			<ClayList.ItemField expand>
-				<ClayList.ItemTitle>{item.title}</ClayList.ItemTitle>
+				<ClayList.ItemTitle>{name}</ClayList.ItemTitle>
 
 				<ClayList.ItemText>
-					{sub(Liferay.Language.get('x-usages'), [item.usages])}
+					{sub(Liferay.Language.get('x-usages'), [usages])}
 				</ClayList.ItemText>
 
 				<ClayList.ItemText>
 					<ClayLabel
 						displayType={
-							item.deletionType === 'PERMANENT_DELETION'
+							deletionType === 'PERMANENT_DELETION'
 								? 'danger'
 								: 'secondary'
 						}
 					>
-						{item.deletionType === 'PERMANENT_DELETION'
+						{deletionType === 'PERMANENT_DELETION'
 							? Liferay.Language.get('permanent-deletion')
 							: Liferay.Language.get('recycle-bin')}
 					</ClayLabel>

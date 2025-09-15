@@ -12,11 +12,16 @@ import {DisplayUsagesModal} from './DisplayUsagesModal';
 import {MultipleAssetUsageModal} from './MultipleAssetUsageModal';
 
 export type Item = {
-	deletionType: 'PERMANENT_DELETION' | 'RECYCLE_BIN';
-	id: number;
-	mimeType: string;
-	title: string;
-	usages: number;
+	attributes: {
+		deletionType: string;
+		mimeType: string;
+		type: string;
+		usages: number;
+	};
+	className: string;
+	classPK: number;
+	externalReferenceCode: string;
+	name: string;
 };
 
 export type AssetDeletionOverviewResponse = {
@@ -36,9 +41,8 @@ const useFetchAssetDeletionOverview = (ids: number[]) => {
 	useEffect(() => {
 		const fetchUsageAssetData = async () => {
 			const {data, error} =
-				await ApiHelper.post<AssetDeletionOverviewResponse>(
-					'/o/analytics-cms-rest/v1.0/asset-deletion-overviews',
-					ids
+				await ApiHelper.get<AssetDeletionOverviewResponse>(
+					`/o/headless-cms/v1.0/bulk-action-delete/preview?assetIds=${ids}`
 				);
 
 			if (error) {

@@ -18,7 +18,7 @@ const DisplayUsagesModal: React.FC<IDisplayUsagesModal> = ({item}) => {
 	return (
 		<>
 			<ClayModal.Header>
-				{sub(Liferay.Language.get('usages-of-x'), `"${item.title}"`)}
+				{sub(Liferay.Language.get('usages-of-x'), `"${item.name}"`)}
 			</ClayModal.Header>
 
 			<ClayModal.Body>

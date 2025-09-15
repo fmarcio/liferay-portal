@@ -10,7 +10,7 @@ import ClayLoadingIndicator from '@clayui/loading-indicator';
 import ClayModal from '@clayui/modal';
 import {FrontendDataSet} from '@liferay/frontend-data-set-web';
 import {fetch, sub} from 'frontend-js-web';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 
 import {AssetUsageItem} from './AssetUsageItem';
 import {
@@ -19,6 +19,8 @@ import {
 	openMultipleAssetUsageModal,
 	useFetchAssetDeletionOverview,
 } from './utils';
+
+import '../../../../css/components/MultipleAssetUsageModal.scss';
 
 interface IMultipleAssetUsageModal {
 	closeModal: () => void;
@@ -57,6 +59,17 @@ const MultipleAssetUsageModal: React.FC<IMultipleAssetUsageModal> = ({
 			setAlert(null);
 		}
 	}, [selectedIds]);
+
+	const itemsListUsingClassPK = useMemo(() => {
+		if (!data?.items) {
+			return [];
+		}
+
+		return data.items.map((item) => ({
+			...item,
+			id: item.classPK,
+		}));
+	}, [data]);
 
 	if (!data) {
 		return null;
@@ -100,11 +113,11 @@ const MultipleAssetUsageModal: React.FC<IMultipleAssetUsageModal> = ({
 
 				{loading && <ClayLoadingIndicator />}
 
-				{!loading && !!data.items.length && (
+				{!loading && !!itemsListUsingClassPK.length && (
 					<FrontendDataSet
 						bulkActions={[{}]}
 						id="delete-assets-list"
-						items={data.items}
+						items={itemsListUsingClassPK}
 						onSelectedItemsChange={setSelectedIds}
 						pagination={{initialDelta: 20}}
 						selectedItems={selectedIds}
@@ -127,16 +140,10 @@ const MultipleAssetUsageModal: React.FC<IMultipleAssetUsageModal> = ({
 												key={itemData.id}
 											>
 												<AssetUsageItem
-													item={
-														data.items.find(
-															({id}) =>
-																id ===
-																itemData.id
-														) as Item
-													}
+													item={itemData as Item}
 													onClick={() =>
 														handleClickUsageItem(
-															itemData
+															itemData as Item
 														)
 													}
 												/>
