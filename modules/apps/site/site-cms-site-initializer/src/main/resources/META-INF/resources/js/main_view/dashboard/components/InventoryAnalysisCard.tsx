@@ -13,6 +13,7 @@ import React, {useContext, useEffect, useState} from 'react';
 
 import ApiHelper from '../../../common/services/ApiHelper';
 import {ViewDashboardContext} from '../ViewDashboardContext';
+import usePagination from '../utils/usePagination';
 import {AllCategoriesDropdown} from './AllCategoriesDropdown';
 import {AllStructureTypesDropdown} from './AllStructureTypesDropdown';
 import {AllTagsDropdown} from './AllTagsDropdown';
@@ -29,6 +30,8 @@ export interface IAllFiltersDropdown extends React.HTMLAttributes<HTMLElement> {
 
 export type InventoryAnalysisDataType = {
 	inventoryAnalysisItems: {count: number; key: string; title: string}[];
+	page: number;
+	pageSize: number;
 	totalCount: number;
 };
 
@@ -58,6 +61,8 @@ export const initialFilters = {
 async function fetchStructureData({
 	filters,
 	language,
+	page,
+	pageSize,
 	space,
 }: {
 	filters: {
@@ -68,6 +73,8 @@ async function fetchStructureData({
 		vocabulary: Item;
 	};
 	language: Item;
+	page: number;
+	pageSize: number;
 	space: Item;
 }) {
 	const queryParams = buildQueryString(
@@ -76,6 +83,8 @@ async function fetchStructureData({
 			depotEntryId: space?.value,
 			groupBy: filters.structureType?.value,
 			languageId: language?.value,
+			page: page.toString(),
+			pageSize: pageSize.toString(),
 			structureId: filters.structure?.value,
 			tagId: filters.tag?.value,
 			vocabularyId: filters.vocabulary?.value,
@@ -154,10 +163,14 @@ export function InventoryAnalysisCard() {
 
 	const [inventoryAnalysisData, setInventoryAnalysisData] =
 		useState<InventoryAnalysisDataType>();
+
 	const [dropdownActive, setDropdownActive] = useState(false);
+
 	const [selectedItem, setSelectedItem] = useState<DropdownItem>(
 		dropdownItems[0]
 	);
+
+	const {handleDeltaChange, handlePageChange, pagination} = usePagination();
 
 	useEffect(() => {
 		setFilters(initialFilters);
@@ -165,7 +178,13 @@ export function InventoryAnalysisCard() {
 
 	useEffect(() => {
 		async function fetchData() {
-			const data = await fetchStructureData({filters, language, space});
+			const data = await fetchStructureData({
+				filters,
+				language,
+				page: pagination.page,
+				pageSize: pagination.pageSize,
+				space,
+			});
 
 			if (data) {
 				setInventoryAnalysisData(data);
@@ -173,7 +192,7 @@ export function InventoryAnalysisCard() {
 		}
 
 		fetchData();
-	}, [filters, language, space]);
+	}, [filters, language, pagination, space]);
 
 	return (
 		<div className="cms-dashboard__inventory-analysis mb-3">
@@ -342,7 +361,11 @@ export function InventoryAnalysisCard() {
 							currentStructureTypeLabel={
 								filters.structureType.label
 							}
+							deltas={pagination.deltas}
+							handleDeltaChange={handleDeltaChange}
+							handlePageChange={handlePageChange}
 							inventoryAnalysisData={inventoryAnalysisData}
+							pagination={pagination}
 							viewType={selectedItem.value}
 						/>
 					</>
