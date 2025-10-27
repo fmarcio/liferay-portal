@@ -1,6 +1,6 @@
 import * as API from 'shared/api';
 import * as data from 'test/data';
-import LiferayOverview from '../Overview';
+import LiferayOverview from '../LiferayOverview';
 import mockStore from 'test/mock-store';
 import React from 'react';
 import {cleanup, fireEvent, render} from '@testing-library/react';
