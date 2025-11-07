@@ -5,15 +5,14 @@ import ClayButton from '@clayui/button';
 import ClayIcon from '@clayui/icon';
 import ClayLayout from '@clayui/layout';
 import ClayLink from '@clayui/link';
-import ClayList from '@clayui/list';
 import InputWithEditToggle, {
 	FontSize
 } from 'shared/components/InputWithEditToggle';
-import List from '@clayui/list';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
+import SalesforceAccountsAndIndividuals from './SalesforceAccountsAndIndividuals';
 import {addAlert} from '../../../shared/actions/alerts';
 import {Alert} from 'shared/types';
-import {ClayInput, ClayToggle} from '@clayui/form';
+import {ClayInput} from '@clayui/form';
 import {close, modalTypes, open} from 'shared/actions/modals';
 import {connect, ConnectedProps} from 'react-redux';
 import {ConnectSalesforceAuth} from './ConnectSalesforceAuth';
@@ -24,7 +23,6 @@ import {
 	updateSalesforceDataSource
 } from 'shared/actions/data-sources';
 import {sequence} from 'shared/util/promise';
-import {sub} from 'shared/util/lang';
 import {SubHeader} from 'shared/components/revamping/SubHeader';
 import {Text} from '@clayui/core';
 import {
@@ -376,149 +374,19 @@ const SalesforceOverview: React.FC<ISalesforceOverviewProps> = ({
 									)}
 								</Text>
 
-								<div className='pt-1'>
-									<ClayList className='mb-0'>
-										<ClayList.Item flex>
-											<ClayList.ItemField>
-												<ClayIcon
-													aria-label={Liferay.Language.get(
-														'accounts'
-													)}
-													className='mr-2 mt-1 text-secondary'
-													symbol='briefcase'
-												/>
-											</ClayList.ItemField>
+								<SalesforceAccountsAndIndividuals
+									accounts={accounts}
+									accountsSyncedCount={0}
+									disabled={!isDataSourceConnected}
+									individuals={individuals}
+									individualsSyncedCount={0}
+									onChange={({accounts, individuals}) => {
+										// TODO: fire sync accounts and individuals function
 
-											<ClayList.ItemField expand>
-												<ClayList.ItemTitle>
-													{Liferay.Language.get(
-														'accounts'
-													)}
-												</ClayList.ItemTitle>
-
-												<List.ItemText>
-													{Liferay.Language.get(
-														'represents-fields-from-the-account-object-within-salesforce'
-													)}
-												</List.ItemText>
-
-												<List.ItemText>
-													{/* TODO: replace [0] to a dynamic variable when endpoint is ready */}
-
-													{sub(
-														Liferay.Language.get(
-															'x-items-synced'
-														),
-														[0]
-													)}
-												</List.ItemText>
-											</ClayList.ItemField>
-
-											<ClayList.ItemField>
-												<ClayToggle
-													disabled={
-														!isDataSourceConnected
-													}
-													id='accounts'
-													label={Liferay.Language.get(
-														'disconnected'
-													)}
-													onToggle={value => {
-														setAccounts(!accounts);
-
-														// TODO: fire SyncAccounts function when endpoint is ready
-
-														if (value) {
-															addAlert({
-																alertType:
-																	Alert.Types
-																		.Success,
-																message: Liferay.Language.get(
-																	'the-data-source-setup-is-now-complete,-and-you-will-begin-to-see-data-as-activities-occur-on-your-sites'
-																)
-															});
-														}
-													}}
-													toggled={
-														accounts &&
-														isDataSourceConnected
-													}
-												/>
-											</ClayList.ItemField>
-										</ClayList.Item>
-
-										<ClayList.Item flex>
-											<ClayList.ItemField>
-												<ClayIcon
-													aria-label={Liferay.Language.get(
-														'individuals'
-													)}
-													className='mr-2 mt-1 text-secondary'
-													symbol='users'
-												/>
-											</ClayList.ItemField>
-
-											<ClayList.ItemField expand>
-												<ClayList.ItemTitle>
-													{Liferay.Language.get(
-														'individuals'
-													)}
-												</ClayList.ItemTitle>
-
-												<List.ItemText>
-													{Liferay.Language.get(
-														'represents-fields-from-the-contact-or-lead-object-within-salesforce'
-													)}
-												</List.ItemText>
-
-												<List.ItemText>
-													{/* TODO: replace [0] to a dynamic variable when endpoint is ready */}
-
-													{sub(
-														Liferay.Language.get(
-															'x-items-synced'
-														),
-														[0]
-													)}
-												</List.ItemText>
-											</ClayList.ItemField>
-
-											<ClayList.ItemField>
-												<ClayToggle
-													disabled={
-														!isDataSourceConnected
-													}
-													id='individuals'
-													label={Liferay.Language.get(
-														'disconnected'
-													)}
-													onToggle={value => {
-														setIndividuals(
-															!individuals
-														);
-
-														// TODO: fire SyncIndividuals function when endpoint is ready
-
-														if (value) {
-															addAlert({
-																alertType:
-																	Alert.Types
-																		.Success,
-																message: Liferay.Language.get(
-																	'the-data-source-setup-is-now-complete,-and-you-will-begin-to-see-data-as-activities-occur-on-your-sites'
-																)
-															});
-														}
-													}}
-													toggled={
-														individuals &&
-														isDataSourceConnected
-													}
-												/>
-											</ClayList.ItemField>
-										</ClayList.Item>
-									</ClayList>
-								</div>
+										setAccounts(accounts);
+										setIndividuals(individuals);
+									}}
+								/>
 							</ClayLayout.SheetSection>
 						</ClayLayout.Col>
 					</ClayLayout.Row>

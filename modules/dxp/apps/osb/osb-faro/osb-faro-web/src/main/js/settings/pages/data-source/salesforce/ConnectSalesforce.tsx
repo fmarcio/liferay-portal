@@ -2,6 +2,7 @@ import ClayButton from '@clayui/button';
 import ClayForm from '@clayui/form';
 import ClayIcon from '@clayui/icon';
 import React, {useState} from 'react';
+import SalesforceAccountsAndIndividuals from 'settings/components/salesforce/SalesforceAccountsAndIndividuals';
 import WizardPage from 'settings/components/base-page/WizardPage';
 import {addAlert} from 'shared/actions/alerts';
 import {Alert} from 'shared/types';
@@ -203,23 +204,37 @@ const ConnectSalesForceStep: React.FC<IConnectSalesForceStepProps> = ({
 	);
 };
 
-const SyncSalesforceDataStep = ({onNext, onPrev}) => (
-	<ClayForm
-		onSubmit={event => {
-			event.preventDefault();
+const SyncSalesforceDataStep = ({onNext, onPrev}) => {
+	const [accounts, setAccounts] = useState(false);
+	const [individuals, setIndividuals] = useState(false);
 
-			onNext();
-		}}
-	>
-		{'working in progress...'}
+	return (
+		<ClayForm
+			onSubmit={event => {
+				event.preventDefault();
 
-		<ButtonGroup
-			nextButtonLabel={Liferay.Language.get('continue')}
-			onCancel={onPrev}
-			prevButtonLabel={Liferay.Language.get('previous')}
-		/>
-	</ClayForm>
-);
+				onNext();
+
+				addAlert();
+			}}
+		>
+			<SalesforceAccountsAndIndividuals
+				accounts={accounts}
+				individuals={individuals}
+				onChange={({accounts, individuals}) => {
+					setAccounts(accounts);
+					setIndividuals(individuals);
+				}}
+			/>
+
+			<ButtonGroup
+				nextButtonLabel={Liferay.Language.get('continue')}
+				onCancel={onPrev}
+				prevButtonLabel={Liferay.Language.get('previous')}
+			/>
+		</ClayForm>
+	);
+};
 
 const AssignIndividualsDatatoPropertiesStep = ({onNext, onPrev}) => (
 	<ClayForm
