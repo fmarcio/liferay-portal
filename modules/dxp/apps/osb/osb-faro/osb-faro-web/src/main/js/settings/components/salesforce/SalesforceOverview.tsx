@@ -13,7 +13,7 @@ import SalesforceAccountsAndIndividuals from './SalesforceAccountsAndIndividuals
 import URLConstants from 'shared/util/url-constants';
 import {addAlert} from '../../../shared/actions/alerts';
 import {Alert} from 'shared/types';
-import {ClayInput} from '@clayui/form';
+import {ClayInput, ClayRadio, ClayRadioGroup} from '@clayui/form';
 import {close, modalTypes, open} from 'shared/actions/modals';
 import {connect, ConnectedProps} from 'react-redux';
 import {ConnectSalesforceAuth} from './ConnectSalesforceAuth';
@@ -405,6 +405,53 @@ const SalesforceOverview: React.FC<ISalesforceOverviewProps> = ({
 									setIndividuals(individuals);
 								}}
 							/>
+						</ClayLayout.SheetSection>
+					</ClayLayout.Col>
+				</ClayLayout.Row>
+			</ClayLayout.Sheet>
+
+			<ClayLayout.Sheet className='mt-4 p-4'>
+				<ClayLayout.Row justify='center'>
+					<ClayLayout.Col size={12}>
+						<div className='mb-5'>
+							<Text size={6} weight='bold'>
+								{Liferay.Language.get('assigned-properties')}
+							</Text>
+						</div>
+
+						<ClayLayout.SheetSection>
+							<Text as='p' color='secondary' size={4}>
+								{Liferay.Language.get(
+									'properties-allow-you-to-aggregate-data-on-your-users-and-dxp-sites-and-channels.-the-data-source-data-will-be-available-in-any-property-they-are-assigned-to'
+								)}
+							</Text>
+
+							<SubHeader
+								title={Liferay.Language.get('data-availabilty')}
+							/>
+
+							<Text as='p' color='secondary' size={4}>
+								{Liferay.Language.get(
+									'choose-the-properties-that-will-have-access-to-this-data-source'
+								)}
+							</Text>
+
+							<ClayRadioGroup defaultValue='one' inline>
+								<ClayRadio
+									label={Liferay.Language.get(
+										'all-properties,-including-those-not-yet-created'
+									)}
+									value='one'
+								/>
+								<ClayRadio
+									label={Liferay.Language.get(
+										'select-properties'
+									)}
+									value='two'
+								/>
+							</ClayRadioGroup>
+
+							{/* TODO: open a list with properties if user clicks on "select properties" */}
 						</ClayLayout.SheetSection>
 					</ClayLayout.Col>
 				</ClayLayout.Row>
