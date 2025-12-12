@@ -71,6 +71,13 @@ export function fetchDataSourceId({groupId, token}) {
 	});
 }
 
+export function fetchDataSourceMetrics({groupId, id}) {
+	return sendRequest({
+		method: 'GET',
+		path: `contacts/${groupId}/data_source/${id}/metrics`
+	});
+}
+
 export function fetchDeletePreview({groupId, id}) {
 	return sendRequest({
 		method: 'GET',
