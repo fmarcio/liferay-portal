@@ -3,6 +3,7 @@ import ClayLabel from '@clayui/label';
 import ClayList from '@clayui/list';
 import ClaySticker from '@clayui/sticker';
 import React from 'react';
+import {sub} from 'shared/util/lang';
 import {Text} from '@clayui/core';
 
 const DATA_SOURCE_STATUSES = {
@@ -16,7 +17,13 @@ const DATA_SOURCE_STATUSES = {
 	}
 };
 
-const ReviewSyncedDataFragment = ({contactsSelected, sitesSelected}) => {
+const ReviewSyncedDataFragment = ({
+	contactsSelected,
+	individualsCount,
+	propertiesCount,
+	sitesCount,
+	sitesSelected
+}) => {
 	const getLabelProps = (selected: boolean) =>
 		selected
 			? DATA_SOURCE_STATUSES.CONFIGURED
@@ -58,6 +65,17 @@ const ReviewSyncedDataFragment = ({contactsSelected, sitesSelected}) => {
 								'used-to-aggregate-data-on-your-users,-sites-and-dxp-commerce-channels'
 							)}
 						</ClayList.ItemText>
+
+						{propertiesCount >= 0 && (
+							<ClayList.ItemText>
+								{sub(
+									Liferay.Language.get(
+										'x-properties-are-connected-to-this-data-source'
+									),
+									[propertiesCount]
+								)}
+							</ClayList.ItemText>
+						)}
 					</ClayList.ItemField>
 
 					<ClayList.ItemField className='justify-content-center'>
@@ -86,6 +104,14 @@ const ReviewSyncedDataFragment = ({contactsSelected, sitesSelected}) => {
 								'represents-the-sites-synced-from-liferay-portal,-under-dxp-instance-settings-analytics-cloud'
 							)}
 						</ClayList.ItemText>
+
+						{sitesCount >= 0 && (
+							<ClayList.ItemText>
+								{sub(Liferay.Language.get('x-items-synced'), [
+									sitesCount
+								])}
+							</ClayList.ItemText>
+						)}
 					</ClayList.ItemField>
 
 					<ClayList.ItemField className='justify-content-center'>
@@ -114,6 +140,14 @@ const ReviewSyncedDataFragment = ({contactsSelected, sitesSelected}) => {
 								'represents-the-fields-synced-from-the-contact-object-within-liferay-portal,-under-dxp-instance-settings-analytics-cloud'
 							)}
 						</ClayList.ItemText>
+
+						{individualsCount >= 0 && (
+							<ClayList.ItemText>
+								{sub(Liferay.Language.get('x-items-synced'), [
+									individualsCount
+								])}
+							</ClayList.ItemText>
+						)}
 					</ClayList.ItemField>
 
 					<ClayList.ItemField className='justify-content-center'>

@@ -18,13 +18,19 @@ import {ConnectLiferayDXPTokenFragment} from './ConnectLiferayDXPTokenFragment';
 import {DataSource} from 'shared/util/records';
 import {DataSourceEditableTitle} from '../data-source/DataSourceEditableTitle';
 import {DataSourceStatuses} from 'shared/util/constants';
-import {fetch, fetchToken, updateLiferay} from 'shared/api/data-source';
+import {
+	fetch,
+	fetchDataSourceMetrics,
+	fetchToken,
+	updateLiferay
+} from 'shared/api/data-source';
 import {getDataSourceDisplayObject} from 'shared/util/data-sources';
 import {ReviewSyncedDataFragment} from './ReviewSyncedDataFragment';
 import {Text} from '@clayui/core';
 import {useCurrentUser} from 'shared/hooks/useCurrentUser';
 import {useDisconnectDataSource} from '../data-source/utils';
 import {useParams} from 'react-router-dom';
+import {useRequest} from 'shared/hooks/useRequest';
 
 const TIMEOUT_INTERVAL = 5000;
 
@@ -76,6 +82,14 @@ const LiferayOverview: React.FC<ILiferayeOverviewProps> = ({
 		},
 		open
 	});
+
+	const metricsCountResponse = useRequest({
+		dataSourceFn: fetchDataSourceMetrics,
+		variables: {groupId, id: dataSource.id}
+	});
+
+	const {channelsCount, groupsCount, usersCount} =
+		metricsCountResponse.data || {};
 
 	const handleUpdateDataSource = async () => {
 		try {
@@ -283,6 +297,9 @@ const LiferayOverview: React.FC<ILiferayeOverviewProps> = ({
 			<Card title={Liferay.Language.get('synced-data')}>
 				<ReviewSyncedDataFragment
 					contactsSelected={dataSource.contactsSelected}
+					individualsCount={usersCount}
+					propertiesCount={channelsCount}
+					sitesCount={groupsCount}
 					sitesSelected={dataSource.sitesSelected}
 				/>
 			</Card>
