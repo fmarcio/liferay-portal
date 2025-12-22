@@ -1,0 +1,299 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MembershipMetrics should render 1`] = `
+<div>
+  <div
+    class="membership-metrics-root"
+  >
+    <div
+      class="card card-root"
+    >
+      <div
+        class="card-section d-flex flex-column justify-content-between my-3 px-3 type-trend-root w-100"
+      >
+        <div
+          class="d-flex align-items-center justify-content-between"
+        >
+          <div
+            class="d-flex align-items-center"
+          >
+            <div
+              class="card-title"
+            >
+              Average Segment Membership Duration
+            </div>
+            <button
+              class="btn btn-monospaced btn-unstyled btn-xs"
+              type="button"
+            >
+              <svg
+                class="lexicon-icon lexicon-icon-question-circle-full"
+                role="presentation"
+              >
+                <use
+                  href="#question-circle-full"
+                />
+              </svg>
+            </button>
+          </div>
+          <span
+            class="text-secondary text-uppercase font-weight-semibold"
+          >
+            Last 30 days
+          </span>
+        </div>
+        <h2
+          class="text-secondary my-3"
+        >
+          5 days
+        </h2>
+        <div
+          class="d-flex flex-row"
+        >
+          <span
+            class="text-success"
+          >
+            <span
+              class="text-3 text-success"
+            >
+              <span
+                class="mr-1"
+              >
+                +
+                1
+              </span>
+              <span>
+                Day
+              </span>
+            </span>
+          </span>
+          <span
+            class="ml-1 text-secondary"
+          >
+            vs. last 30 days
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="card card-root d-flex flex-row justify-content-between"
+    >
+      <div
+        class="card-section d-flex flex-column justify-content-between my-3 px-3 type-trend-root w-100"
+      >
+        <div
+          class="d-flex align-items-center justify-content-between"
+        >
+          <div
+            class="d-flex align-items-center"
+          >
+            <div
+              class="card-title"
+            >
+              Total Members
+            </div>
+            <button
+              class="btn btn-monospaced btn-unstyled btn-xs"
+              type="button"
+            >
+              <svg
+                class="lexicon-icon lexicon-icon-question-circle-full"
+                role="presentation"
+              >
+                <use
+                  href="#question-circle-full"
+                />
+              </svg>
+            </button>
+          </div>
+          <span
+            class="text-secondary text-uppercase font-weight-semibold"
+          >
+            Last 30 days
+          </span>
+        </div>
+        <h2
+          class="text-secondary my-3"
+        >
+          1 member
+        </h2>
+        <div
+          class="d-flex flex-row"
+        >
+          <span
+            class="mr-1 text-secondary"
+          >
+            <span>
+              100% of all individuals
+            </span>
+          </span>
+          <span
+            class="mx-3 text-secondary"
+          >
+            |
+          </span>
+          <span
+            class="text-secondary"
+          >
+            0
+          </span>
+          <span
+            class="ml-1 text-secondary"
+          >
+            vs. last 30 days
+          </span>
+        </div>
+      </div>
+      <div
+        class="card-section d-flex flex-column justify-content-between my-3 px-3 type-trend-root w-100"
+      >
+        <div
+          class="d-flex align-items-center justify-content-between"
+        >
+          <div
+            class="d-flex align-items-center"
+          >
+            <div
+              class="card-title"
+            >
+              Entry Rate
+            </div>
+            <button
+              class="btn btn-monospaced btn-unstyled btn-xs"
+              type="button"
+            >
+              <svg
+                class="lexicon-icon lexicon-icon-question-circle-full"
+                role="presentation"
+              >
+                <use
+                  href="#question-circle-full"
+                />
+              </svg>
+            </button>
+          </div>
+          <span
+            class="text-secondary text-uppercase font-weight-semibold"
+          >
+            Last 24 hours
+          </span>
+        </div>
+        <h2
+          class="text-secondary my-3"
+        >
+          1 member
+        </h2>
+        <div
+          class="d-flex flex-row"
+        >
+          <span
+            class="mr-1 text-secondary"
+          >
+            <span>
+              100% of all members
+            </span>
+          </span>
+          <span
+            class="mx-3 text-secondary"
+          >
+            |
+          </span>
+          <span
+            class="text-danger"
+          >
+            <span
+              class="text-3"
+            >
+              <span
+                class="ml-1"
+              >
+                <svg
+                  class="lexicon-icon lexicon-icon-caret-bottom"
+                  role="presentation"
+                >
+                  <use
+                    href="#caret-bottom"
+                  />
+                </svg>
+                -80
+              </span>
+              %
+            </span>
+          </span>
+          <span
+            class="ml-1 text-secondary"
+          >
+            vs. last 30-day avg.
+          </span>
+        </div>
+      </div>
+      <div
+        class="card-section d-flex flex-column justify-content-between my-3 px-3 type-trend-root w-100"
+      >
+        <div
+          class="d-flex align-items-center justify-content-between"
+        >
+          <div
+            class="d-flex align-items-center"
+          >
+            <div
+              class="card-title"
+            >
+              Exit Rate
+            </div>
+            <button
+              class="btn btn-monospaced btn-unstyled btn-xs"
+              type="button"
+            >
+              <svg
+                class="lexicon-icon lexicon-icon-question-circle-full"
+                role="presentation"
+              >
+                <use
+                  href="#question-circle-full"
+                />
+              </svg>
+            </button>
+          </div>
+          <span
+            class="text-secondary text-uppercase font-weight-semibold"
+          >
+            Last 24 hours
+          </span>
+        </div>
+        <h2
+          class="text-secondary my-3"
+        >
+          1 member
+        </h2>
+        <div
+          class="d-flex flex-row"
+        >
+          <span
+            class="mr-1 text-secondary"
+          >
+            <span>
+              100% of all members
+            </span>
+          </span>
+          <span
+            class="mx-3 text-secondary"
+          >
+            |
+          </span>
+          <span
+            class="text-secondary"
+          >
+            0
+          </span>
+          <span
+            class="ml-1 text-secondary"
+          >
+            vs. last 30-day avg.
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
