@@ -1,6 +1,6 @@
 import CriteriaCard from 'segment/components/criteria-card';
 import Membership from './Membership';
-
+import MembershipMetrics from 'segment/components/MembershipMetrics';
 import React from 'react';
 import {ReferencedObjectsProvider} from 'segment/segment-editor/dynamic/context/referencedObjects';
 import {Segment} from 'shared/util/records';
@@ -31,6 +31,9 @@ const RealTimeSegmentOverview: React.FC<IOverviewProps> = ({
 					timeZoneId={timeZoneId}
 				/>
 			</ReferencedObjectsProvider>
+
+			<MembershipMetrics />
+
 			<Membership
 				channelId={channelId}
 				groupId={groupId}
