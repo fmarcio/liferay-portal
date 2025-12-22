@@ -60,6 +60,13 @@ export function fetchMembership({
 	});
 }
 
+export function fetchMembershipMetrics({groupId, individualSegmentId}) {
+	return sendRequest({
+		method: 'GET',
+		path: `contacts/${groupId}/individual-segments/${individualSegmentId}}/real-time-metrics`
+	});
+}
+
 export function fetchFieldValues({
 	channelId,
 	fieldMappingFieldName,
