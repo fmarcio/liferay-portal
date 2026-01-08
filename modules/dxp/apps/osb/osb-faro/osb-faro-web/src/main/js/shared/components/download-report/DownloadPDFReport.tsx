@@ -23,6 +23,7 @@ export enum ReportContainer {
 	ActiveIndividualsCard = 'container.report.activeIndividualsCard',
 	AssetAppearsOnCard = 'container.report.assetAppearsOnCard',
 	AudienceCard = 'container.report.audienceCard',
+	AverageSegmentMembershipDurationCard = 'container.report.averageSegmentMembershipDuration',
 	CohortAnalysisCard = 'container.report.cohortAnalysisCard',
 	CurrentTotalsCard = 'container.report.currentTotalsCard',
 	DistributionBreakdownCard = 'container.report.distributionBreakdownCard',
@@ -31,6 +32,7 @@ export enum ReportContainer {
 	EnrichedProfilesCard = 'container.report.enrichedProfilesCard',
 	EventAnalysisPage = 'container.report.eventAnalysisPage',
 	InterestsCard = 'container.report.interestsCard',
+	MembershipMetricsCard = 'container.report.membershipMetricsCard',
 	SearchTermsCard = 'container.report.searchTermsCard',
 	SegmentCompositionCard = 'container.report.segmentCompositionCard',
 	SegmentCriteriaCard = 'container.report.segmentCriteriaCard',
@@ -66,6 +68,10 @@ export const CONTAINERS: {[key in ReportContainer]: TReportContainer} = {
 		label: Liferay.Language.get('audience'),
 		layout: 1
 	},
+	[ReportContainer.AverageSegmentMembershipDurationCard]: {
+		label: Liferay.Language.get('average-segment-membership-duration'),
+		layout: 1
+	},
 	[ReportContainer.CohortAnalysisCard]: {
 		label: Liferay.Language.get('cohort-analysis'),
 		layout: 1
@@ -97,6 +103,10 @@ export const CONTAINERS: {[key in ReportContainer]: TReportContainer} = {
 	[ReportContainer.InterestsCard]: {
 		label: Liferay.Language.get('interests'),
 		layout: 3
+	},
+	[ReportContainer.MembershipMetricsCard]: {
+		label: Liferay.Language.get('metrics-overview'),
+		layout: 1
 	},
 	[ReportContainer.SearchTermsCard]: {
 		label: Liferay.Language.get('search-terms'),
