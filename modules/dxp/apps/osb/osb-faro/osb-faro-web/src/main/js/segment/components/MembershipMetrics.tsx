@@ -26,20 +26,19 @@ import {useRequest} from 'shared/hooks/useRequest';
 const connector = connect(null, {
 	addAlert
 });
-
 type PropsFromRedux = ConnectedProps<typeof connector>;
-
 interface ICardSectionProps {
 	data: Metric;
 	description: string;
+	loading: boolean;
 	title: string;
 	totalIndividuals?: number;
 	trendComparison?: number;
 }
-
 export const CardSection: React.FC<ICardSectionProps> = ({
 	data,
 	description,
+	loading,
 	title,
 	totalIndividuals,
 	trendComparison
@@ -53,14 +52,12 @@ export const CardSection: React.FC<ICardSectionProps> = ({
 
 	if (isAverageSegmentMetric) {
 		const days = convertMillisecondsToDays(rawValue);
-
 		const languageKey = sub(
 			days === 1
 				? Liferay.Language.get('x-day').toLowerCase()
 				: Liferay.Language.get('x-days').toLowerCase(),
 			[days]
 		);
-
 		displayValue = languageKey as string;
 	} else {
 		displayValue = sub(
@@ -70,7 +67,6 @@ export const CardSection: React.FC<ICardSectionProps> = ({
 			[toThousands(rawValue)]
 		) as string;
 	}
-
 	const previousDurationDays = convertMillisecondsToDays(
 		data?.previousValue ?? 0
 	);
@@ -79,172 +75,185 @@ export const CardSection: React.FC<ICardSectionProps> = ({
 		(data?.previousValue * trendComparison) / 100;
 
 	return (
-		<div className='card-section d-flex flex-column justify-content-between my-3 px-3 type-trend-root w-100'>
-			<div className='d-flex align-items-center justify-content-between'>
-				<div className='d-flex align-items-center'>
-					<Card.Title>{title}</Card.Title>
+		<Card.Body className='card-section my-2 py-2 type-trend-root'>
+			{loading && <Loading />}
 
-					<ClayPopover
-						alignPosition='top'
-						closeOnClickOutside
-						header={title}
-						trigger={
-							<ClayButtonWithIcon
-								displayType='unstyled'
-								size='xs'
-								symbol='question-circle-full'
-							/>
-						}
-					>
-						{description}
-					</ClayPopover>
-				</div>
-
-				<span className='text-secondary text-uppercase font-weight-semibold'>
-					{title ===
-						metricsTitles.averageSegmentMembershipDurationMetric ||
-					title === metricsTitles.totalMembersMetric
-						? Liferay.Language.get('last-30-days')
-						: Liferay.Language.get('last-24-hours')}
-				</span>
-			</div>
-
-			<h2 className='text-secondary my-3'>{displayValue}</h2>
-
-			<div className='d-flex flex-row'>
-				{!isAverageSegmentMetric && (
-					<>
-						<span className='mr-1 text-secondary'>
-							<span>
-								{sub(
-									title === metricsTitles.totalMembersMetric
-										? Liferay.Language.get(
-												'x-percent-of-all-individuals'
-										  )
-										: Liferay.Language.get(
-												'x-percent-of-all-members'
-										  ),
-									[
-										getPercentage(
-											data?.value,
-											totalIndividuals
-										)
-									]
-								)}
-							</span>
-						</span>
-
-						<span className='mx-3 text-secondary'>{'|'}</span>
-					</>
-				)}
-
+			{!loading && (
 				<>
-					{isAverageSegmentMetric && (
-						<span className='mr-1 text-3 text-secondary'>
-							<span
-								style={{
-									color: getStatsColor(
-										data?.trend?.trendClassification
-									)
-								}}
-							>
-								{getTrendSign(previousValueComparison)}
-							</span>
+					<div className='align-items-center d-flex justify-content-between'>
+						<div className='align-items-center d-flex'>
+							<Card.Title>{title}</Card.Title>
 
-							{sub(
-								Liferay.Language.get('x-vs-last-x-days'),
-								[
+							<ClayPopover
+								alignPosition='top'
+								closeOnClickOutside
+								header={title}
+								trigger={
+									<ClayButtonWithIcon
+										displayType='unstyled'
+										size='xs'
+										symbol='question-circle-full'
+									/>
+								}
+							>
+								{description}
+							</ClayPopover>
+						</div>
+
+						<span className='font-weight-semibold text-secondary text-uppercase'>
+							{title ===
+								metricsTitles.averageSegmentMembershipDurationMetric ||
+							title === metricsTitles.totalMembersMetric
+								? Liferay.Language.get('last-30-days')
+								: Liferay.Language.get('last-24-hours')}
+						</span>
+					</div>
+
+					<h2 className='text-secondary my-3'>{displayValue}</h2>
+
+					<div className='d-flex flex-row'>
+						{!isAverageSegmentMetric && (
+							<>
+								<span className='mr-1 text-secondary'>
+									<span>
+										{sub(
+											title ===
+												metricsTitles.totalMembersMetric
+												? Liferay.Language.get(
+														'x-percent-of-all-individuals'
+												  )
+												: Liferay.Language.get(
+														'x-percent-of-all-members'
+												  ),
+											[
+												getPercentage(
+													data?.value,
+													totalIndividuals
+												)
+											]
+										)}
+									</span>
+								</span>
+
+								<span className='mx-3 text-secondary'>
+									{'|'}
+								</span>
+							</>
+						)}
+						<>
+							{isAverageSegmentMetric && (
+								<span className='mr-1 text-3 text-secondary'>
 									<span
-										className='mr-1'
-										key='previousDays'
 										style={{
 											color: getStatsColor(
 												data?.trend?.trendClassification
 											)
 										}}
 									>
-										{sub(
-											previousDurationDays === 1
-												? Liferay.Language.get(
-														'x-day'
-												  ).toLowerCase()
-												: Liferay.Language.get(
-														'x-days'
-												  ).toLowerCase(),
-											[previousDurationDays]
-										)}
-									</span>,
-									30
-								],
-								false
-							)}
-						</span>
-					)}
+										{getTrendSign(previousValueComparison)}
+									</span>
 
-					<span className='text-3'>
-						{!isAverageSegmentMetric && (
-							<>
-								{!!data?.trend?.trendClassification &&
-									data?.trend?.trendClassification !==
-										TrendClassification.Neutral && (
-										<span
-											className='ml-1'
-											style={{
-												color: getStatsColor(
-													data?.trend
-														?.trendClassification
-												)
-											}}
-										>
-											<ClayIcon
-												symbol={getIcon(
-													data?.trend?.percentage ?? 0
-												)}
-											/>
-										</span>
-									)}
-
-								<span className='text-secondary'>
 									{sub(
-										title ===
-											metricsTitles.totalMembersMetric
-											? Liferay.Language.get(
-													'x-vs-last-x-days'
-											  )
-											: Liferay.Language.get(
-													'x-vs-last-x-day-avg'
-											  ),
+										Liferay.Language.get(
+											'x-vs-last-x-days'
+										),
 										[
 											<span
 												className='mr-1'
-												key='percentage'
+												key='previousDays'
 												style={{
-													color:
-														getStatsColor(
-															data?.trend
-																?.trendClassification
-														) ||
-														TrendClassification.Neutral
+													color: getStatsColor(
+														data?.trend
+															?.trendClassification
+													)
 												}}
 											>
-												{`${
-													data?.trend?.percentage ?? 0
-												}%`}
+												{sub(
+													previousDurationDays === 1
+														? Liferay.Language.get(
+																'x-day'
+														  ).toLowerCase()
+														: Liferay.Language.get(
+																'x-days'
+														  ).toLowerCase(),
+													[previousDurationDays]
+												)}
 											</span>,
 											30
 										],
 										false
 									)}
 								</span>
-							</>
-						)}
-					</span>
+							)}
+							<span className='text-3'>
+								{!isAverageSegmentMetric && (
+									<>
+										{!!data?.trend?.trendClassification &&
+											data?.trend?.trendClassification !==
+												TrendClassification.Neutral && (
+												<span
+													className='ml-1'
+													style={{
+														color: getStatsColor(
+															data?.trend
+																?.trendClassification
+														)
+													}}
+												>
+													<ClayIcon
+														symbol={getIcon(
+															data?.trend
+																?.percentage ??
+																0
+														)}
+													/>
+												</span>
+											)}
+
+										<span className='text-secondary'>
+											{sub(
+												title ===
+													metricsTitles.totalMembersMetric
+													? Liferay.Language.get(
+															'x-vs-last-x-days'
+													  )
+													: Liferay.Language.get(
+															'x-vs-last-x-day-avg'
+													  ),
+												[
+													<span
+														className='mr-1'
+														key='percentage'
+														style={{
+															color:
+																getStatsColor(
+																	data?.trend
+																		?.trendClassification
+																) ||
+																TrendClassification.Neutral
+														}}
+													>
+														{`${
+															data?.trend
+																?.percentage ??
+															0
+														}%`}
+													</span>,
+													30
+												],
+												false
+											)}
+										</span>
+									</>
+								)}
+							</span>
+						</>
+					</div>
 				</>
-			</div>
-		</div>
+			)}
+		</Card.Body>
 	);
 };
-
 const MembershipMetrics: React.FC<PropsFromRedux> = ({addAlert}) => {
 	const {groupId, id} = useParams();
 
@@ -261,19 +270,20 @@ const MembershipMetrics: React.FC<PropsFromRedux> = ({addAlert}) => {
 			)
 		});
 	}
-
-	if (loading) {
-		return <Loading />;
-	}
-
 	return (
 		<div className='membership-metrics-root'>
-			<Card id={ReportContainer.AverageSegmentMembershipDurationCard}>
+			<Card
+				minHeight={100}
+				reportContainer={
+					ReportContainer.AverageSegmentMembershipDurationCard
+				}
+			>
 				<CardSection
 					data={data?.averageSegmentMembershipDurationMetric}
 					description={
 						metricsDescription.averageSegmentMembershipDurationMetric
 					}
+					loading={loading}
 					title={metricsTitles.averageSegmentMembershipDurationMetric}
 					trendComparison={
 						data?.averageSegmentMembershipDurationMetric?.trend
@@ -284,11 +294,13 @@ const MembershipMetrics: React.FC<PropsFromRedux> = ({addAlert}) => {
 
 			<Card
 				className='d-flex flex-row justify-content-between'
-				id={ReportContainer.MembershipMetricsCard}
+				minHeight={100}
+				reportContainer={ReportContainer.MembershipMetricsCard}
 			>
 				<CardSection
 					data={data?.totalMembersMetric}
 					description={metricsDescription.totalMembersMetric}
+					loading={loading}
 					title={metricsTitles.totalMembersMetric}
 					totalIndividuals={
 						data?.totalMembersMetric?.totalIndividuals
@@ -298,6 +310,7 @@ const MembershipMetrics: React.FC<PropsFromRedux> = ({addAlert}) => {
 				<CardSection
 					data={data?.entryRateMetric}
 					description={metricsDescription.entryRateMetric}
+					loading={loading}
 					title={metricsTitles.entryRateMetric}
 					totalIndividuals={
 						data?.totalMembersMetric?.totalIndividuals
@@ -307,6 +320,7 @@ const MembershipMetrics: React.FC<PropsFromRedux> = ({addAlert}) => {
 				<CardSection
 					data={data?.exitRateMetric}
 					description={metricsDescription.exitRate}
+					loading={loading}
 					title={metricsTitles.exitRate}
 					totalIndividuals={
 						data?.totalMembersMetric?.totalIndividuals
@@ -316,5 +330,4 @@ const MembershipMetrics: React.FC<PropsFromRedux> = ({addAlert}) => {
 		</div>
 	);
 };
-
 export default connector(MembershipMetrics);
