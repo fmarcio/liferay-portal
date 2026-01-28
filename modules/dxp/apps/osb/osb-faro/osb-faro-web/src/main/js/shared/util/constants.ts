@@ -396,6 +396,10 @@ export const ENABLE_BLOCKLIST_KEYWORDS = false;
 
 export const ENABLE_CSVFILE = false;
 
+// LPD-75612 Display known, unknown and total values in the new individuals screen
+
+export const ENABLE_CDP = true;
+
 // LRAC-13389 Disable temporarily Delete Property and Delete Data Source buttons
 
 export const ENABLE_DELETE_DATA_SOURCE_BUTTON = false;
