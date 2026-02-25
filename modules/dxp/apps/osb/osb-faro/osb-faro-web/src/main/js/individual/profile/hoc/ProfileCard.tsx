@@ -1,11 +1,9 @@
 import BaseCard from 'shared/components/base-card';
 import ProfileCardWithData from '../components/ProfileCard';
 import React from 'react';
-import {ENABLE_CDP} from 'shared/util/constants';
 import {Individual} from 'shared/util/records';
 import {pickBy} from 'lodash';
 import {removeUriQueryParam, setUriQueryValues} from 'shared/util/router';
-import {SectionHeader} from '../components/SectionHeader';
 import {useHistory} from 'react-router-dom';
 import {useStatefulPagination} from 'shared/hooks/useStatefulPagination';
 
@@ -15,11 +13,14 @@ interface IProfileCardProps extends React.HTMLAttributes<HTMLElement> {
 	channelId: string;
 	entity: Individual;
 	groupId: string;
+	showEmptyState?: boolean;
 	tabId: string;
 	timeZoneId: string;
 }
 
 const ProfileCard: React.FC<IProfileCardProps> = ({tabId, ...props}) => {
+	const {children: emptyState, showEmptyState} = props;
+
 	const history = useHistory();
 	const {
 		delta,
@@ -35,76 +36,68 @@ const ProfileCard: React.FC<IProfileCardProps> = ({tabId, ...props}) => {
 
 	return (
 		<>
-			<SectionHeader
-				icon='analytics'
-				title={Liferay.Language.get('interaction-history')}
-			/>
-
-			<BaseCard
-				className='individual-profile-card-root page-display'
-				description={
-					ENABLE_CDP
-						? Liferay.Language.get(
-								'displays-a-chronological-timeline-of-events-within-the-selected-timeframe-including-session-context'
-						  )
-						: ''
-				}
-				headerProps={{
-					showRangeKey: ENABLE_CDP,
-					tabId
-				}}
-				label={Liferay.Language.get('individual-events')}
-				legacyDropdownRangeKey={false}
-				showInterval={ENABLE_CDP}
-			>
-				{({
-					interval,
-					onChangeInterval,
-					onRangeSelectorsChange,
-					rangeSelectors
-				}) => (
-					<ProfileCardWithData
-						{...props}
-						delta={delta}
-						interval={interval}
-						onChangeInterval={onChangeInterval}
-						onDeltaChange={onDeltaChange}
-						onPageChange={onPageChange}
-						onQueryChange={query => {
-							history.push(
-								setUriQueryValues(
-									pickBy({query}),
-									removeUriQueryParam(
-										window.location.href,
-										'query'
+			{showEmptyState ? (
+				emptyState
+			) : (
+				<BaseCard
+					className='individual-profile-card-root page-display'
+					headerProps={{
+						showRangeKey: false,
+						tabId
+					}}
+					label={Liferay.Language.get('individual-events')}
+					legacyDropdownRangeKey={false}
+					showInterval={false}
+				>
+					{({
+						interval,
+						onChangeInterval,
+						onRangeSelectorsChange,
+						rangeSelectors
+					}) => (
+						<ProfileCardWithData
+							{...props}
+							delta={delta}
+							interval={interval}
+							onChangeInterval={onChangeInterval}
+							onDeltaChange={onDeltaChange}
+							onPageChange={onPageChange}
+							onQueryChange={query => {
+								history.push(
+									setUriQueryValues(
+										pickBy({query}),
+										removeUriQueryParam(
+											window.location.href,
+											'query'
+										)
 									)
-								)
-							);
+								);
 
-							onQueryChange(query);
-						}}
-						onRangeSelectorsChange={rangeSelectors => {
-							history.push(
-								setUriQueryValues(
-									pickBy(rangeSelectors),
-									removeUriQueryParam(
-										window.location.href,
-										'rangeEnd',
-										'rangeStart'
+								onQueryChange(query);
+							}}
+							onRangeSelectorsChange={rangeSelectors => {
+								history.push(
+									setUriQueryValues(
+										pickBy(rangeSelectors),
+										removeUriQueryParam(
+											window.location.href,
+											'rangeEnd',
+											'rangeStart'
+										)
 									)
-								)
-							);
+								);
 
-							onRangeSelectorsChange(rangeSelectors);
-						}}
-						page={page}
-						query={query}
-						rangeSelectors={rangeSelectors}
-						resetPage={resetPage}
-						tabId={tabId}
-					/>
-				)}
-			</BaseCard>
+								onRangeSelectorsChange(rangeSelectors);
+							}}
+							page={page}
+							query={query}
+							rangeSelectors={rangeSelectors}
+							resetPage={resetPage}
+							tabId={tabId}
+						/>
+					)}
+				</BaseCard>
+			)}
 		</>
 	);
 };
