@@ -19,8 +19,6 @@ interface IProfileCardProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 const ProfileCard: React.FC<IProfileCardProps> = ({tabId, ...props}) => {
-	const {children: emptyState, showEmptyState} = props;
-
 	const history = useHistory();
 	const {
 		delta,
@@ -35,70 +33,64 @@ const ProfileCard: React.FC<IProfileCardProps> = ({tabId, ...props}) => {
 	});
 
 	return (
-		<>
-			{showEmptyState ? (
-				emptyState
-			) : (
-				<BaseCard
-					className='individual-profile-card-root page-display'
-					headerProps={{
-						showRangeKey: false,
-						tabId
+		<BaseCard
+			className='individual-profile-card-root page-display'
+			headerProps={{
+				showRangeKey: false,
+				tabId
+			}}
+			label={Liferay.Language.get('individual-events')}
+			legacyDropdownRangeKey={false}
+			showInterval={false}
+		>
+			{({
+				interval,
+				onChangeInterval,
+				onRangeSelectorsChange,
+				rangeSelectors
+			}) => (
+				<ProfileCardWithData
+					{...props}
+					delta={delta}
+					interval={interval}
+					onChangeInterval={onChangeInterval}
+					onDeltaChange={onDeltaChange}
+					onPageChange={onPageChange}
+					onQueryChange={query => {
+						history.push(
+							setUriQueryValues(
+								pickBy({query}),
+								removeUriQueryParam(
+									window.location.href,
+									'query'
+								)
+							)
+						);
+
+						onQueryChange(query);
 					}}
-					label={Liferay.Language.get('individual-events')}
-					legacyDropdownRangeKey={false}
-					showInterval={false}
-				>
-					{({
-						interval,
-						onChangeInterval,
-						onRangeSelectorsChange,
-						rangeSelectors
-					}) => (
-						<ProfileCardWithData
-							{...props}
-							delta={delta}
-							interval={interval}
-							onChangeInterval={onChangeInterval}
-							onDeltaChange={onDeltaChange}
-							onPageChange={onPageChange}
-							onQueryChange={query => {
-								history.push(
-									setUriQueryValues(
-										pickBy({query}),
-										removeUriQueryParam(
-											window.location.href,
-											'query'
-										)
-									)
-								);
+					onRangeSelectorsChange={rangeSelectors => {
+						history.push(
+							setUriQueryValues(
+								pickBy(rangeSelectors),
+								removeUriQueryParam(
+									window.location.href,
+									'rangeEnd',
+									'rangeStart'
+								)
+							)
+						);
 
-								onQueryChange(query);
-							}}
-							onRangeSelectorsChange={rangeSelectors => {
-								history.push(
-									setUriQueryValues(
-										pickBy(rangeSelectors),
-										removeUriQueryParam(
-											window.location.href,
-											'rangeEnd',
-											'rangeStart'
-										)
-									)
-								);
-
-								onRangeSelectorsChange(rangeSelectors);
-							}}
-							page={page}
-							query={query}
-							rangeSelectors={rangeSelectors}
-							resetPage={resetPage}
-							tabId={tabId}
-						/>
-					)}
-				</BaseCard>
+						onRangeSelectorsChange(rangeSelectors);
+					}}
+					page={page}
+					query={query}
+					rangeSelectors={rangeSelectors}
+					resetPage={resetPage}
+					tabId={tabId}
+				/>
 			)}
-		</>
+		</BaseCard>
 	);
 };
 
