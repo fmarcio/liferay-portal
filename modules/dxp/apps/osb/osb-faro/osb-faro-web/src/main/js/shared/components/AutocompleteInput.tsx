@@ -2,7 +2,7 @@ import ClayAutocomplete from '@clayui/autocomplete';
 import getCN from 'classnames';
 import React, {useEffect, useState} from 'react';
 import {DocumentNode} from 'apollo-boost';
-import {NetworkState} from 'shared/util/constants';
+import {NetworkStatus} from '@clayui/data-provider';
 import {useDebounce} from 'shared/hooks/useDebounce';
 import {useQuery} from '@apollo/react-hooks';
 import {useRequest} from 'shared/hooks/useRequest';
@@ -42,7 +42,7 @@ const AutocompleteInput: React.FC<IAutocompleteProps> = ({
 	placeholder,
 	value
 }) => {
-	const [networkState, setNetworkState] = useState(NetworkState.Unused);
+	const [networkStatus, setNetworkStatus] = useState(NetworkStatus.Unused);
 
 	let response;
 
@@ -82,7 +82,9 @@ const AutocompleteInput: React.FC<IAutocompleteProps> = ({
 	const {data: items = [], loading} = response;
 
 	useEffect(() => {
-		setNetworkState(loading ? NetworkState.Loading : NetworkState.Unused);
+		setNetworkStatus(
+			loading ? NetworkStatus.Loading : NetworkStatus.Unused
+		);
 	}, [loading]);
 
 	return (
@@ -94,7 +96,7 @@ const AutocompleteInput: React.FC<IAutocompleteProps> = ({
 			disabled={disabled}
 			id='clay-autocomplete-1'
 			items={items as string[]}
-			loadingState={networkState}
+			loadingState={networkStatus}
 			menuTrigger='focus'
 			messages={{
 				loading: Liferay.Language.get('loading'),
