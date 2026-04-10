@@ -18,7 +18,9 @@ import com.liferay.osb.faro.web.internal.param.FaroParam;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.RoleConstants;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 import javax.annotation.security.RolesAllowed;
@@ -101,6 +103,27 @@ public class AccountController extends BaseFaroController {
 		Function<Account, AccountDisplay> function = AccountDisplay::new;
 
 		return new FaroFDSResultsDisplay(results, function, page, pageSize);
+	}
+
+	@GET
+	@Path("/fds_field_values")
+	@RolesAllowed(RoleConstants.SITE_MEMBER)
+	public FaroFDSResultsDisplay<Object> searchFDSFieldValues(
+			@PathParam("groupId") long groupId,
+			@QueryParam("channelId") long channelId,
+			@QueryParam("fieldMappingFieldName") String fieldMappingFieldName,
+			@QueryParam("query") String query, @QueryParam("page") int page,
+			@QueryParam("pageSize") int pageSize)
+		throws Exception {
+
+		Results<Object> results = contactsEngineClient.getAccountFieldValues(
+			faroProjectLocalService.getFaroProjectByGroupId(groupId), channelId,
+			fieldMappingFieldName, query, page, pageSize);
+
+		Function<Object, Map<String, String>> function =
+			object -> Collections.singletonMap("name", String.valueOf(object));
+
+		return new FaroFDSResultsDisplay<>(results, function, page, pageSize);
 	}
 
 	@GET
