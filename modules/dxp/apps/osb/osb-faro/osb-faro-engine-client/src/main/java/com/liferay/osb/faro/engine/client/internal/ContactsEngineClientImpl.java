@@ -657,7 +657,7 @@ public class ContactsEngineClientImpl
 	@Override
 	public Results<Account> getAccounts(
 		FaroProject faroProject, String channelId, String filterString,
-		String query, int cur, int delta, String sort) {
+		String query, int cur, int delta, String sortString) {
 
 		Map<String, Object> uriVariables = getUriVariables(
 			faroProject, cur, delta, null);
@@ -674,11 +674,12 @@ public class ContactsEngineClientImpl
 			uriVariables.put("query", query);
 		}
 
-		if (Validator.isNotNull(sort)) {
+		if (Validator.isNotNull(sortString)) {
 			uriVariables.put(
 				"sort",
 				Arrays.asList(
-					StringUtil.replace(sort, CharPool.COLON, CharPool.COMMA)));
+					StringUtil.replace(
+						sortString, CharPool.COLON, CharPool.COMMA)));
 		}
 
 		PagedModel<?, Account> pagedModel = get(
@@ -968,7 +969,7 @@ public class ContactsEngineClientImpl
 	@Override
 	public Results<AssetSummary> getAssetSummaries(
 		FaroProject faroProject, long channelId, String filterString,
-		String keywords, int rangeKey, int cur, int delta, String sort) {
+		String keywords, int rangeKey, int cur, int delta, String sortString) {
 
 		Map<String, Object> uriVariables = getUriVariables(
 			faroProject, cur, delta, null);
@@ -984,7 +985,8 @@ public class ContactsEngineClientImpl
 		uriVariables.put(
 			"sort",
 			Arrays.asList(
-				StringUtil.replace(sort, CharPool.COLON, CharPool.COMMA)));
+				StringUtil.replace(
+					sortString, CharPool.COLON, CharPool.COMMA)));
 
 		PagedModel<?, AssetSummary> pagedModel = get(
 			faroProject, Rels.ASSET_SUMMARIES,
