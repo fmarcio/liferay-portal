@@ -37,7 +37,7 @@ async function fetchDataSource({
 			id: dataSourceId
 		});
 
-		setDataSource(new DataSource(dataSource));
+		setDataSource(new DataSource(dataSource as any));
 	} catch (error) {
 		addAlert({
 			alertType: Alert.Types.Error,

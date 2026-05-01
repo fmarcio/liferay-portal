@@ -98,7 +98,7 @@ const SalesforceOverview: React.FC<ISalesforceOverviewProps> = ({
 				id
 			});
 
-			setDataSource(new DataSource(newDataSource));
+			setDataSource(new DataSource(newDataSource as any));
 		} catch (error) {
 			addAlert({
 				alertType: Alert.Types.Error,

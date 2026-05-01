@@ -27,11 +27,18 @@ export interface ConnectorColumnDescriptor {
 }
 
 export interface Languages {
+	activeConnectedWithData: string;
+	activeConnectedWithDataInfo: string;
+	activeConnectedWithZeroData: string;
 	connectDescription: string;
 	connectTitle: string;
 	disconnectedAlert: string;
 	endpointHelper: string;
 	endpointLabel: string;
+	inactiveManualDisconnection: string;
+	inactiveNoConnectionWithoutData: string;
+	inactiveConnectedWithSomeDataButNoDataFor90Days: string;
+	inactiveConnectedWithSomeDataButNoDataFor90DaysInfo: string;
 	reconnectHelper: string;
 	successAlert: string;
 	syncHelper: string;

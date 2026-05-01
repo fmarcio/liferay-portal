@@ -92,7 +92,7 @@ const LiferayOverview: React.FC<ILiferayeOverviewProps> = ({
 				id
 			});
 
-			setDataSource(new DataSource(newDataSource));
+			setDataSource(new DataSource(newDataSource as any));
 		} catch (error) {
 			addAlert({
 				alertType: Alert.Types.Error,

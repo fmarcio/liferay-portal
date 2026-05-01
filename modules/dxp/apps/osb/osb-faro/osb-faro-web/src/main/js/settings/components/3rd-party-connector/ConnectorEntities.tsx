@@ -6,7 +6,7 @@ import React from 'react';
 import {ConnectorEntityDescriptor} from './types';
 import {sub} from 'shared/util/lang';
 
-type ConnectionStatus = 'connected' | 'disconnected';
+type ConnectionStatus = 'configured' | 'unconfigured';
 
 interface IConnectorEntitiesProps {
 	connectionStatus: ConnectionStatus;
@@ -47,7 +47,13 @@ const ConnectorEntities: React.FC<IConnectorEntitiesProps> = ({
 							{typeof count === 'number' && count >= 0 && (
 								<ClayList.ItemText>
 									{sub(
-										Liferay.Language.get('x-items-synced'),
+										count === 1
+											? Liferay.Language.get(
+													'x-item-synced'
+											  )
+											: Liferay.Language.get(
+													'x-items-synced'
+											  ),
 										[count]
 									)}
 								</ClayList.ItemText>
@@ -57,14 +63,14 @@ const ConnectorEntities: React.FC<IConnectorEntitiesProps> = ({
 						<ClayList.ItemField className='justify-content-center'>
 							<Label
 								displayType={
-									connectionStatus === 'connected'
+									connectionStatus === 'configured'
 										? 'success'
 										: 'secondary'
 								}
 							>
-								{connectionStatus === 'connected'
-									? Liferay.Language.get('connected')
-									: Liferay.Language.get('disconnected')}
+								{connectionStatus === 'configured'
+									? Liferay.Language.get('configured')
+									: Liferay.Language.get('unconfigured')}
 							</Label>
 						</ClayList.ItemField>
 					</ClayList.Item>

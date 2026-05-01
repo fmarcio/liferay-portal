@@ -20,10 +20,10 @@ import {ConnectorConfig} from './types';
 import {CopyInputValue} from '../CopyInputValue';
 import {DataSource} from 'shared/util/records';
 import {DataSourceEditableTitle} from '../data-source/DataSourceEditableTitle';
-import {DataSourceStatuses} from 'shared/util/constants';
+import {DataSourceStates, DataSourceStatuses} from 'shared/util/constants';
 import {fetch} from 'shared/api/data-source';
 import {generateConnectorToken, updateConnector} from 'shared/api/connector';
-import {getDataSourceDisplayObject} from 'shared/util/data-sources';
+import {STATUS_DISPLAY} from 'shared/util/data-sources';
 import {Text} from '@clayui/core';
 import {useCurrentUser} from 'shared/hooks/useCurrentUser';
 import {useDisconnectDataSource} from '../data-source/utils';
@@ -44,11 +44,6 @@ interface IConnectorOverviewProps extends PropsFromRedux {
 	dataSource: DataSource;
 }
 
-type AlertState = {
-	displayType: DisplayType;
-	message: string;
-};
-
 const ConnectorOverview: React.FC<IConnectorOverviewProps> = ({
 	addAlert,
 	close,
@@ -56,29 +51,46 @@ const ConnectorOverview: React.FC<IConnectorOverviewProps> = ({
 	dataSource: initialDataSource,
 	open
 }) => {
-	const [loading, setLoading] = useState(false);
-	const [dataSource, setDataSource] = useState(initialDataSource);
-	const [token, setToken] = useState('');
-
 	const {groupId = '', id = ''} = useParams<{
 		groupId: string;
 		id: string;
 	}>();
-	const currentUser = useCurrentUser();
 
-	const [alert, setAlert] = useState<AlertState>({
-		displayType: 'success',
-		message: ''
-	});
+	const [loading, setLoading] = useState(false);
+	const [dataSource, setDataSource] = useState(initialDataSource);
+	const [token, setToken] = useState('');
+	const currentUser = useCurrentUser();
 
 	const dataSourceActive = dataSource.status === DataSourceStatuses.Active;
 
-	const accountStatus = dataSource.provider?.getIn([
-		'accountsConfiguration',
-		'accountsStatus'
-	]);
+	const isManuallyDisconnected =
+		!dataSourceActive && dataSource.state === DataSourceStates.Disconnected;
+
+	const displayToken = dataSourceActive
+		? (dataSource.getIn(['credentials', 'privateKey']) as string) || ''
+		: token;
 
 	const endpointURL = `${window.location.origin}${config.endpointPath}`;
+
+	const primaryEntity = config.entities[0];
+
+	const {
+		data: accountsCount,
+		error: countError,
+		loading: countLoading
+	} = useRequest({
+		dataSourceFn: (params: {[key: string]: any}) =>
+			primaryEntity?.fetchCount
+				? primaryEntity.fetchCount({
+						groupId: params.groupId,
+						id: params.id
+				  })
+				: Promise.resolve(undefined),
+		variables: {groupId, id}
+	});
+
+	const accountStatus: 'configured' | 'unconfigured' =
+		(accountsCount as number) > 0 ? 'configured' : 'unconfigured';
 
 	const handleUpdateDataSource = async () => {
 		try {
@@ -89,7 +101,7 @@ const ConnectorOverview: React.FC<IConnectorOverviewProps> = ({
 				id
 			});
 
-			setDataSource(new DataSource(newDataSource));
+			setDataSource(new DataSource(newDataSource as any));
 		} catch (error) {
 			addAlert({
 				alertType: Alert.Types.Error,
@@ -103,25 +115,7 @@ const ConnectorOverview: React.FC<IConnectorOverviewProps> = ({
 	};
 
 	useEffect(() => {
-		const next: AlertState = {
-			displayType: 'success',
-			message: config.languages.successAlert
-		};
-
-		if (!dataSourceActive) {
-			next.displayType = 'warning';
-			next.message = config.languages.disconnectedAlert;
-		} else if (accountStatus) {
-			next.message = Liferay.Language.get(
-				'all-data-coming-from-this-data-source-is-up-to-date.-there-are-no-errors-to-report'
-			);
-		}
-
-		setAlert(next);
-	}, [accountStatus, config.languages, dataSourceActive]);
-
-	useEffect(() => {
-		if (dataSourceActive) {
+		if (dataSourceActive || isManuallyDisconnected) {
 			return;
 		}
 
@@ -145,7 +139,34 @@ const ConnectorOverview: React.FC<IConnectorOverviewProps> = ({
 		};
 
 		fetchConnectorTokenForGroup();
-	}, [config.slug, dataSourceActive, groupId]);
+	}, [config.slug, dataSourceActive, groupId, isManuallyDisconnected]);
+
+	const handleGenerateToken = async () => {
+		try {
+			const data = await generateConnectorToken({
+				groupId,
+				type: config.slug
+			});
+
+			if (data?.token) {
+				setToken(data.token);
+
+				await updateConnector(config.slug, {
+					groupId,
+					id,
+					status: DataSourceStatuses.Active
+				});
+
+				await handleUpdateDataSource();
+			}
+		} catch (error) {
+			addAlert({
+				alertType: Alert.Types.Error,
+				message: (error as Error).message,
+				timeout: false
+			});
+		}
+	};
 
 	const {handleDisconnect} = useDisconnectDataSource({
 		addAlert,
@@ -153,18 +174,81 @@ const ConnectorOverview: React.FC<IConnectorOverviewProps> = ({
 		groupId,
 		id,
 		onSubmit: async () => {
+			setToken('');
 			await handleUpdateDataSource();
 		},
 		open
 	});
 
-	const {display, label} = getDataSourceDisplayObject(dataSource);
+	const {display, label} = (() => {
+		if (dataSourceActive) {
+			return STATUS_DISPLAY.active;
+		}
+
+		if (isManuallyDisconnected && !token) {
+			return STATUS_DISPLAY[DataSourceStates.Disconnected];
+		}
+
+		return {
+			display: 'secondary',
+			label: Liferay.Language.get('inactive')
+		};
+	})();
 
 	const updateDataSourceFn = (params: {[key: string]: any}) =>
 		updateConnector(
 			config.slug,
 			params as Parameters<typeof updateConnector>[1]
 		);
+
+	const getAlertConfig = (): {
+		displayType: DisplayType;
+		infoMessage?: string;
+		message: string;
+	} => {
+		const count = accountsCount as number;
+
+		if (dataSourceActive) {
+			if (count > 0) {
+				return {
+					displayType: 'success',
+					infoMessage: config.languages.activeConnectedWithDataInfo,
+					message: config.languages.activeConnectedWithData
+				};
+			}
+
+			return {
+				displayType: 'warning',
+				message: config.languages.activeConnectedWithZeroData
+			};
+		}
+
+		if (isManuallyDisconnected && !token) {
+			return {
+				displayType: 'warning',
+				message: config.languages.inactiveManualDisconnection
+			};
+		}
+
+		if (count > 0) {
+			return {
+				displayType: 'warning',
+				infoMessage:
+					config.languages
+						.inactiveConnectedWithSomeDataButNoDataFor90DaysInfo,
+				message:
+					config.languages
+						.inactiveConnectedWithSomeDataButNoDataFor90Days
+			};
+		}
+
+		return {
+			displayType: 'warning',
+			message: config.languages.inactiveNoConnectionWithoutData
+		};
+	};
+
+	const alertConfig = getAlertConfig();
 
 	return (
 		<BasePage
@@ -196,11 +280,9 @@ const ConnectorOverview: React.FC<IConnectorOverviewProps> = ({
 						title={Liferay.Language.get('connection-status')}
 					/>
 
-					{alert && (
-						<ClayAlert displayType={alert.displayType}>
-							{alert.message}
-						</ClayAlert>
-					)}
+					<ClayAlert displayType={alertConfig.displayType}>
+						{alertConfig.message}
+					</ClayAlert>
 				</div>
 
 				<div>
@@ -208,57 +290,80 @@ const ConnectorOverview: React.FC<IConnectorOverviewProps> = ({
 						title={Liferay.Language.get('data-source-details')}
 					/>
 
-					<ClayLayout.Row className='mt-4'>
-						<ClayLayout.Col size={6}>
-							<CopyInputValue
-								addAlert={addAlert}
-								disabled={false}
-								title={Liferay.Language.get('endpoint-url')}
-								value={endpointURL}
-							/>
-						</ClayLayout.Col>
+					<div className='mb-4'>
+						<Text color='secondary' size={4}>
+							{config.languages.syncHelper}
+						</Text>
+					</div>
 
-						<ClayLayout.Col size={6}>
-							<CopyInputValue
-								addAlert={addAlert}
-								disabled={false}
-								title={Liferay.Language.get('token')}
-								value={token}
-							/>
-						</ClayLayout.Col>
-					</ClayLayout.Row>
+					{isManuallyDisconnected && !token ? (
+						<ClayButton
+							className='mt-4'
+							onClick={handleGenerateToken}
+						>
+							{Liferay.Language.get('generate-new-token')}
+						</ClayButton>
+					) : (
+						<>
+							<ClayLayout.Row className='mt-4'>
+								<ClayLayout.Col size={6}>
+									<CopyInputValue
+										addAlert={addAlert}
+										disabled={false}
+										title={Liferay.Language.get(
+											'endpoint-url'
+										)}
+										value={endpointURL}
+									/>
+								</ClayLayout.Col>
 
-					<ClayLayout.Row>
-						<ClayLayout.Col size={6}>
-							<ClayForm.Group className='mb-0'>
-								<label htmlFor='dataSourceType'>
-									{Liferay.Language.get('data-source-type')}
-								</label>
+								<ClayLayout.Col size={6}>
+									<CopyInputValue
+										addAlert={addAlert}
+										disabled={false}
+										title={Liferay.Language.get('token')}
+										value={displayToken}
+									/>
+								</ClayLayout.Col>
+							</ClayLayout.Row>
 
-								<ClayInput
-									id='dataSourceType'
-									readOnly
-									type='text'
-									value={config.displayName}
-								/>
-							</ClayForm.Group>
-						</ClayLayout.Col>
+							<ClayLayout.Row>
+								<ClayLayout.Col size={6}>
+									<ClayForm.Group className='mb-0'>
+										<label htmlFor='dataSourceType'>
+											{Liferay.Language.get(
+												'data-source-type'
+											)}
+										</label>
 
-						<ClayLayout.Col size={6}>
-							<ClayForm.Group className='mb-0'>
-								<label htmlFor='dataSourceId'>
-									{Liferay.Language.get('data-source-id')}
-								</label>
+										<ClayInput
+											id='dataSourceType'
+											readOnly
+											type='text'
+											value={config.displayName}
+										/>
+									</ClayForm.Group>
+								</ClayLayout.Col>
 
-								<ClayInput
-									id='dataSourceId'
-									readOnly
-									type='text'
-									value={dataSource.id}
-								/>
-							</ClayForm.Group>
-						</ClayLayout.Col>
-					</ClayLayout.Row>
+								<ClayLayout.Col size={6}>
+									<ClayForm.Group className='mb-0'>
+										<label htmlFor='dataSourceId'>
+											{Liferay.Language.get(
+												'data-source-id'
+											)}
+										</label>
+
+										<ClayInput
+											id='dataSourceId'
+											readOnly
+											type='text'
+											value={dataSource.id}
+										/>
+									</ClayForm.Group>
+								</ClayLayout.Col>
+							</ClayLayout.Row>
+						</>
+					)}
 				</div>
 
 				{currentUser.isAdmin() && dataSourceActive && (
@@ -266,6 +371,7 @@ const ConnectorOverview: React.FC<IConnectorOverviewProps> = ({
 						aria-label={Liferay.Language.get(
 							'disconnect-data-source'
 						)}
+						className='mt-3'
 						displayType='danger'
 						onClick={handleDisconnect}
 						outline
@@ -282,8 +388,11 @@ const ConnectorOverview: React.FC<IConnectorOverviewProps> = ({
 				<ConnectorEntityList
 					accountStatus={accountStatus}
 					config={config}
+					countError={!!countError}
+					countLoading={countLoading}
 					dataSource={dataSource}
-					groupId={groupId}
+					infoMessage={alertConfig.infoMessage}
+					syncedCount={accountsCount as number | undefined}
 				/>
 			</Card>
 
@@ -307,60 +416,44 @@ const ConnectorOverview: React.FC<IConnectorOverviewProps> = ({
 };
 
 interface IConnectorEntityListProps {
-	accountStatus: 'connected' | 'disconnected';
+	accountStatus: 'configured' | 'unconfigured';
 	config: ConnectorConfig;
+	countError: boolean;
+	countLoading: boolean;
 	dataSource: DataSource;
-	groupId: string;
+	infoMessage?: string;
+	syncedCount: number | undefined;
 }
 
 const ConnectorEntityList: React.FC<IConnectorEntityListProps> = ({
 	accountStatus,
 	config,
-	dataSource,
-	groupId
+	countError,
+	countLoading,
+	infoMessage,
+	syncedCount
 }) => {
 	const primaryEntity = config.entities[0];
 
-	const countResponse = useRequest({
-		dataSourceFn: (params: {[key: string]: any}) =>
-			primaryEntity?.fetchCount
-				? primaryEntity.fetchCount({
-						groupId: params.groupId,
-						id: params.id
-				  })
-				: Promise.resolve(undefined),
-		variables: {groupId, id: dataSource.id}
-	});
-
-	if (countResponse.error) {
+	if (countError) {
 		return <ErrorDisplay />;
 	}
 
-	if (countResponse.loading) {
+	if (countLoading) {
 		return <Loading spacer />;
 	}
 
 	const syncedCounts: {[accessor: string]: number | undefined} = {};
 
 	if (primaryEntity) {
-		syncedCounts[primaryEntity.accessor] = countResponse.data as
-			| number
-			| undefined;
+		syncedCounts[primaryEntity.accessor] = syncedCount;
 	}
 
 	return (
 		<div>
-			<ClayAlert displayType='info'>
-				{Liferay.Language.get(
-					'your-data-may-take-some-time-to-sync.-if-it-has-already-synced,-you-can-dismiss-this-message'
-				)}
-			</ClayAlert>
-
-			<div className='mb-2'>
-				<Text color='secondary' size={4}>
-					{config.languages.syncHelper}
-				</Text>
-			</div>
+			{infoMessage && (
+				<ClayAlert displayType='info'>{infoMessage}</ClayAlert>
+			)}
 
 			<div className='mt-3 text-dark'>
 				<Text size={2} weight='semi-bold'>
