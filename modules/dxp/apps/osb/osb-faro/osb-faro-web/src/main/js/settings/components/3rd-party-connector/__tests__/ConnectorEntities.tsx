@@ -24,7 +24,7 @@ describe('ConnectorEntities', () => {
 
 		const {getByText} = render(
 			<ConnectorEntities
-				connectionStatus='connected'
+				connectionStatus='configured'
 				entities={entities}
 				syncedCounts={{}}
 			/>
@@ -39,7 +39,7 @@ describe('ConnectorEntities', () => {
 	it('renders the synced count when it is a non-negative number', () => {
 		const {getByText} = render(
 			<ConnectorEntities
-				connectionStatus='connected'
+				connectionStatus='configured'
 				entities={[buildEntity()]}
 				syncedCounts={{contacts: 42}}
 			/>
@@ -51,7 +51,7 @@ describe('ConnectorEntities', () => {
 	it('renders the synced count when it is zero', () => {
 		const {getByText} = render(
 			<ConnectorEntities
-				connectionStatus='connected'
+				connectionStatus='configured'
 				entities={[buildEntity()]}
 				syncedCounts={{contacts: 0}}
 			/>
@@ -63,7 +63,7 @@ describe('ConnectorEntities', () => {
 	it('hides the synced count when no value is provided', () => {
 		const {queryByText} = render(
 			<ConnectorEntities
-				connectionStatus='connected'
+				connectionStatus='configured'
 				entities={[buildEntity()]}
 				syncedCounts={{}}
 			/>
@@ -72,34 +72,34 @@ describe('ConnectorEntities', () => {
 		expect(queryByText(/Items Synced/i)).toBeNull();
 	});
 
-	it('renders the connected label with success display when status is connected', () => {
+	it('renders the configured label with success display when status is configured', () => {
 		const {getByText} = render(
 			<ConnectorEntities
-				connectionStatus='connected'
+				connectionStatus='configured'
 				entities={[buildEntity()]}
 				syncedCounts={{}}
 			/>
 		);
 
-		expect(getByText('Connected')).toBeTruthy();
+		expect(getByText('Configured')).toBeTruthy();
 	});
 
-	it('renders the disconnected label when status is disconnected', () => {
+	it('renders the unconfigured label when status is unconfigured', () => {
 		const {getByText} = render(
 			<ConnectorEntities
-				connectionStatus='disconnected'
+				connectionStatus='unconfigured'
 				entities={[buildEntity()]}
 				syncedCounts={{}}
 			/>
 		);
 
-		expect(getByText('Disconnected')).toBeTruthy();
+		expect(getByText('Unconfigured')).toBeTruthy();
 	});
 
 	it('renders nothing inside the list when no entities are provided', () => {
 		const {container} = render(
 			<ConnectorEntities
-				connectionStatus='connected'
+				connectionStatus='configured'
 				entities={[]}
 				syncedCounts={{}}
 			/>

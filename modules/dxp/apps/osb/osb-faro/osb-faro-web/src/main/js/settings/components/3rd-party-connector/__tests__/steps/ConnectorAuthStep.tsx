@@ -39,11 +39,20 @@ const buildConfig = (
 	endpointPath: '/api/acme',
 	entities: [],
 	languages: {
+		activeConnectedWithData: 'activeConnectedWithData',
+		activeConnectedWithDataInfo: 'activeConnectedWithDataInfo',
+		activeConnectedWithZeroData: 'activeConnectedWithZeroData',
 		connectDescription: 'connectDescription',
 		connectTitle: 'connectTitle',
 		disconnectedAlert: 'disconnectedAlert',
 		endpointHelper: 'endpointHelper',
 		endpointLabel: 'endpointLabel',
+		inactiveConnectedWithSomeDataButNoDataFor90Days:
+			'inactiveConnectedWithSomeDataButNoDataFor90Days',
+		inactiveConnectedWithSomeDataButNoDataFor90DaysInfo:
+			'inactiveConnectedWithSomeDataButNoDataFor90DaysInfo',
+		inactiveManualDisconnection: 'inactiveManualDisconnection',
+		inactiveNoConnectionWithoutData: 'inactiveNoConnectionWithoutData',
 		reconnectHelper: 'reconnectHelper',
 		successAlert: 'successAlert',
 		syncHelper: 'syncHelper',

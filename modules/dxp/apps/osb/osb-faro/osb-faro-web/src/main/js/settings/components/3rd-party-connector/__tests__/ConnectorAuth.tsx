@@ -9,7 +9,6 @@ jest.mock('shared/api/connector', () => ({
 }));
 
 import ConnectorAuth from '../ConnectorAuth';
-import React from 'react';
 import {ConnectorConfig} from '../types';
 import {
 	createConnector,
@@ -26,11 +25,20 @@ const buildConfig = (
 	endpointPath: '/api/acme_accounts',
 	entities: [],
 	languages: {
+		activeConnectedWithData: 'activeConnectedWithData',
+		activeConnectedWithDataInfo: 'activeConnectedWithDataInfo',
+		activeConnectedWithZeroData: 'activeConnectedWithZeroData',
 		connectDescription: 'desc',
 		connectTitle: 'Connect Acme',
 		disconnectedAlert: 'disconnected',
 		endpointHelper: 'helper text',
 		endpointLabel: 'ENDPOINT_LABEL_ACME',
+		inactiveConnectedWithSomeDataButNoDataFor90Days:
+			'inactiveConnectedWithSomeDataButNoDataFor90Days',
+		inactiveConnectedWithSomeDataButNoDataFor90DaysInfo:
+			'inactiveConnectedWithSomeDataButNoDataFor90DaysInfo',
+		inactiveManualDisconnection: 'inactiveManualDisconnection',
+		inactiveNoConnectionWithoutData: 'inactiveNoConnectionWithoutData',
 		reconnectHelper: 'reconnect',
 		successAlert: 'success',
 		syncHelper: 'sync',

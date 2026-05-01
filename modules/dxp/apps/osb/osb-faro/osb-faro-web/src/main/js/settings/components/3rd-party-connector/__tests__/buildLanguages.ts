@@ -6,11 +6,18 @@ describe('buildLanguages', () => {
 
 		expect(Object.keys(languages).sort()).toEqual(
 			[
+				'activeConnectedWithData',
+				'activeConnectedWithDataInfo',
+				'activeConnectedWithZeroData',
 				'connectDescription',
 				'connectTitle',
 				'disconnectedAlert',
 				'endpointHelper',
 				'endpointLabel',
+				'inactiveConnectedWithSomeDataButNoDataFor90Days',
+				'inactiveConnectedWithSomeDataButNoDataFor90DaysInfo',
+				'inactiveManualDisconnection',
+				'inactiveNoConnectionWithoutData',
 				'reconnectHelper',
 				'successAlert',
 				'syncHelper',

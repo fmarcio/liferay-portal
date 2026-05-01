@@ -1,6 +1,5 @@
 import ConnectorOverview from '../ConnectorOverview';
 import mockStore from 'test/mock-store';
-import React from 'react';
 import {ConnectorConfig} from '../types';
 import {DataSource} from 'shared/util/records';
 import {DataSourceStatuses} from 'shared/util/constants';
@@ -76,11 +75,20 @@ const buildConfig = (
 	endpointPath: '/api/acme',
 	entities: [],
 	languages: {
+		activeConnectedWithData: 'ACTIVE_CONNECTED_WITH_DATA',
+		activeConnectedWithDataInfo: 'ACTIVE_CONNECTED_WITH_DATA_INFO',
+		activeConnectedWithZeroData: 'ACTIVE_CONNECTED_WITH_ZERO_DATA',
 		connectDescription: 'connectDescription',
 		connectTitle: 'connectTitle',
 		disconnectedAlert: 'DISCONNECTED_ALERT',
 		endpointHelper: 'endpointHelper',
 		endpointLabel: 'endpointLabel',
+		inactiveConnectedWithSomeDataButNoDataFor90Days:
+			'INACTIVE_CONNECTED_WITH_SOME_DATA',
+		inactiveConnectedWithSomeDataButNoDataFor90DaysInfo:
+			'INACTIVE_CONNECTED_WITH_SOME_DATA_INFO',
+		inactiveManualDisconnection: 'INACTIVE_MANUAL_DISCONNECTION',
+		inactiveNoConnectionWithoutData: 'INACTIVE_NO_CONNECTION_WITHOUT_DATA',
 		reconnectHelper: 'reconnectHelper',
 		successAlert: 'SUCCESS_ALERT',
 		syncHelper: 'syncHelper',
@@ -135,32 +143,64 @@ describe('ConnectorOverview', () => {
 		});
 	});
 
-	it('renders the success alert when the data source is active and no account error is present', () => {
-		const {getByText} = renderOverview();
+	describe('connection status messages', () => {
+		it('renders activeConnectedWithZeroData when active and count is 0', () => {
+			useRequestMock.mockReturnValue({
+				data: 0,
+				error: false,
+				loading: false
+			});
 
-		expect(getByText('SUCCESS_ALERT')).toBeTruthy();
-	});
+			const {getByText} = renderOverview();
 
-	it('renders the disconnected warning alert when the data source is inactive', () => {
-		const {getByText} = renderOverview({
-			dataSource: buildDataSource(DataSourceStatuses.Inactive)
+			expect(getByText('ACTIVE_CONNECTED_WITH_ZERO_DATA')).toBeTruthy();
 		});
 
-		expect(getByText('DISCONNECTED_ALERT')).toBeTruthy();
-	});
+		it('renders activeConnectedWithData and its info message when active and count > 0', () => {
+			useRequestMock.mockReturnValue({
+				data: 42,
+				error: false,
+				loading: false
+			});
 
-	it('renders the up-to-date alert when the account status is reported back', () => {
-		const dataSource = buildDataSource(DataSourceStatuses.Active, {
-			accountsConfiguration: {accountsStatus: 'connected'}
+			const {getByText} = renderOverview();
+
+			expect(getByText('ACTIVE_CONNECTED_WITH_DATA')).toBeTruthy();
+			expect(getByText('ACTIVE_CONNECTED_WITH_DATA_INFO')).toBeTruthy();
 		});
 
-		const {getByText} = renderOverview({dataSource});
+		it('renders inactiveNoConnectionWithoutData when inactive and count is 0', () => {
+			useRequestMock.mockReturnValue({
+				data: 0,
+				error: false,
+				loading: false
+			});
 
-		expect(
-			getByText(
-				'All data coming from this data source is up to date. There are no errors to report.'
-			)
-		).toBeTruthy();
+			const {getByText} = renderOverview({
+				dataSource: buildDataSource(DataSourceStatuses.Inactive)
+			});
+
+			expect(
+				getByText('INACTIVE_NO_CONNECTION_WITHOUT_DATA')
+			).toBeTruthy();
+		});
+
+		it('renders inactiveConnectedWithSomeDataButNoDataFor90Days and its info message when inactive and count > 0', () => {
+			useRequestMock.mockReturnValue({
+				data: 15,
+				error: false,
+				loading: false
+			});
+
+			const {getByText} = renderOverview({
+				dataSource: buildDataSource(DataSourceStatuses.Inactive)
+			});
+
+			expect(getByText('INACTIVE_CONNECTED_WITH_SOME_DATA')).toBeTruthy();
+			expect(
+				getByText('INACTIVE_CONNECTED_WITH_SOME_DATA_INFO')
+			).toBeTruthy();
+		});
 	});
 
 	it('fetches a token using the connector slug when the data source is inactive', async () => {
