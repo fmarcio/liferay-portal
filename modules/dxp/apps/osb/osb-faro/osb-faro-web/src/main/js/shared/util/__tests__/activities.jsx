@@ -34,6 +34,10 @@ describe('activities', () => {
 			expect(typeof result).toBe('string');
 			expect(result.length).toBeGreaterThan(0);
 		});
+
+		it('should return an empty string for an invalid date', () => {
+			expect(formatGroupingTime(null)).toBe('');
+		});
 	});
 
 	describe('formatEvents', () => {
@@ -146,6 +150,31 @@ describe('activities', () => {
 			expect(session).toHaveProperty('device');
 			expect(session).toHaveProperty('nestedItems');
 			expect(Array.isArray(session.nestedItems)).toBe(true);
+		});
+
+		it('should fall back to the earliest event date when the session has no createDate', () => {
+			const result = formatSessions([
+				data.mockSession(0, {
+					createDate: null,
+
+					// Newest-first, as the backend returns them.
+
+					events: [
+						{...data.mockEvent(0), createDate: 200000},
+						{...data.mockEvent(1), createDate: 100000}
+					]
+				})
+			]);
+
+			const header = result[0];
+			const session = result[1];
+
+			expect(header.title).not.toBe('Invalid date');
+			expect(header.title.length).toBeGreaterThan(0);
+
+			// The earliest event, not events[0], marks the session start.
+
+			expect(session.time).toBe(100000);
 		});
 	});
 

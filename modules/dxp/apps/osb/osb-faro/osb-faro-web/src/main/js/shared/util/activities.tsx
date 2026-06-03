@@ -139,9 +139,44 @@ export const formatGroupingTime = (
 ): string => {
 	const time = moment(datetime);
 
+	if (!time.isValid()) {
+		return '';
+	}
+
 	return time.isSame(moment(), 'day')
 		? Liferay.Language.get('today')
 		: time.utc().format('ll');
+};
+
+/**
+ * Resolves a session's display date. Falls back to the session's earliest
+ * event date when the session itself has no createDate (e.g. an in-progress
+ * webhook session that has no persisted session record yet), so the timeline
+ * never renders "Invalid date".
+ * @param {Object} session
+ * @returns {Date|string|undefined} A value usable by Moment.
+ */
+const getSessionDate = ({createDate, events}: UserSession) => {
+	if (createDate) {
+		return createDate;
+	}
+
+	const userSessionEvents = events as unknown as UserSessionEvent[];
+
+	if (!userSessionEvents?.length) {
+		return undefined;
+	}
+
+	// Events arrive newest-first, so the earliest event marks the session
+	// start. Compare dates rather than relying on array position.
+
+	const earliestEvent = userSessionEvents.reduce((earliest, event) =>
+		moment.utc(event.createDate).isBefore(moment.utc(earliest.createDate))
+			? event
+			: earliest
+	);
+
+	return earliestEvent.createDate;
 };
 
 /**
@@ -153,16 +188,15 @@ export const formatSessions = (
 	sessions: UserSession[]
 ): (VerticalTimelineHeader | VerticalTimelineSession)[] =>
 	flow(
-		groupBy(({createDate}: UserSession) =>
-			moment.utc(createDate).startOf('day').format()
+		groupBy((session: UserSession) =>
+			moment.utc(getSessionDate(session)).startOf('day').format()
 		),
 		mapValues((items: unknown) =>
-			(items as (UserSession & {createDate: string})[]).map(
-				({
+			(items as (UserSession & {createDate: string})[]).map(session => {
+				const {
 					browserName,
 					completeDate,
 					contentLanguageID,
-					createDate,
 					devicePixelRatioz,
 					deviceType,
 					events,
@@ -171,7 +205,9 @@ export const formatSessions = (
 					screenWidth,
 					timezoneOffset,
 					userAgent
-				}) => ({
+				} = session;
+
+				return {
 					applicationId:
 						(events as unknown as UserSessionEvent[])[0]
 							?.applicationId ?? '',
@@ -191,10 +227,10 @@ export const formatSessions = (
 					nestedItems: formatEvents(
 						events as unknown as UserSessionEvent[]
 					),
-					time: createDate,
+					time: getSessionDate(session),
 					userAgent
-				})
-			)
+				};
+			})
 		),
 		toPairs,
 		orderBy([([time]) => moment(time).unix()], ['desc']),
