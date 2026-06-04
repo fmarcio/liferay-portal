@@ -60,6 +60,7 @@ import {SegmentStates, SegmentTypes, Sizes} from 'shared/util/constants';
 import {setUriQueryValues} from 'shared/util/router';
 import {sub} from 'shared/util/lang';
 import {useChannelContext} from 'shared/context/channel';
+import {useClampedPage} from 'shared/hooks/useClampedPage';
 import {useCurrentUser} from 'shared/hooks/useCurrentUser';
 import {useQueryPagination} from 'shared/hooks/useQueryPagination';
 import {useRequest} from 'shared/hooks/useRequest';
@@ -205,6 +206,8 @@ export const List: React.FC<IListProps> = ({
 				: undefined
 		}
 	});
+
+	useClampedPage({delta, loading, page, total: data?.total});
 
 	const {
 		data: usageData = [],
