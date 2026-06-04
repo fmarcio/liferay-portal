@@ -6,7 +6,8 @@ import React from 'react';
 import {act} from '@testing-library/react';
 import {ChannelContext} from 'shared/context/channel';
 import {cleanup, render, screen} from '@testing-library/react';
-import {MemoryRouter, Route} from 'react-router-dom';
+import {createMemoryHistory} from 'history';
+import {MemoryRouter, Route, Router} from 'react-router-dom';
 import {mockChannelContext} from 'test/mock-channel-context';
 import {Provider} from 'react-redux';
 import {Routes} from 'shared/util/router';
@@ -257,6 +258,55 @@ describe('List', () => {
 		expect(
 			container.querySelector('.sticker-info')
 		).not.toBeInTheDocument();
+	});
+
+	it('should redirect to the last valid page when navigating to an out-of-range page', async () => {
+		API.projects.fetchFeatureUsages.mockResolvedValueOnce([]);
+
+		API.individualSegment.search.mockReturnValue(
+			Promise.resolve({disableSearch: false, items: [], total: 0})
+		);
+
+		const history = createMemoryHistory({
+			initialEntries: [
+				'/workspace/23/123/contacts/segments?delta=20&page=2'
+			]
+		});
+
+		const push = jest.fn();
+
+		history.push = push;
+
+		render(
+			<Provider store={store}>
+				<Router history={history}>
+					<Route path={Routes.CONTACTS_LIST_SEGMENT}>
+						<UnassignedSegmentsContext.Provider
+							value={MOCK_UNASSIGNED_SEGMENTS_CONTEXT}
+						>
+							<ChannelContext.Provider
+								value={mockChannelContext()}
+							>
+								<List
+									channelId='123'
+									currentUser={data.getImmutableMock(
+										User,
+										data.mockUser
+									)}
+									groupId='23'
+								/>
+							</ChannelContext.Provider>
+						</UnassignedSegmentsContext.Provider>
+					</Route>
+				</Router>
+			</Provider>
+		);
+
+		await act(async () => {
+			jest.runAllTimers();
+		});
+
+		expect(push).toHaveBeenCalledWith(expect.stringContaining('page=1'));
 	});
 
 	it('should not show the sequential info icon for batch segments', async () => {
