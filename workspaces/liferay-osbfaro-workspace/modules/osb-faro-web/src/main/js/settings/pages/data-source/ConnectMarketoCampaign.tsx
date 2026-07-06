@@ -2,24 +2,30 @@ import React from 'react';
 import WizardPage, {Step} from 'settings/components/base-page/WizardPage';
 import {Alert} from 'shared/types';
 import {AssignIndividualsDataToPropertiesStep} from 'settings/components/salesforce/steps/AssignIndividualsDataToChannelsStep';
-import {ConnectSalesforceStep} from 'settings/components/salesforce/steps/ConnectSalesforceStep';
-import {SyncSalesforceDataStep} from 'settings/components/salesforce/steps/SyncSalesforceDataStep';
+import {ConnectMarketoCampaignStep} from 'settings/components/marketo/steps/ConnectMarketoCampaignStep';
+import {sub} from 'shared/util/lang';
+import {SyncMarketoCampaignDataStep} from 'settings/components/marketo/steps/SyncMarketoCampaignDataStep';
 import {updateSalesforce} from 'shared/api/data-source';
 
 const steps: Step[] = [
 	{
-		content: (props: any) => <ConnectSalesforceStep {...props} />,
+		content: (props: any) => <ConnectMarketoCampaignStep {...props} />,
 		description: Liferay.Language.get(
 			'to-connect-your-data-source-with-liferay-data-platform-enter-their-url-the-client-id-and-secret'
 		),
-		title: Liferay.Language.get('connect-salesforce'),
+		title: sub(Liferay.Language.get('connect-x'), [
+			Liferay.Language.get('marketo'),
+		]) as string,
 	},
 	{
-		content: (props: any) => <SyncSalesforceDataStep {...props} />,
-		description: Liferay.Language.get(
-			'select-which-salesforce-data-you-would-like-to-sync-to-analytics-cloud'
-		),
-		title: Liferay.Language.get('sync-Salesforce-data'),
+		content: (props: any) => <SyncMarketoCampaignDataStep {...props} />,
+		description: sub(
+			Liferay.Language.get(
+				'select-which-x-data-you-would-like-to-sync-to-liferay-data-platform'
+			),
+			[Liferay.Language.get('marketo')]
+		) as string,
+		title: Liferay.Language.get('sync-marketo-data'),
 	},
 	{
 		content: (props: any) => (
@@ -70,6 +76,6 @@ const steps: Step[] = [
 	},
 ];
 
-const ConnectSalesforce = () => <WizardPage steps={steps} />;
+const ConnectMarketoCampaign = () => <WizardPage steps={steps} />;
 
-export default ConnectSalesforce;
+export default ConnectMarketoCampaign;

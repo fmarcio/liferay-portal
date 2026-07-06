@@ -2,7 +2,7 @@ import ClayAlert from '@clayui/alert';
 import ClayForm from '@clayui/form';
 import React from 'react';
 import {Alert, Modal} from 'shared/types';
-import {ConnectSalesforceAuth} from 'settings/components/salesforce/ConnectSalesforceAuth';
+import {ConnectMarketoCampaignAuth} from 'settings/components/marketo/ConnectMarketoCampaignAuth';
 import {DataSourceStatuses} from 'shared/util/constants';
 import {disconnect} from 'shared/api/data-source';
 import {modalTypes} from 'shared/actions/modals';
@@ -13,7 +13,13 @@ import {useHistory} from 'react-router-dom';
 import {useWizardPage} from '../../base-page/WizardPageContext';
 import {WizardPageButtonGroup} from 'settings/components/base-page/WizardPageButtonGroup';
 
-interface IConnectSalesforceStepProps {
+/**
+ * TODO [Marketo]: This step is currently a copy of ConnectSalesforceStep. The
+ * disconnect confirmation message below still uses a Salesforce-worded language
+ * key; update it once a Marketo-specific copy is available.
+ */
+
+interface IConnectMarketoCampaignStepProps {
 	addAlert: Alert.AddAlert;
 	close: Modal.close;
 	groupId: string;
@@ -21,19 +27,19 @@ interface IConnectSalesforceStepProps {
 	open: Modal.open;
 }
 
-const ConnectSalesforceStep = ({
+const ConnectMarketoCampaignStep = ({
 	addAlert,
 	close,
 	groupId,
 	onNext,
 	open
-}: IConnectSalesforceStepProps) => {
+}: IConnectMarketoCampaignStepProps) => {
 	const history = useHistory();
 	const {dataSource, refetchDataSource} = useWizardPage();
 
 	if (!dataSource) {
 		return (
-			<ConnectSalesforceAuth
+			<ConnectMarketoCampaignAuth
 				addAlert={addAlert}
 				buttonProps={{block: true}}
 				onCancel={() => {
@@ -70,7 +76,7 @@ const ConnectSalesforceStep = ({
 					)}
 				</ClayAlert>
 
-				<ConnectSalesforceAuth
+				<ConnectMarketoCampaignAuth
 					addAlert={addAlert}
 					buttonProps={{block: true}}
 					dataSource={dataSource}
@@ -134,7 +140,7 @@ const ConnectSalesforceStep = ({
 	}
 
 	return (
-		<ConnectSalesforceAuth
+		<ConnectMarketoCampaignAuth
 			addAlert={addAlert}
 			buttonProps={{block: true}}
 			dataSource={dataSource}
@@ -150,4 +156,4 @@ const ConnectSalesforceStep = ({
 	);
 };
 
-export {ConnectSalesforceStep};
+export {ConnectMarketoCampaignStep};

@@ -175,6 +175,11 @@ export const validateProtocol = validatePattern(
 	)
 );
 
+export const validateMarketoDomain = validatePattern(
+	/^https:\/\/.*$/,
+	Liferay.Language.get('please-enter-a-valid-marketo-url')
+);
+
 export const validateSalesforceDomain = validatePattern(
 	/^https:\/\/.*$/,
 	Liferay.Language.get('please-enter-a-valid-salesforce-url')
