@@ -340,6 +340,7 @@ const LiferayOverview: React.FC<ILiferayeOverviewProps> = ({
 						},
 					]}
 					dataSource={dataSource}
+					editable={currentUser.isAdmin()}
 					handleUpdateDataSource={handleUpdateDataSource}
 					open={open}
 					updateDataSourceFn={

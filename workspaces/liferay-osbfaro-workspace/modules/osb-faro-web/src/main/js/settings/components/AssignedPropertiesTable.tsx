@@ -15,7 +15,6 @@ import {Link, useParams} from 'react-router-dom';
 import {modalTypes} from 'shared/actions/modals';
 import {Routes, toRoute} from 'shared/util/router';
 import {Text} from '@clayui/core';
-import {useCurrentUser} from 'shared/hooks/useCurrentUser';
 import {useQueryPagination} from 'shared/hooks/useQueryPagination';
 import {useRequest} from 'shared/hooks/useRequest';
 
@@ -29,6 +28,7 @@ interface IAssignedPropertiesTableProps {
 	close: (...args: any[]) => void;
 	customColumns?: any[];
 	dataSource: any;
+	editable: boolean;
 	handleUpdateDataSource: (...args: any[]) => void;
 	loading?: boolean;
 	open: (...args: any[]) => void;
@@ -40,6 +40,7 @@ const AssignedPropertiesTable = ({
 	close,
 	customColumns = [],
 	dataSource,
+	editable,
 	handleUpdateDataSource,
 	loading: initialLoading = false,
 	open,
@@ -47,8 +48,6 @@ const AssignedPropertiesTable = ({
 }: IAssignedPropertiesTableProps) => {
 	const [loading, setLoading] = useState(initialLoading);
 	const {groupId} = useParams();
-
-	const currentUser = useCurrentUser();
 
 	const {delta, orderIOMap, page, query} = useQueryPagination({
 		initialOrderIOMap: createOrderIOMap(NAME),
@@ -162,7 +161,7 @@ const AssignedPropertiesTable = ({
 					}}
 				>
 					<ClayRadio
-						disabled={!currentUser.isAdmin() || !dataSourceActive}
+						disabled={!editable || !dataSourceActive}
 						label={Liferay.Language.get(
 							'make-individual-data-from-this-data-source-available-in-all-properties,-including-those-not-yet-created'
 						)}
@@ -170,7 +169,7 @@ const AssignedPropertiesTable = ({
 					/>
 
 					<ClayRadio
-						disabled={!currentUser.isAdmin() || !dataSourceActive}
+						disabled={!editable || !dataSourceActive}
 						label={Liferay.Language.get('select-properties')}
 						value="custom"
 					/>
@@ -240,7 +239,7 @@ const AssignedPropertiesTable = ({
 									data={data}
 									disabled={
 										loading ||
-										!currentUser.isAdmin() ||
+										!editable ||
 										!dataSourceActive
 									}
 									key={`${data.channelId}-toggle`}
@@ -299,7 +298,7 @@ const AssignedPropertiesTable = ({
 					page={page}
 					query={query}
 					renderNav={() => {
-						if (currentUser.isAdmin()) {
+						if (editable) {
 							return (
 								<ClayButton
 									disabled={!dataSourceActive}

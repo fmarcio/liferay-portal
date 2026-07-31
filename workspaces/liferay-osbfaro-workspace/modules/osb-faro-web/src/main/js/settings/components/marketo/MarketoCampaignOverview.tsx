@@ -299,6 +299,7 @@ const MarketoCampaignOverview: React.FC<IMarketoCampaignOverviewProps> = ({
 					addAlert={addAlert}
 					close={close}
 					dataSource={dataSource}
+					editable={currentUser.isAdmin()}
 					handleUpdateDataSource={handleUpdateDataSource}
 					loading={loading}
 					open={open}

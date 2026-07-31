@@ -332,6 +332,7 @@ const ConnectorOverview: React.FC<IConnectorOverviewProps> = ({
 					close={close}
 					customColumns={config.columns ?? []}
 					dataSource={dataSource}
+					editable={currentUser.isAdmin()}
 					handleUpdateDataSource={handleUpdateDataSource}
 					loading={loading}
 					open={open}

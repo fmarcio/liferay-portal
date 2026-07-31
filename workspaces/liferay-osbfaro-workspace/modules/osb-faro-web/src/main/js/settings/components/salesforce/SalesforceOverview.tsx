@@ -320,6 +320,7 @@ const SalesforceOverview: React.FC<ISalesforceOverviewProps> = ({
 					addAlert={addAlert}
 					close={close}
 					dataSource={dataSource}
+					editable={currentUser.isAdmin()}
 					handleUpdateDataSource={handleUpdateDataSource}
 					loading={loading}
 					open={open}
