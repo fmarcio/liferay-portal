@@ -18,17 +18,36 @@
 			</h1>
 
 			<div>
-				Serve this page from two hostnames that share one registrable
+				Reach this page through two hostnames that share one registrable
 				domain, so the browser can be seen sharing the
-				<code>ac_client_user_id</code> cookie between them. Add
-				<code>127.0.0.1 site.test learn.site.test</code> to
-				<code>/etc/hosts</code>, then open
-				<code>http://site.test:8081/test/manual/cookie-domain.html</code>
-				and <code>http://learn.site.test:8081/...</code>. The client
-				marks the cookie <code>Secure</code>, so those origins must
-				count as secure:
+				<code>ac_client_user_id</code> cookie between them.
+
+				<p>
+					Two servers are needed. <code>yarn start</code> serves the
+					bundle alone on port 8081, so this page needs a static
+					server of its own, from the module root:
+				</p>
+				<pre>yarn start                      # bundle at localhost:8081
+python3 -m http.server 8000     # this page, from the module root</pre>
+
+				<p>
+					<code>lvh.me</code> and every subdomain of it resolve to the
+					loopback address through public DNS, so no
+					<code>/etc/hosts</code> entry is needed. Open
+					<code>http://lvh.me:8000/test/manual/cookie-domain.html</code>
+					and the same path on <code>http://learn.lvh.me:8000</code>.
+					Should that domain ever stop resolving, any two names in
+					<code>/etc/hosts</code> that share a registrable domain work
+					the same way.
+				</p>
+
+				<p>
+					The client marks the cookie <code>Secure</code>, which the
+					browser accepts only from an origin it considers secure, so
+					those two origins have to be declared as such:
+				</p>
 				<pre>google-chrome --user-data-dir=/tmp/ac-sdk-profile \
---unsafely-treat-insecure-origin-as-secure=http://site.test:8081,http://learn.site.test:8081</pre>
+--unsafely-treat-insecure-origin-as-secure=http://lvh.me:8000,http://learn.lvh.me:8000</pre>
 			</div>
 		</div>
 
@@ -65,7 +84,7 @@
 					<li>
 						Clear everything here, then reload: this host mints an id
 						and the cookie carries
-						<code>Domain=.site.test</code> (check DevTools ▸
+						<code>Domain=.lvh.me</code> (check DevTools ▸
 						Application ▸ Cookies). No second cookie of the same
 						name exists.
 					</li>
@@ -82,7 +101,7 @@
 					<li>
 						Seed the legacy host only cookie and reload: it is
 						expired, leaving exactly one cookie of that name. Run
-						this on <code>site.test</code> as well as on the
+						this on <code>lvh.me</code> as well as on the
 						subdomain. That host is where the shared domain equals
 						the host itself, and a browser really does keep the two
 						cookies apart there, so it is the case the automated
@@ -102,7 +121,7 @@
 			// normally computes this per request with
 			// CookiesManager.getDomain() and injects it into the client config.
 
-			const COOKIE_DOMAIN = 'site.test';
+			const COOKIE_DOMAIN = 'lvh.me';
 
 			function getCookies() {
 				return document.cookie
