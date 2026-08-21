@@ -81,7 +81,13 @@
 					</li>
 					<li>
 						Seed the legacy host only cookie and reload: it is
-						expired, leaving exactly one cookie of that name.
+						expired, leaving exactly one cookie of that name. Run
+						this on <code>site.test</code> as well as on the
+						subdomain. That host is where the shared domain equals
+						the host itself, and a browser really does keep the two
+						cookies apart there, so it is the case the automated
+						tests cannot reach: jsdom keys a cookie by its domain
+						and path alone and merges them into one.
 					</li>
 				</ol>
 			</div>

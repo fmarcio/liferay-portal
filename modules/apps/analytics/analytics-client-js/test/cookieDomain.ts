@@ -188,6 +188,27 @@ describe('Cookie shared across subdomains', () => {
 			expect(getUserIdCookies()).toEqual([sharedUserId]);
 		});
 
+		it('accepts a domain equal to the host it is serving', () => {
+
+			// The server resolves liferay.com to liferay.com, so the site that
+			// owns the registrable domain is handed its own host as the domain
+			// to share at, and sharing has to stay on for it.
+			//
+			// Only the resolved domain is asserted, because jsdom keys a cookie
+			// by its domain and path alone. A browser holds a host scoped and a
+			// domain scoped cookie of the same name as two separate cookies
+			// even when the domains are equal, and expires them independently,
+			// while jsdom merges them into one. The cookie behavior for this
+			// host shape is covered by test/manual/cookie-domain.html instead.
+
+			const analytics = AnalyticsClient.create({
+				...CONFIG,
+				cookieDomain: window.location.hostname,
+			});
+
+			expect(analytics._getCookieDomain()).toBe(window.location.hostname);
+		});
+
 		it('writes the cookie at the shared domain through the Liferay API', () => {
 			const cookieSet = jest.fn();
 
