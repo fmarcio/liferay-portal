@@ -18,8 +18,8 @@
 			</h1>
 
 			<div>
-				Reach this page through two hostnames that share one registrable
-				domain, so the browser can be seen sharing the
+				Reach this page through two hostnames that share one parent domain,
+				so the browser can be seen sharing the
 				<code>ac_client_user_id</code> cookie between them.
 
 				<p>
@@ -31,23 +31,24 @@
 python3 -m http.server 8000     # this page, from the module root</pre>
 
 				<p>
-					<code>lvh.me</code> and every subdomain of it resolve to the
-					loopback address through public DNS, so no
-					<code>/etc/hosts</code> entry is needed. Open
-					<code>http://lvh.me:8000/test/manual/cookie-domain.html</code>
-					and the same path on <code>http://learn.lvh.me:8000</code>.
-					Should that domain ever stop resolving, any two names in
-					<code>/etc/hosts</code> that share a registrable domain work
-					the same way.
+					Then open the page through two names under
+					<code>test.localhost</code>:
 				</p>
+				<pre>http://a.test.localhost:8000/test/manual/cookie-domain.html
+http://b.test.localhost:8000/test/manual/cookie-domain.html</pre>
 
 				<p>
-					The client marks the cookie <code>Secure</code>, which the
-					browser accepts only from an origin it considers secure, so
-					those two origins have to be declared as such:
+					Nothing else is needed. The browser resolves every
+					<code>*.localhost</code> name to the loopback address itself,
+					so there is no <code>/etc/hosts</code> entry to add and no
+					domain owned by anyone else to depend on. It also treats those
+					names as a secure context, which matters because the client
+					marks the cookie <code>Secure</code> and a browser stores such
+					a cookie only from an origin it trusts — over plain HTTP any
+					other hostname would need
+					<code>--unsafely-treat-insecure-origin-as-secure</code> for
+					the cookie to land at all.
 				</p>
-				<pre>google-chrome --user-data-dir=/tmp/ac-sdk-profile \
---unsafely-treat-insecure-origin-as-secure=http://lvh.me:8000,http://learn.lvh.me:8000</pre>
 			</div>
 		</div>
 
@@ -84,7 +85,7 @@ python3 -m http.server 8000     # this page, from the module root</pre>
 					<li>
 						Clear everything here, then reload: this host mints an id
 						and the cookie carries
-						<code>Domain=.lvh.me</code> (check DevTools ▸
+						<code>Domain=.test.localhost</code> (check DevTools ▸
 						Application ▸ Cookies). No second cookie of the same
 						name exists.
 					</li>
@@ -101,12 +102,12 @@ python3 -m http.server 8000     # this page, from the module root</pre>
 					<li>
 						Seed the legacy host only cookie and reload: it is
 						expired, leaving exactly one cookie of that name. Run
-						this on <code>lvh.me</code> as well as on the
-						subdomain. That host is where the shared domain equals
-						the host itself, and a browser really does keep the two
-						cookies apart there, so it is the case the automated
-						tests cannot reach: jsdom keys a cookie by its domain
-						and path alone and merges them into one.
+						this on the parent host too, at
+						<code>http://test.localhost:8000</code>, where the shared
+						domain equals the host itself. A browser really does keep
+						the two cookies apart there, so it is the case the
+						automated tests cannot reach: jsdom keys a cookie by its
+						domain and path alone and merges them into one.
 					</li>
 				</ol>
 			</div>
@@ -117,11 +118,11 @@ python3 -m http.server 8000     # this page, from the module root</pre>
 		<script>
 			const COOKIE_NAME = 'ac_client_user_id';
 
-			// A registrable domain the two hostnames above share. The server
-			// normally computes this per request with
-			// CookiesManager.getDomain() and injects it into the client config.
+			// The parent domain the hostnames above share. The server normally
+			// computes this per request with CookiesManager.getDomain() and
+			// injects it into the client config.
 
-			const COOKIE_DOMAIN = 'lvh.me';
+			const COOKIE_DOMAIN = 'test.localhost';
 
 			function getCookies() {
 				return document.cookie
