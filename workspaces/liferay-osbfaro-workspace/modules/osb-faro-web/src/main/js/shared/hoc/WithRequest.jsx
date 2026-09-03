@@ -28,23 +28,35 @@ export default (request, mapResultToProps = val => val, options = {}) =>
 			...options
 		};
 
-		return ({groupId, ...props}) => {
+		// `Composed` is built once per wrapped component rather than on every
+		// render. Composing inside the render made it a new component type each
+		// time, so any re-render of an ancestor unmounted and remounted the whole
+		// subtree, discarding its state and refetching. See LPD-104396: that
+		// remount also deleted the `useBlocker` registration of a page guarded by
+		// `NavigationWarning`, which silently dropped the pending navigation.
+
+		const Composed = compose(
+			withQuery(request, val => val),
+			withError({page}),
+			withLoading()
+		)(({data, ...otherProps}) => (
+			<WrappedComponent
+				{...otherProps}
+				{...mapResultToProps(data, otherProps)}
+			/>
+		));
+
+		return ({errorProps: errorPropsFromProps, groupId, ...props}) => {
 			const propsToError = isFunction(errorProps)
 				? errorProps({groupId})
 				: errorProps;
 
-			const Composed = compose(
-				withQuery(request, val => val),
-				withError({...propsToError, page}),
-				withLoading()
-			)(({data, ...otherProps}) => (
-				<WrappedComponent
+			return (
+				<Composed
+					{...props}
+					errorProps={{...errorPropsFromProps, ...propsToError}}
 					groupId={groupId}
-					{...otherProps}
-					{...mapResultToProps(data, otherProps)}
 				/>
-			));
-
-			return <Composed {...props} groupId={groupId} />;
+			);
 		};
 	};
