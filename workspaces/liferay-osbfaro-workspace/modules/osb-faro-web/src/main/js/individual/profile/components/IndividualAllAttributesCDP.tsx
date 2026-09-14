@@ -213,7 +213,7 @@ const IndividualDetailsCDP = ({
 						/>
 					</div>
 
-					<Card pageDisplay>
+					<Card className="all-attributes-cdp-table" pageDisplay>
 						<ListComponent
 							{...listProps}
 							columns={[

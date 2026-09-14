@@ -1,3 +1,16 @@
+.all-attributes-cdp-table,
+.entity-details-list-root {
+	.table td {
+		overflow-wrap: anywhere;
+		white-space: normal;
+
+		.text-truncate {
+			overflow: visible;
+			white-space: normal;
+		}
+	}
+}
+
 .entity-details-list-root {
 	.custom-control {
 		.custom-control-label-text {
