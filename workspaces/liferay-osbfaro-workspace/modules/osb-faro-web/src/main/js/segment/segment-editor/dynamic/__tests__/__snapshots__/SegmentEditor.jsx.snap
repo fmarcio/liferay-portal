@@ -385,7 +385,7 @@ exports[`SegmentEditor should render 1`] = `
                                 <span
                                   class="text-4 text-secondary"
                                 >
-                                  To create a new segment, drag items from the Conditions Library and drop them here.
+                                  Drag items from the Conditions Library and drop them here.
                                 </span>
                               </div>
                             </div>

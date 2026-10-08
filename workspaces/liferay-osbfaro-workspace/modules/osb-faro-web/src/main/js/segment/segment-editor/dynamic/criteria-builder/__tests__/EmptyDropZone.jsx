@@ -38,7 +38,7 @@ describe('EmptyDropZone', () => {
 		expect(getByText('No Conditions Yet')).toBeInTheDocument();
 		expect(
 			getByText(
-				'To create a new segment, drag items from the Conditions Library and drop them here.'
+				'Drag items from the Conditions Library and drop them here.'
 			)
 		).toBeInTheDocument();
 	});

@@ -124,7 +124,7 @@ describe('SegmentEditor', () => {
 		expect(screen.getByText('No Conditions Yet')).toBeInTheDocument();
 		expect(
 			screen.getByText(
-				'To create a new segment, drag items from the Conditions Library and drop them here.'
+				'Drag items from the Conditions Library and drop them here.'
 			)
 		).toBeInTheDocument();
 
