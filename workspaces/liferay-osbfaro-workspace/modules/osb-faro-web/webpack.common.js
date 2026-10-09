@@ -177,9 +177,16 @@ const config = {
 						loader: 'svgo-loader',
 						options: {
 							plugins: [
-								{removeDimensions: true},
-								{removeUselessStrokeAndFill: false},
-								{removeViewBox: false},
+								{
+									name: 'preset-default',
+									params: {
+										overrides: {
+											removeUselessStrokeAndFill: false,
+										},
+									},
+								},
+								'removeDimensions',
+								'removeTitle',
 							],
 						},
 					},
